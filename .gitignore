@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+
+*.log
+.grunt
+
+node_modules
+client/vendor
+config.json
