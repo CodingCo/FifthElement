@@ -1,0 +1,17 @@
+{
+  "name": "FifthElement",
+  "version": "0.0.0",
+  "homepage": "https://github.com/CodingCo/FifthElement",
+  "authors": [
+    "robertelving <vivalaklask@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/vendor",
+    "test",
+    "tests"
+  ]
+}

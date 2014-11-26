@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-var debug = require('debug')('FifthElement/server');
+var debug = require('debug')('../server');
 var app = require('../server/app');
 
 app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function () {
-    debug('Server started on port: ' + server.address().port + " ip: " + server.address());
+var server = app.listen(app.get('port'), function() {
+    debug(function(){
+        console.log('Express server listening on port ' + server.address().port);
+    });
 });
