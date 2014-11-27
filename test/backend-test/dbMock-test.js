@@ -5,25 +5,10 @@ var dbMock = require('./dbMock');
 
 describe("Testing of the Document Services", function () {
 
-
+    var testDocument = ";"
 
     beforeEach(function (done) {
-        dbMock.fillMock();
-    });
-
-    afterEach(function (done) {
-        dbMock.emptyMock();
-    });
-
-
-    /*
-     * Tests the getWiki function.
-     * IMPORTANT: When testing against a local mongodb the article._id test will fail
-     * the _id types differ from those on mongolab, which are ObjectId's.
-     */
-    describe("test getDocument", function () {
-        var invalidSearchString = "testblah";
-        var testDocument = {
+        testDocument = {
             doc_id: '1',
             title: 'Simons Journey to the Farm',
             subtitle: 'Based on a true story',
@@ -53,6 +38,22 @@ describe("Testing of the Document Services", function () {
                 'comment2',
             ]
         };
+        dbMock.fillMock();
+    });
+
+    afterEach(function (done) {
+        dbMock.emptyMock();
+    });
+
+
+    /*
+     * Tests the getWiki function.
+     * IMPORTANT: When testing against a local mongodb the article._id test will fail
+     * the _id types differ from those on mongolab, which are ObjectId's.
+     */
+    describe("test getDocument", function () {
+        var invalidSearchString = "testblah";
+
 
         it("should return a complete Document", function (done) {
             documentMapper.getDocument(testDocument.title, function (err, document) {
@@ -138,6 +139,17 @@ describe("Testing of the Document Services", function () {
             documentMapper.deleteDocument(documentTitle, function (err, data) {
                 if (err) return done(err);
                 data.should.equal(false);
+                done();
+            })
+        });
+    });
+
+    describe("test getFirstMatch", function () {
+        it("Should find document from part of title", function (done) {
+            var titleSubstring = testDocument.title.substring(0,6)
+            documentMapper.getFirstMatch(titleSubstring,function (err, data) {
+                if (err) return done(err);
+                document.should.have.property('title', testDocument.subtitle);
                 done();
             })
         });
