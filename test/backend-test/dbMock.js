@@ -142,5 +142,3 @@ exports.fillMock = function(){
         ]
     });
 }
-
-fillMock();

@@ -5,7 +5,7 @@ var dbMock = require('./dbMock');
 
 describe("Testing of the Document Services", function () {
 
-    var testDocument = ";"
+    var testDocument = "";
 
     beforeEach(function (done) {
         testDocument = {
@@ -39,10 +39,12 @@ describe("Testing of the Document Services", function () {
             ]
         };
         dbMock.fillMock();
+        done();
     });
 
     afterEach(function (done) {
         dbMock.emptyMock();
+        done();
     });
 
 
@@ -52,6 +54,7 @@ describe("Testing of the Document Services", function () {
      * the _id types differ from those on mongolab, which are ObjectId's.
      */
     describe("test getDocument", function () {
+
         var invalidSearchString = "testblah";
 
 
