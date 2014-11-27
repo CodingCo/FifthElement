@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<!-- //TODO: set the files to file.min.extension before we publish-->
+<script src="../vendor/jquery/dist/jquery.js"></script>
+<script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
+<link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.css"/>
+<link rel="stylesheet" href="../stylesheets/style.css"/>
+<script src="../vendor/angular/angular.js"></script>
+
+
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav pull-left">
+                <li><a id="home" href="index.html">Home</a></li>
+                <li><a id="admin" href="adminpage.html">Admin</a></li>
+                <li>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">CA<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="ca1documentation.html">Assignment 1 - Chat</a></li>
+                    </ul>
+                </li>
+                <li><a id="projects" href="loadAllPersons.html">ERP</a></li>
+                <li><a href="http://g5node.azurewebsites.net">Business System</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">G5 Members <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="members/simon.html"><span class="glyphicon glyphicon-user"></span> Simon</a></li>
+                    </ul>
+                </li>
+                <li><a href="downloads.html"> <span class="glyphicon glyphicon-download-alt"></span>Downloads</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <!-- title, subtitle, author and abstract -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="doc_title">Title</label>
+                <input id="doc_title" class="form-control" name="title" type="text" placeholder="title"/>
+            </div>
+            <div class="form-group">
+                <label for="doc_subtitle">subtitle</label>
+                <input id="doc_subtitle" class="form-control" name="Subtitle" type="text" placeholder="subtitle"/>
+            </div>
+
+            <div class="form-group">
+                <label for="doc_author">Author</label>
+                <input id="doc_author" class="form-control" name="author" type="text" placeholder="author"/>
+            </div>
+        </div>
+        <!-- abstract section -->
+        <div class="col-md-8">
+            <!-- <div class="note-editable" contenteditable="true"></div> -->
+            <div class="form-group">
+                <label for="doc_abstract"> abstract</label>
+                <textarea class="form-control" name="simon" id="doc_abstract" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- tags -->
+    <div class="row">
+        <div class="col-md-12">
+            <label for="">Tags</label>
+
+            <div class="panel panel-default">
+                <div class="panel-body" contenteditable="true">
+                    tags goes here
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- editor -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="">Body</label>
+                <textarea class="form-control" name="doc_body" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- live preview -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well"></div>
+        </div>
+    </div>
+
+    <!-- submit buttons -->
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="well"></div>
+        </div>
+    </div>
+    <!-- comment section -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well"></div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
