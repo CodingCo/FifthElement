@@ -1,13 +1,13 @@
 var mockDB = [];
+var connection = false;
 
-
-exports.get = function(title){
+exports.getDocument = function(title){
     for(var i=0;i < mockDB.length;i++){
         if(mockDB[i].title === title){
             return mockDB[i];
         }
     }
-    return {};
+    return undefined;
 }
 
 exports.getFirstMatch = function(title){
@@ -16,14 +16,14 @@ exports.getFirstMatch = function(title){
             return mockDB[i];
         }
     }
-    return {};
+    return undefined;
 }
 
-exports.post = function(doc){
+exports.postDocument = function(doc){
     mockDB.push(doc);
 }
 
-exports.delete = function(title){
+exports.deleteDocument = function(title){
 
     for(var i=0;i < mockDB.length;i++){
         if(mockDB[i].title === title){
@@ -48,7 +48,11 @@ exports.getMatching = function(title){
 }
 */
 
-var fillMock = function(){
+exports.emptyMock = function () {
+    mockDB = [];
+}
+
+exports.fillMock = function(){
 
     mockDB.push({
         doc_id: '1',
