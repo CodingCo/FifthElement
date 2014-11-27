@@ -19,15 +19,19 @@ exports.getFirstMatch = function(title){
     return {};
 }
 
+exports.post = function(doc){
+    mockDB.push(doc);
+}
 
 exports.delete = function(title){
 
     for(var i=0;i < mockDB.length;i++){
         if(mockDB[i].title === title){
             mockDB.splice(i,1);
+            return true;
         }
     }
-    return [];
+    return false;
 }
 
 /*  Future Search service
