@@ -82,4 +82,45 @@ describe("Testing of the Document Services", function () {
         })
     });
 
+    describe("test postDocument", function () {
+        var testDocument = {
+            doc_id: '5',
+            title: 'TestDocument',
+            subtitle: 'TestDocument',
+            author: {
+                email: 'TestDocument',
+                name: 'TestDocument',
+                resume:"TestDocument",
+                skills:'TestDocument',
+                profile_picture: 'TestDocument',
+                github_link: 'TestDocument',
+                collaborations:'TestDocument'
+            },
+            timestamp: 'TestDocument',
+            abstract: 'TestDocument',
+            body: 'TestDocument',
+            images: [
+                'TestDocument',
+                'TestDocument',
+                'TestDocument'
+            ],
+            tags: [
+                'TestDocument',
+                'TestDocument',
+            ],
+            comments: [
+                'TestDocument',
+                'TestDocument',
+            ]
+        };
+        it("Should add the document to the collection", function (done) {
+            documentMapper.postDocument(testDocument,function (err, data) {
+                if (err) return done(err);
+                data.should.equal(true);
+                done();
+            })
+        });
+    });
+
+
 });

@@ -20,7 +20,7 @@ exports.getFirstMatch = function(title){
 }
 
 exports.postDocument = function(doc){
-    mockDB.push(doc);
+    return mockDB.push(doc);
 }
 
 exports.deleteDocument = function(title){
