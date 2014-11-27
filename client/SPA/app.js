@@ -8,8 +8,6 @@ angular.module('CMSApp', [
     'CMSApp.services',
     'CMSApp.factories',
     'CMSApp.filters' // Remember to add views
-]).
+]);
 
-controller('DocController', ["$scope", function ($scope) {
-    $scope.title = "Create Documentation";
-}]);
+
