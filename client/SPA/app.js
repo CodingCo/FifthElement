@@ -1,9 +1,15 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('CMSApp', []);
+angular.module('CMSApp', [
+    'ngRoute',
+    'CMSApp.controllers',
+    'CMSApp.directives',
+    'CMSApp.services',
+    'CMSApp.factories',
+    'CMSApp.filters' // Remember to add views
+]).
 
-
-app.controller('DocController', ["$scope", function ($scope) {
+controller('DocController', ["$scope", function ($scope) {
     $scope.title = "Create Documentation";
 }]);
