@@ -9,7 +9,8 @@
     <script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="../stylesheets/style.css"/>
-    <script src="../vendor/angular/angular.js"></script>    <!-- Remember: angular first, then components files -->
+    <script src="../vendor/angular/angular.js"></script>
+    <!-- Remember: angular first, then components files -->
     <script src="../vendor/angular-route/angular-route.js"></script>
     <script src="components/controllers.js"></script>
     <script src="components/directives.js"></script>
@@ -95,7 +96,54 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="">Body</label>
+                <label for="">Body</label> <br/>
+
+                <!-- Text editor bar -->
+                <div style="margin-bottom: 1px">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-font"><a
+                                href="#"></a></span>
+                        </button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bold"><a
+                                href="#"></a></span>
+                        </button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-italic"><a
+                                href="#"></a></span>
+                        </button>
+                        <button type="button" class="btn btn-default"><span><b>U</b><a href="#"></a></span>
+                        </button>
+
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-header"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">H1</a></li>
+                                <li><a href="#">H2</a></li>
+                                <li><a href="#">H3</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div class="btn-group" role="group" aria-label="...">
+
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"><a
+                                href="#"></a></span>
+                        </button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-link"><a
+                                href="#"></a></span>
+                        </button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"><a
+                                href="#"></a></span>
+                        </button>
+
+                    </div>
+                </div>
+
                 <div contenteditable="true" style="min-height: 300px; background: #ffffff"></div>
             </div>
         </div>
