@@ -122,5 +122,25 @@ describe("Testing of the Document Services", function () {
         });
     });
 
+    describe("test deleteDocument", function () {
+        var documentTitle = 'Simons Journey to the Farm'
+        var invalidTitle = "AcidFace";
+
+        it("Should delete Document if it exist in collection. Test with valid title", function (done) {
+            documentMapper.deleteDocument(documentTitle, function (err, data) {
+                if (err) return done(err);
+                data.should.equal(true);
+                done();
+            })
+        });
+
+        it("Should delete Document if it exist in collection. Test with invalid title", function (done) {
+            documentMapper.deleteDocument(documentTitle, function (err, data) {
+                if (err) return done(err);
+                data.should.equal(false);
+                done();
+            })
+        });
+    });
 
 });
