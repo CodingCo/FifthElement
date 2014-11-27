@@ -2,12 +2,36 @@ var mockDB = [];
 
 
 exports.get = function(title){
-
-    for(i=0;i < mockDb.length;i++)
-
-
-    return
+    for(var i=0;i < mockDB.length;i++){
+        if(mockDB[i].title === title){
+            return mockDB[i];
+        }
+    }
+    return {};
 }
+
+exports.getFirstMatch = function(title){
+    for(var i=0;i < mockDB.length;i++){
+        if(~mockDB[i].title.indexOf(title)){
+            return mockDB[i];
+        }
+    }
+    return {};
+}
+
+/*  Future Search service
+exports.getMatching = function(title){
+
+    var returnDocs = [];
+
+    for(var i=0;i < mockDB.length;i++){
+        if(~mockDB[i].title.indexOf(title)){
+            returnDocs.push(mockDB[i]);
+        }
+    }
+    return returnDocs;
+}
+*/
 
 var fillMock = function(){
 
