@@ -19,6 +19,17 @@ exports.getFirstMatch = function(title){
     return {};
 }
 
+
+exports.delete = function(title){
+
+    for(var i=0;i < mockDB.length;i++){
+        if(mockDB[i].title === title){
+            mockDB.splice(i,1);
+        }
+    }
+    return [];
+}
+
 /*  Future Search service
 exports.getMatching = function(title){
 
