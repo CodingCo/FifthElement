@@ -1,22 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('CMSApp', [
-    'ngRoute',
-    'CMSApp.controllers',
-    'CMSApp.directives',
-    'CMSApp.services',
-    'CMSApp.factories',
-    'CMSApp.filters',
-]);
+var app = angular.module('CMSApp', []);
 
 
-
-
-app.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/firstViewAdded'});
+app.controller('DocController', ["$scope", function ($scope) {
+    $scope.title = "Create Documentation";
 }]);
-
-app.config(function ($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-});

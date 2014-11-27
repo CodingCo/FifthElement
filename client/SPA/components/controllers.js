@@ -1,9 +1,5 @@
-var app = angular.module('CMSApp.controllers', []).
+var app = angular.module('CMSApp.controllers', []);
 
-    app.controller('DocController', ["$scope", function ($scope) {
-        $scope.title = "Create Documentation";
-        
-    }]);
 
 
 app.controller('AppCtrl', function ($scope, $http, $window, $location) {
