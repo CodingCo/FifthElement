@@ -7,7 +7,7 @@ angular.module('CMSApp', [
     'CMSApp.directives',
     'CMSApp.services',
     'CMSApp.factories',
-    'CMSApp.filters' // Remember to add views
+    'CMSApp.filters' // Remember to add views when that's relevant
 ]);
 
 

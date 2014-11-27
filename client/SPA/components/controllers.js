@@ -59,6 +59,9 @@ angular.module('CMSApp.controllers', []).
     }).
     controller('DocController', ["$scope", function ($scope) {
         $scope.title = "Create Documentation";
+
+        $scope.content = "";
+
     }]);
 
 
