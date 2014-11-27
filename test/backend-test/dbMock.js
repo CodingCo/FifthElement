@@ -34,7 +34,6 @@ exports.deleteDocument = function(title){
     return false;
 }
 
-/*  Future Search service
 exports.getMatching = function(title){
 
     var returnDocs = [];
@@ -46,7 +45,7 @@ exports.getMatching = function(title){
     }
     return returnDocs;
 }
-*/
+
 
 exports.emptyMock = function () {
     mockDB = [];

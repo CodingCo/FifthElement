@@ -147,7 +147,7 @@ describe("Testing of the Document Services", function () {
     describe("test getFirstMatch", function () {
         it("Should find document from part of title", function (done) {
             var titleSubstring = testDocument.title.substring(0,6)
-            documentMapper.getFirstMatch(titleSubstring,function (err, data) {
+            documentMapper.getFirstMatch(titleSubstring,function (err, document) {
                 if (err) return done(err);
                 document.should.have.property('title', testDocument.subtitle);
                 done();
@@ -155,4 +155,15 @@ describe("Testing of the Document Services", function () {
         });
     });
 
+    //for testing search
+    describe("test getDocuments", function () {
+        var searchString = "as";
+        it("Should return an array of distinct object matching searchString", function (done) {
+            documentMapper.getDocuments(searchString,function (err, data) {
+                if (err) return done(err);
+                    data.length.to.be.above(0);
+                done();
+            })
+        });
+    });
 });
