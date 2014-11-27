@@ -8,11 +8,15 @@ var app = angular.module('CMSApp', [
     'CMSApp.services',
     'CMSApp.factories',
     'CMSApp.filters',
-])
-    app.config(['$routeProvider', function($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/firstViewAdded'});
-    }]);
+]);
 
-    app.config(function ($httpProvider) {
-        $httpProvider.interceptors.push('authInterceptor');
-    });
+
+
+
+app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.otherwise({redirectTo: '/firstViewAdded'});
+}]);
+
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+});

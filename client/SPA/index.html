@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="CMSApp" ng-controller="DocController">
 <head lang="en">
     <meta charset="UTF-8">
     <title>{{title}}</title>
@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.css"/>
 <link rel="stylesheet" href="../stylesheets/style.css"/>
 <script src="../vendor/angular/angular.js"></script>
+<script src="app.js"></script>
 
 
 <body>
@@ -94,20 +95,29 @@
     <!-- live preview -->
     <div class="row">
         <div class="col-md-12">
-            <div class="well"></div>
+            <div class="container-fluid">
+                <div class="well">i am a live preview</div>
+            </div>
         </div>
     </div>
 
     <!-- submit buttons -->
     <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="well"></div>
+            <div class="form-group">
+                <button type="button" type="submit"class="btn btn-primary btn-lg btn-block">Add Documentation</button>
+            </div>
+
         </div>
     </div>
     <!-- comment section -->
     <div class="row">
-        <div class="col-md-12">
-            <div class="well"></div>
+        <div class=" col-md-offset-2 col-md-8">
+            <div class="container-fluid">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-text">Dapibus ac facilisis in</li>
+                </ul>
+            </div>
         </div>
     </div>
 
