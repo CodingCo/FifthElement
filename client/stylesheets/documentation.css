@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(245, 245, 245);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #4d4d4d;
+}
+
+.text-container h1, h2, h3, h4, h5 {
+    color: #444444;
+    font-family: "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+}
+
+.heading-container {
+    font-family: "Helvetica Neue Light", Helvetica, Arial, sans-serif;
+    font-size: 63px;
+    color: #444444;
+    text-align: center;
+}
+
+code {
+    font-family: courier, monospace;
+    font-size: 12px;
+    color: #204d74;
+    border: 1px solid #707070;
+}
