@@ -1,7 +1,6 @@
 var should = require('should');
-var documentMapper = require('../../server/source/documentMapper');
-var dbMock = require('./dbMock');
-
+var Mock = require('./dbMock');
+var dbMock = require('../../server/source/documentMapper')
 
 describe("Testing of the Document Services", function () {
 
@@ -38,47 +37,37 @@ describe("Testing of the Document Services", function () {
                 'comment2',
             ]
         };
-        dbMock.fillMock();
+        Mock.fillMock();
         done();
     });
 
     afterEach(function (done) {
-        dbMock.emptyMock();
+        Mock.emptyMock()
         done();
     });
 
-
-    /*
-     * Tests the getWiki function.
-     * IMPORTANT: When testing against a local mongodb the article._id test will fail
-     * the _id types differ from those on mongolab, which are ObjectId's.
-     */
     describe("test getDocument", function () {
-
         var invalidSearchString = "testblah";
-
-
         it("should return a complete Document", function (done) {
-            documentMapper.getDocument(testDocument.title, function (err, document) {
+            dbMock.getDocument(testDocument.title, function (err, document) {
                 if (err) return done(err);
                 // Here we check if data is equal to expected -> article
-                document.should.have.property('_id', testDocument.doc_id);
-                document.should.have.property('url', testDocument.title);
-                document.should.have.property('title', testDocument.subtitle);
-                document.should.have.property('title', testDocument.author);
-                document.should.have.property('title', testDocument.timestamp);
-                document.should.have.property('title', testDocument.abstract);
-                document.should.have.property('title', testDocument.body);
-                document.should.have.property('title', testDocument.images);
-                document.should.have.property('title', testDocument.tags);
-                document.should.have.property('title', testDocument.comments);
+                document.should.have.property('doc_id', testDocument.doc_id);
+                document.should.have.property('title', testDocument.title);
+                document.should.have.property('subtitle', testDocument.subtitle);
+                document.should.have.property('author', testDocument.author);
+                document.should.have.property('timestamp', testDocument.timestamp);
+                document.should.have.property('abstract', testDocument.abstract);
+                document.should.have.property('body', testDocument.body);
+                document.should.have.property('images', testDocument.images);
+                document.should.have.property('tags', testDocument.tags);
+                document.should.have.property('comments', testDocument.comments);
                 return done();
-
             });
         });
 
         it("Should return undefined, no such document", function (done) {
-            documentMapper.getDocument(invalidSearchString, function (err, data) {
+            dbMock.getDocument(invalidSearchString, function (err, data) {
                 if (err) return done(err);
                 (data === undefined).should.equal(true);
                 done();
@@ -118,7 +107,7 @@ describe("Testing of the Document Services", function () {
             ]
         };
         it("Should add the document to the collection", function (done) {
-            documentMapper.postDocument(testDocument,function (err, data) {
+            dbMock.postDocument(testDocument,function (err, data) {
                 if (err) return done(err);
                 data.should.equal(true);
                 done();
@@ -131,7 +120,7 @@ describe("Testing of the Document Services", function () {
         var invalidTitle = "AcidFace";
 
         it("Should delete Document if it exist in collection. Test with valid title", function (done) {
-            documentMapper.deleteDocument(documentTitle, function (err, data) {
+            dbMock.deleteDocument(documentTitle, function (err, data) {
                 if (err) return done(err);
                 data.should.equal(true);
                 done();
@@ -139,21 +128,20 @@ describe("Testing of the Document Services", function () {
         });
 
         it("Should delete Document if it exist in collection. Test with invalid title", function (done) {
-            documentMapper.deleteDocument(documentTitle, function (err, data) {
+            dbMock.deleteDocument(invalidTitle, function (err, data) {
                 if (err) return done(err);
                 data.should.equal(false);
-                done();
+                return done();
             })
         });
     });
 
-    describe("test getFirstMatch", function () {
+    describe("test partial matching", function () {
         it("Should find document from part of title", function (done) {
-            var titleSubstring = testDocument.title.substring(0,6)
-            documentMapper.getFirstMatch(titleSubstring,function (err, document) {
+            dbMock.getDocument(testDocument.title.substring(0,4), function (err, document) {
                 if (err) return done(err);
-                document.should.have.property('title', testDocument.subtitle);
-                done();
+                document.should.have.property('title', testDocument.title);
+                return done();
             })
         });
     });
@@ -162,9 +150,9 @@ describe("Testing of the Document Services", function () {
     describe("test getDocuments", function () {
         var searchString = "as";
         it("Should return an array of distinct object matching searchString", function (done) {
-            documentMapper.getDocuments(searchString,function (err, data) {
+            dbMock.getDocuments(searchString,function (err, data) {
                 if (err) return done(err);
-                    data.length.to.be.above(0);
+                data.length.should.be.above(0);
                 done();
             })
         });
