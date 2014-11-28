@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('CMSApp', [
     'ngRoute',
+    'textAngular',
     'CMSApp.controllers',
     'CMSApp.directives',
     'CMSApp.services',
