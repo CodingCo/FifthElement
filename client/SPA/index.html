@@ -12,6 +12,7 @@
     <script src="../vendor/angular/angular.js"></script>
     <!-- Remember: angular first, then components files -->
     <script src="../vendor/angular-route/angular-route.js"></script>
+    <script src="../vendor/angular-sanitize/angular-sanitize.js"></script>
     <script src="components/controllers.js"></script>
     <script src="components/directives.js"></script>
     <script src="components/services.js"></script>
@@ -99,7 +100,7 @@
                 <label for="">Body</label> <br/>
 
                 <!-- Text editor bar -->
-                <div style="margin-bottom: 1px">
+                <div class="form-group">
                     <div class="btn-group" role="group" aria-label="...">
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-font"><a
                                 href="#"></a></span>
@@ -129,7 +130,7 @@
                     </div>
 
 
-                    <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group" role="group" aria-label="..">
 
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"><a
                                 href="#"></a></span>
@@ -143,23 +144,13 @@
 
                     </div>
                 </div>
-
                 <div contenteditable="true" ng-model="content" style="min-height: 300px; background: #ffffff"></div>
             </div>
         </div>
     </div>
 
-    Content:
-    {{ content }}
+    <!-- {{ content }} -->
 
-    <!-- live preview -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container-fluid">
-                <div>{{text}}</div>
-            </div>
-        </div>
-    </div>
 
     <!-- submit buttons -->
     <div class="row">
@@ -170,6 +161,22 @@
 
         </div>
     </div>
+
+    <!-- d70a16 -->
+    <!-- live preview -->
+    <div ng-controller="AppController">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container-fluid">
+                    <div contenteditable="true" designMode="on" ng-model="content" style="min-height: 300px; background: #ffffff" ng-bind-html="dhtml()"></div>
+                    <div>{{content}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- comment section -->
     <div class="row">
         <div class=" col-md-offset-2 col-md-8">
@@ -180,6 +187,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
 </body>
