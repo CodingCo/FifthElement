@@ -1,4 +1,22 @@
 var mongoose = require('mongoose');
+var dbUri = require('../../config.json').dbUri;
+
+mongoose.connect(dbUri);
+
+exports.connect = function (onConnected) {
+    mongoose.connect(dbUri, function (error) {
+        if (onConnected) {
+            onConnected(error);
+        }
+    });
+};
+
+
+exports.close = function (onClose) {
+    mongoose.connection.close(function () {
+        onClose();
+    })
+};
 
 
 var documentation = new mongoose.Schema({
@@ -35,13 +53,27 @@ var downloads = new mongoose.Schema({
 });
 
 
-var Documentation = mongoose.model('documentation', documentation);
+exports.Documentation = mongoose.model('documentation', documentation);
 var Profile = mongoose.model('profiles', profile);
 var Download = mongoose.model('downloads', downloads);
 
+(function () {
+    mongoose.connection.on('connected', function () { //
+        console.log("Connection opened");
+    });
 
-module.exports = {
-    Documentation: Documentation,
-    Profile: Profile,
-    Download: Download
-};
+    mongoose.connection.on('error', function (error) {
+        console.log("Error in connection: " + error);
+    });
+
+    mongoose.connection.on('disconnected', function () {
+        console.log("Connection closed");
+    });
+
+    process.on('SIGINT', function () {
+        mongoose.connection.close(function () {
+            console.log("Disconnected through app termination");
+            process.exit(0);
+        });
+    })
+})();
