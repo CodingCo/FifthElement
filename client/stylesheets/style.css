@@ -1,3 +1,15 @@
 body {
     background-color: rgb(242, 242, 242);
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    background-color: #4d4d4d;
+    color: rgb(159, 159, 159);
+}
+
+.footer-bottom {
+    background-color: rgb(38, 38, 38);
+    color: rgb(228, 228, 228);
 }

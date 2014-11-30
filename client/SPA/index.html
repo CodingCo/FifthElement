@@ -8,6 +8,7 @@
     <script src="../vendor/jquery/dist/jquery.js"></script>
     <script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap-theme.css"/>
     <link rel="stylesheet" href="../stylesheets/style.css"/>
     <script src="../vendor/angular/angular.js"></script>
     <!-- Remember: angular first, then components files -->
@@ -24,35 +25,7 @@
     <title>{{title}}</title>
 </head>
 <body>
-
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav pull-left">
-                <li><a id="home" href="index.html">Home</a></li>
-                <li><a id="admin" href="adminpage.html">Admin</a></li>
-                <li>
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">CA<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="ca1documentation.html">Assignment 1 - Chat</a></li>
-                    </ul>
-                </li>
-                <li><a id="projects" href="loadAllPersons.html">ERP</a></li>
-                <li><a href="http://g5node.azurewebsites.net">Business System</a></li>
-            </ul>
-            <ul class="nav navbar-nav pull-right">
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">G5 Members <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="members/simon.html"><span class="glyphicon glyphicon-user"></span> Simon</a></li>
-                    </ul>
-                </li>
-                <li><a href="downloads.html"> <span class="glyphicon glyphicon-download-alt"></span>Downloads</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<div navigation></div>
 
 <div class="container">
     <!-- title, subtitle, author and abstract -->
@@ -165,30 +138,32 @@
     <!-- d70a16 -->
     <!-- live preview -->
     <div ng-controller="AppController">
-
         <div class="row">
+            <button type="button" ng-click="formatText('bold')">B</button>
+            <button type="button" ng-click="formatText('italic')">I</button>
+            <button type="button" ng-click="formatText('justifyCenter')">center</button>
+            <button type="button" ng-click="formatText('undo')">undo</button>
+            <button type="button" ng-click="formatText('redo')">redo</button>
+            <button type="button" ng-click="formatText('h1')">h1</button>
+            <button type="button" ng-click="formatText('h2')">h2</button>
+            <button type="button" ng-click="formatText('insertHorizontalRule')">rule</button>
+            <button type="button" ng-click="formatText('insertHTML')">html</button>
+            <button type="button" ng-click="formatText('insertImage')">html</button>
             <div class="col-md-12">
                 <div class="container-fluid">
-                    <div contenteditable="true" designMode="on" ng-model="content" style="min-height: 300px; background: #ffffff" ng-bind-html="dhtml()"></div>
+                    <div contenteditable="true" ng-model="content" style="min-height: 300px; background: #ffffff" ng-bind-html="dhtml()"></div>
                     <div>{{content}}</div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!-- comment section -->
-    <div class="row">
-        <div class=" col-md-offset-2 col-md-8">
-            <div class="container-fluid">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-text">Dapibus ac facilisis in</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <script>
+        function b() {
+            document.execCommand("bold", false, null);
+        }
+    </script>
 
 </div>
+<footer footer></footer>
 </body>
 </html>

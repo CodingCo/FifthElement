@@ -1,14 +1,22 @@
-/**
- * Created by Skroget on 26/11/14.
- */
-angular.module('CMSApp.directives', [])
-    .directive('dirName', function () {
+(function () {
+
+    var app = angular.module('CMSApp.directives', []);
+
+    app.directive('navigation', function () {
         return {
-            restrict: A,
-            template: ""
+            restrict: 'A',
+            templateUrl: "../navigation.html"
         }
-    })
-    .directive('contenteditable', function () {
+    });
+
+    app.directive('footer', function () {
+        return {
+            restrict: 'A',
+            templateUrl: "../footer.html"
+        }
+    });
+
+    app.directive('erer', function () {
         return {
             restrict: 'A', // only activate on element attribute
             require: '?ngModel', // get a hold of NgModelController
@@ -38,3 +46,8 @@ angular.module('CMSApp.directives', [])
             }
         }
     });
+
+
+})();
+
+
