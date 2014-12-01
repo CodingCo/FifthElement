@@ -7,11 +7,11 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var rest = require('./routes/rest');
-var db = require('./model/models');
+var connection = require('./model/connection');
 var expressJwt = require('express-jwt');
 var app = express();
 
-db.connect();
+connection.connect();
 
 //We can skip Authentication from our Unit Tests, but NEVER in production
 if (process.env.NODE_ENV || typeof global.SKIP_AUTHENTICATION == "undefined") {

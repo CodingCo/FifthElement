@@ -1,39 +1,20 @@
 var mongoose = require('mongoose');
-var dbUri = require('../../config.json').dbUri;
 
-mongoose.connect(dbUri);
-
-exports.connect = function (onConnected) {
-    mongoose.connect(dbUri, function (error) {
-        if (onConnected) {
-            onConnected(error);
-        }
-    });
-};
-
-
-exports.close = function (onClose) {
-    mongoose.connection.close(function () {
-        onClose();
-    })
-};
-
-
-var documentation = new mongoose.Schema({
+var documentation = mongoose.Schema({
     doc_id: {type: Number, unique: true, required: true},
-    title: String,
-    subtitle: String,
-    author: String,
+    title: {type: String},
+    subtitle: {type: String},
+    author: {type: String},
     timestamp: {type: Date, default: new Date},
-    abstract: String,
-    body: String,
-    images: [String],
-    tags: [String],
-    comments: [{body: String, date: Date}]
-});
+    abstract: {type: String},
+    body: {type: String},
+    images: {type: [{type: String}], index: true},
+    tags: {type: [{type: String}], index: true},
+    comments: [{body: {type: String}, date: {type: Date}}]
+},{collection: 'Documentation'});
 
 
-var profile = new mongoose.Schema({
+var profile = mongoose.Schema({
     email: {type: String, required: true, unique: true},
     name: {type: String, required: true},
     resume: String,
@@ -43,7 +24,7 @@ var profile = new mongoose.Schema({
     collaborations: [String]
 });
 
-var downloads = new mongoose.Schema({
+var download = mongoose.Schema({
     download_id: Number,
     title: String,
     description: String,
@@ -52,28 +33,10 @@ var downloads = new mongoose.Schema({
 
 });
 
+var Document = mongoose.model('Documentation', documentation);
 
-exports.Documentation = mongoose.model('documentation', documentation);
-var Profile = mongoose.model('profiles', profile);
-var Download = mongoose.model('downloads', downloads);
 
-(function () {
-    mongoose.connection.on('connected', function () { //
-        console.log("Connection opened");
-    });
+module.exports = {
+    Document: Document
+};
 
-    mongoose.connection.on('error', function (error) {
-        console.log("Error in connection: " + error);
-    });
-
-    mongoose.connection.on('disconnected', function () {
-        console.log("Connection closed");
-    });
-
-    process.on('SIGINT', function () {
-        mongoose.connection.close(function () {
-            console.log("Disconnected through app termination");
-            process.exit(0);
-        });
-    })
-})();
