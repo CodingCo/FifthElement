@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var documentation = mongoose.Schema({
-    doc_id: {type: Number, unique: true, required: true},
+    _id: {type: Number, unique: true},
+    doc_id: {type: Number, required: true},
     title: {type: String},
     subtitle: {type: String},
     author: {type: String},
@@ -24,6 +25,11 @@ var profile = mongoose.Schema({
     collaborations: [String]
 });
 
+var seq =  mongoose.Schema({
+    _id: String,
+    sequence_value: Number
+},{collection: 'counters'});
+
 var download = mongoose.Schema({
     download_id: Number,
     title: String,
@@ -33,10 +39,12 @@ var download = mongoose.Schema({
 
 });
 
+var Seq = mongoose.model('counters', seq);
 var Document = mongoose.model('Documentation', documentation);
 
 
 module.exports = {
-    Document: Document
+    Document: Document,
+    Seq: Seq
 };
 

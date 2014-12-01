@@ -7,7 +7,7 @@ var ObjectId = require('mongodb').ObjectID;
 describe("Testing of the document mapper interface", function () {
 
     var preDocs = [{
-        _id: ObjectId("547c4123ca38e6331a72346c"),
+        _id: 1,
         doc_id: 1,
         title: "Article 1",
         subtitle: "+1 Article of testing",
@@ -19,6 +19,7 @@ describe("Testing of the document mapper interface", function () {
         tags: ["Article", "Awesomeness"],
         comments: []
     },{
+        _id: 2,
         doc_id: 2,
         title: "Article 2",
         subtitle: "+4 Vorpal Keen Article",
@@ -41,16 +42,16 @@ describe("Testing of the document mapper interface", function () {
 
     beforeEach(function (done) {
         this.timeout(5000);
-        mongoose.connection.collection('Documentation').insert(preDocs[1],done);
+        mongoose.connection.collection('Documentation').insert(preDocs,done);
     });
 
     afterEach(function (done) {
-        mongoose.connection.collections['Documentation'].remove(preDocs[1],done);
+        mongoose.connection.collections['Documentation'].remove({},done);
     });
 
 
     describe("test get document with specific title", function () {
-        var invalidSearchId = ObjectId("123456789123456789123456");
+        var invalidSearchId = -1;
 
         console.log(documentMapper);
 
