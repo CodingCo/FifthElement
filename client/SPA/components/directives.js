@@ -5,25 +5,23 @@
     app.directive('navigation', function () {
         return {
             restrict: 'A',
-            templateUrl: "../navigation.html"
+            templateUrl: "../directives/navigation.html"
         }
     });
 
     app.directive('footer', function () {
         return {
             restrict: 'A',
-            templateUrl: "../footer.html"
+            templateUrl: "../directives/footer.html"
         }
     });
 
-
-
     app.directive('aceEditor', function () {
-       return{
-           restrict: 'A',
-           templateUrl: "../ace-editor.html",
-           controller:'AceController'
-       }
+        return {
+            restrict: 'A',
+            templateUrl: "../directives/aceEditor.html",
+            controller: 'AceController'
+        }
     });
 
 
@@ -57,8 +55,6 @@
             }
         }
     });
-
-
 })();
 
 

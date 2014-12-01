@@ -137,9 +137,15 @@
         $scope.title = "Create Documentation";
 
         $scope.content = "";
+        $scope.body = "";
+
 
     }]);
 })();
+
+
+
+
 
 
 

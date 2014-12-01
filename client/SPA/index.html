@@ -11,6 +11,13 @@
 
     <link rel="stylesheet" href="../stylesheets/style.css"/>
     <script src="../vendor/angular/angular.js"></script>
+
+    <!--textAngular wysiwyg -->
+    <script src="../vendor/textAngular/src/textAngularSetup.js"></script>
+    <script src="../vendor/textAngular/src/textAngular.js"></script>
+    <script src="../vendor/textAngular/src/textAngular-sanitize.js"></script>
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.css"/>
+
     <!-- Remember: angular first, then components files -->
     <script src="../vendor/angular-route/angular-route.js"></script>
     <script src="../vendor/angular-sanitize/angular-sanitize.js"></script>
@@ -28,17 +35,10 @@
 <div navigation></div>
 
 <div class="container">
-
     <!-- editor -->
-    <h3>Create project Documentation</h3>
-    <hr/>
     <div class="row">
         <div ace-editor></div>
-
     </div>
-
-
-    <!-- d70a16 -->
 
     <!-- title, subtitle, author and abstract -->
     <div class="row">
@@ -78,11 +78,14 @@
             </div>
         </div>
     </div>
+
     <!-- submit buttons -->
     <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="form-group">
-                <button type="button" type="submit" class="btn btn-primary btn-lg btn-block">Add Documentation</button>
+                <button type="button" ng-click="loog()" type="submit" class="btn btn-primary btn-lg btn-block">Add
+                    Documentation
+                </button>
             </div>
 
         </div>

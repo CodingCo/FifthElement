@@ -19,7 +19,7 @@ if (process.env.NODE_ENV || typeof global.SKIP_AUTHENTICATION == "undefined") {
 
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('viewsCms engine', 'jade');
 
 
 app.use(logger('dev'));
