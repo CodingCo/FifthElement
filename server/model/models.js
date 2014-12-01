@@ -1,21 +1,22 @@
 var mongoose = require('mongoose');
 
 
-var documentation = new mongoose.Schema({
+var documentation = mongoose.Schema({
     doc_id: {type: Number, unique: true, required: true},
-    title: String,
-    subtitle: String,
-    author: String,
+    title: {type: String},
+    subtitle: {type: String},
+    author: {type: String},
     timestamp: {type: Date, default: new Date},
-    abstract: String,
-    body: String,
-    images: [String],
-    tags: [String],
-    comments: [{body: String, date: Date}],
-});
+    abstract: {type: String},
+    body: {type: String},
+    images: {type: [{type: String}], index: true},
+    tags: {type: [{type: String}], index: true},
+    comments: [{body: {type: String}, date: {type: Date}}]
+}, {collection: 'Documentation'});
 
 
-var profile = new mongoose.Schema({
+var profile = mongoose.Schema({
+
     email: {type: String, required: true, unique: true},
     name: {type: String, required: true},
     resume: String,
@@ -25,23 +26,24 @@ var profile = new mongoose.Schema({
     collaborations: [String]
 });
 
-var downloads = new mongoose.Schema({
+
+var download = mongoose.Schema({
     download_id: Number,
     title: String,
     description: String,
     repo_link: String,
     thumbnail: String
-
 });
 
 
 var Documentation = mongoose.model('documentation', documentation);
 var Profile = mongoose.model('profiles', profile);
-var Download = mongoose.model('downloads', downloads);
+var Download = mongoose.model('downloads', download);
 
 
 module.exports = {
-    Documentation: Documentation,
+    Document: Documentation,
     Profile: Profile,
     Download: Download
 };
+

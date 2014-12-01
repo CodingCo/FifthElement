@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var rest = require('./routes/rest');
+var connection = require('./model/connection');
 var expressJwt = require('express-jwt');
-
 var app = express();
+
+connection.connect();
 
 //We can skip Authentication from our Unit Tests, but NEVER in production
 if (process.env.NODE_ENV || typeof global.SKIP_AUTHENTICATION == "undefined") {
@@ -17,7 +19,6 @@ if (process.env.NODE_ENV || typeof global.SKIP_AUTHENTICATION == "undefined") {
     app.use('/users', expressJwt({secret: require("./security/tokens").secretTokenUser}));
     //app.use('/adminApi', expressJwt({secret: require("./security/secrets").secretTokenAdmin}));
 }
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, '../client/SPA')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', rest);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

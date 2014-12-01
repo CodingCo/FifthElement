@@ -1,8 +1,9 @@
 var mongo = require('mongoose');
-var dbUrl = require('../../config.json').database_connection_url;
+var database_connection_url = require('../../config.json').database_connection_url;
+
 
 function connect(onConnected) {
-    mongo.connect(dbUrl, function (err) {
+    mongo.connect(database_connection_url, function (err) {
         if (onConnected) {
             return onConnected(err);
         }
