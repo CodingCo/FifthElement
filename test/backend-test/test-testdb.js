@@ -53,15 +53,12 @@ describe("Testing of the document mapper interface", function () {
     describe("test get document with specific title", function () {
         var invalidSearchId = -1;
 
-        console.log(documentMapper);
-
 
         it("should return a complete Wiki article", function (done) {
             documentMapper.getDocument(preDocs[0]._id, function (err, document) {
                 if (err) return done(err);
                 // Here we check if the retrieved data, matches the expected document
                 // We just test for the mandatory properties. It is redundant, to test for all.
-                console.log(document);
                 document.should.have.property('_id', preDocs[0]._id);
                 document.should.have.property('title', preDocs[0].title);
                 document.should.have.property('author', preDocs[0].author);

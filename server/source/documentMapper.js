@@ -1,5 +1,4 @@
 var model = require('../model/models');
-var ObjectId = require('mongodb').ObjectID;
 
 //var documentModel = require('../../test/backend-test/dbMock');
 //var profileModel = require('../model/models').Profile;
@@ -40,9 +39,9 @@ var getDocumentPartial = function (titlePartial, callback) {
 
 exports.postDocument = function (document, callback) {
     getNextSequenceValue(function(data){
-        console.log(data);
+        //console.log(data);
         document._id = data;
-        console.log(document);
+        //console.log(document);
         model.Document.create(document, callback);
     });
 };
@@ -53,7 +52,7 @@ function getNextSequenceValue(callback){
     var seq = undefined;
 
     model.Seq.findOne({ _id: 'documentid' }, function (err, doc){
-        console.log(doc);
+        //console.log(doc);
         doc._id = 'documentid';
         seq = doc.sequence_value;
         doc.sequence_value = seq+1;
