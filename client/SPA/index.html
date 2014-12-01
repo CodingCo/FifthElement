@@ -8,7 +8,7 @@
     <script src="../vendor/jquery/dist/jquery.js"></script>
     <script src="../vendor/bootstrap/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="../vendor/bootstrap/dist/css/bootstrap-theme.css"/>
+
     <link rel="stylesheet" href="../stylesheets/style.css"/>
     <script src="../vendor/angular/angular.js"></script>
     <!-- Remember: angular first, then components files -->
@@ -28,6 +28,18 @@
 <div navigation></div>
 
 <div class="container">
+
+    <!-- editor -->
+    <h3>Create project Documentation</h3>
+    <hr/>
+    <div class="row">
+        <div ace-editor></div>
+
+    </div>
+
+
+    <!-- d70a16 -->
+
     <!-- title, subtitle, author and abstract -->
     <div class="row">
         <div class="col-md-4">
@@ -66,65 +78,6 @@
             </div>
         </div>
     </div>
-    <!-- editor -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="">Body</label> <br/>
-
-                <!-- Text editor bar -->
-                <div class="form-group">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-font"><a
-                                href="#"></a></span>
-                        </button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bold"><a
-                                href="#"></a></span>
-                        </button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-italic"><a
-                                href="#"></a></span>
-                        </button>
-                        <button type="button" class="btn btn-default"><span><b>U</b><a href="#"></a></span>
-                        </button>
-
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                <span class="glyphicon glyphicon-header"></span>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">H1</a></li>
-                                <li><a href="#">H2</a></li>
-                                <li><a href="#">H3</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-                    <div class="btn-group" role="group" aria-label="..">
-
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"><a
-                                href="#"></a></span>
-                        </button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-link"><a
-                                href="#"></a></span>
-                        </button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-minus"><a
-                                href="#"></a></span>
-                        </button>
-
-                    </div>
-                </div>
-                <div contenteditable="true" ng-model="content" style="min-height: 300px; background: #ffffff"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- {{ content }} -->
-
-
     <!-- submit buttons -->
     <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
@@ -134,36 +87,8 @@
 
         </div>
     </div>
-
-    <!-- d70a16 -->
-    <!-- live preview -->
-    <div ng-controller="AppController">
-        <div class="row">
-            <button type="button" ng-click="formatText('bold')">B</button>
-            <button type="button" ng-click="formatText('italic')">I</button>
-            <button type="button" ng-click="formatText('justifyCenter')">center</button>
-            <button type="button" ng-click="formatText('undo')">undo</button>
-            <button type="button" ng-click="formatText('redo')">redo</button>
-            <button type="button" ng-click="formatText('h1')">h1</button>
-            <button type="button" ng-click="formatText('h2')">h2</button>
-            <button type="button" ng-click="formatText('insertHorizontalRule')">rule</button>
-            <button type="button" ng-click="formatText('insertHTML')">html</button>
-            <button type="button" ng-click="formatText('insertImage')">html</button>
-            <div class="col-md-12">
-                <div class="container-fluid">
-                    <div contenteditable="true" ng-model="content" style="min-height: 300px; background: #ffffff" ng-bind-html="dhtml()"></div>
-                    <div>{{content}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        function b() {
-            document.execCommand("bold", false, null);
-        }
-    </script>
-
 </div>
+
 <footer footer></footer>
 </body>
 </html>

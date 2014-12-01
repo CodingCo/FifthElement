@@ -16,6 +16,17 @@
         }
     });
 
+
+
+    app.directive('aceEditor', function () {
+       return{
+           restrict: 'A',
+           templateUrl: "../ace-editor.html",
+           controller:'AceController'
+       }
+    });
+
+
     app.directive('erer', function () {
         return {
             restrict: 'A', // only activate on element attribute

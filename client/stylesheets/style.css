@@ -1,12 +1,23 @@
 body {
-    background-color: rgb(242, 242, 242);
     margin: 0;
     padding: 0;
 }
+/* Ace editor section  */
 
+.ace-body{
+    border: 1px solid #ccc;
+    min-height: 400px;
+}
+
+/* Ace editor section  */
 .footer {
     background-color: #4d4d4d;
     color: rgb(159, 159, 159);
+}
+
+.document {
+    padding: 10px;
+    box-shadow: 0 0 5px #888;
 }
 
 .footer-bottom {
