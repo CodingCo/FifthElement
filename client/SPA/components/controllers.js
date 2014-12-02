@@ -1,8 +1,7 @@
 (function () {
     var app = angular.module('CMSApp.controllers', []);
 
-    app.controller('AceController', ['$scope', '$sce', function ($scope, $sce) {
-        $scope.content = "";
+    app.controller('AceController', ['$scope', '$sce', 'docFactory', function ($scope, $sce, docFactory) {
         $scope.formats = [
             'bold',
             'italic',
@@ -65,6 +64,38 @@
         function customhtml(codeblock) {
             document.execCommand(cmd, false, 'http://www.stunningmesh.com/wp-content/uploads/2011/06/stunningmesh-ipad-wallpapers-61-small.jpg');
         }
+
+        // Doc information
+        $scope.content = "";
+        $scope.abstract = "";
+        $scope.title = "";
+        $scope.subtitle = "";
+        $scope.author = "";
+        $scope.images = [];
+        $scope.tags = [];
+
+        $scope.saveDoc = function () {
+
+            // Callback gets called when documentation has been saved!
+            docFactory.saveDoc({
+                doc_id: 10,
+                title: $scope.title,
+                subtitle: $scope.subtitle,
+                author: $scope.author,
+                abstract: $scope.abstract,
+                body: $scope.content,
+                images: [],
+                tags: [],
+                comments: []
+            }, function (err, data) {
+
+                if(err) alert("Could not be saved!");
+
+                alert("Your documentation has now been saved!"); // Launch some kind of pop up asking if user want to read update
+
+            })
+
+        };
 
 
 //    $scope.dhtml = function () {

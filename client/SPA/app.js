@@ -3,7 +3,7 @@
 (function () {
     var app = angular.module('CMSApp', [
         'ngRoute',
-        'ngSanitize',
+        // ngSanitize
         'CMSApp.controllers',
         'CMSApp.directives',
         'CMSApp.services',
