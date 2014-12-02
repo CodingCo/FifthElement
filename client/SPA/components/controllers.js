@@ -1,8 +1,43 @@
 (function () {
     var app = angular.module('CMSApp.controllers', []);
 
-    app.controller('AceController', ['$scope', '$sce', function ($scope, $sce) {
+
+    app.controller('CmsController', ['$scope', 'docFactory', function ($scope, docFactory) {
+        // Doc information
         $scope.content = "";
+        $scope.abstract = "";
+        $scope.title = "";
+        $scope.subtitle = "";
+        $scope.author = "";
+        $scope.images = [];
+        $scope.tags = [];
+
+        $scope.saveDoc = function () {
+            $scope.content = document.getElementById('ace-editor').innerHTML;
+
+            docFactory.saveDoc({
+                doc_id: 1098374,
+                title: $scope.title,
+                subtitle: $scope.subtitle,
+                author: $scope.author,
+                abstract: $scope.abstract,
+                body: $scope.content,
+                images: [],
+                tags: [],
+                comments: []
+            }, function (err, data) {
+                if (err) {
+                    alert("We could not connect to the service");
+                    return;
+                }
+                console.log(data);
+                alert("Something happend");
+            })
+        };
+    }]);
+
+
+    app.controller('AceController', ['$scope', '$sce', function ($scope, $sce) {
         $scope.formats = [
             'bold',
             'italic',
@@ -24,7 +59,6 @@
         var map = {};
         document.getElementById('ace-editor').addEventListener('keydown', function (event) {
             var chCode = ('charCode' in event) ? event.charCode : event.keyCode;
-
             map[event.keyCode] = true;
             if (map[91] && map[85]) {
                 document.execCommand('underline', false, null);
@@ -91,7 +125,6 @@
             }
 
         };
-
 //    $scope.dhtml = function () {
 //        return $sce.trustAsHtml($scope.content);
 //    };

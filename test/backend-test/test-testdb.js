@@ -1,4 +1,5 @@
 var should = require('should');
+//var describe = require('describe');
 var documentMapper = require('../../server/source/documentMapper');
 var connection = require('../../server/model/connection');
 var mongoose = require('mongoose');
@@ -7,7 +8,7 @@ var ObjectId = require('mongodb').ObjectID;
 describe("Testing of the document mapper interface", function () {
 
     var preDocs = [{
-        _id: ObjectId("547c4123ca38e6331a72346c"),
+
         doc_id: 1,
         title: "Article 1",
         subtitle: "+1 Article of testing",
