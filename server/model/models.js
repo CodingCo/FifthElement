@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 
-var documentation = mongoose.Schema({
+var document = new mongoose.Schema({
     doc_id: {type: Number, unique: true, required: true},
     title: {type: String},
     subtitle: {type: String},
@@ -12,11 +12,11 @@ var documentation = mongoose.Schema({
     images: {type: [{type: String}], index: true},
     tags: {type: [{type: String}], index: true},
     comments: [{body: {type: String}, date: {type: Date}}]
-}, {collection: 'Documentation'});
+
+});
 
 
-var profile = mongoose.Schema({
-
+var profile = new mongoose.Schema({
     email: {type: String, required: true, unique: true},
     name: {type: String, required: true},
     resume: String,
@@ -26,8 +26,7 @@ var profile = mongoose.Schema({
     collaborations: [String]
 });
 
-
-var download = mongoose.Schema({
+var download = new mongoose.Schema({
     download_id: Number,
     title: String,
     description: String,
@@ -35,15 +34,20 @@ var download = mongoose.Schema({
     thumbnail: String
 });
 
+var seq = new mongoose.Schema({
+    _id: String,
+    sequence_value: Number
+});
 
-var Documentation = mongoose.model('documentation', documentation);
+var Document = mongoose.model('documentation', document);
 var Profile = mongoose.model('profiles', profile);
 var Download = mongoose.model('downloads', download);
+var Seq = mongoose.model('counters', seq);
 
 
 module.exports = {
-    Document: Documentation,
+    Document: Document,
     Profile: Profile,
-    Download: Download
+    Download: Download,
+    Sequence: Seq
 };
-

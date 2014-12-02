@@ -2,12 +2,10 @@ var should = require('should');
 var documentMapper = require('../../server/source/documentMapper');
 var connection = require('../../server/model/connection');
 var mongoose = require('mongoose');
-var ObjectId = require('mongodb').ObjectID;
 
 describe("Testing of the document mapper interface", function () {
 
     var preDocs = [{
-        _id: ObjectId("547c4123ca38e6331a72346c"),
         doc_id: 1,
         title: "Article 1",
         subtitle: "+1 Article of testing",
@@ -41,27 +39,23 @@ describe("Testing of the document mapper interface", function () {
 
     beforeEach(function (done) {
         this.timeout(5000);
-        mongoose.connection.collection('Documentation').insert(preDocs, done);
+        mongoose.connection.collection('documentations').insert(preDocs, done);
     });
 
     afterEach(function (done) {
-        mongoose.connection.collections['Documentation'].remove({}, done);
+        mongoose.connection.collections['documentations'].remove({}, done);
     });
 
 
     describe("test get document with specific title", function () {
-        var invalidSearchId = ObjectId("123456789123456789123456");
-
-        console.log(documentMapper);
+        var invalidSearchId = -1;
 
 
         it("should return a complete Wiki article", function (done) {
-            documentMapper.getDocument(preDocs[0]._id, function (err, document) {
+            documentMapper.getDocument(1, function (err, document) {
                 if (err) return done(err);
                 // Here we check if the retrieved data, matches the expected document
                 // We just test for the mandatory properties. It is redundant, to test for all.
-                console.log(document);
-                document.should.have.property('_id', preDocs[0]._id);
                 document.should.have.property('title', preDocs[0].title);
                 document.should.have.property('author', preDocs[0].author);
                 return done();
@@ -77,25 +71,11 @@ describe("Testing of the document mapper interface", function () {
         });
 
     });
-    /*
-     describe("test list of documents with with partially matching title", function () {
-     it("should return two items with the title containing \"Article\"", function (done) {
-     var partialTitle = 'Article';
-     documentMapper.getDocuments(partialTitle, function (err, documents) {
-     if (err) return done(err);
 
-     documents[0].should.have.property('title', 'Article 1');
-     documents[1].should.have.property('title', 'Article 2');
-     return done();
-     });
-     });
-     });
 
-     */
     describe("test save document", function () {
         it("should save the document properly, and retrieve the same document by title", function (done) {
             var documentToInsert = {
-                doc_id: 3,
                 title: "Article 3",
                 subtitle: "+1 Article of testing",
                 author: "Kasper Hald",
@@ -107,7 +87,7 @@ describe("Testing of the document mapper interface", function () {
                 comments: []
             };
 
-            documentMapper.postDocument(documentToInsert, function (err) {
+            documentMapper.createDocument(documentToInsert, function (err) {
                 if (err) return done(err);
                 documentMapper.getDocumentByTitle(documentToInsert.title, function (err, document) {
                     if (err) return done(err);
@@ -117,42 +97,56 @@ describe("Testing of the document mapper interface", function () {
             });
         });
     });
-    /*
-     describe("test delete document with specific title", function () {
-     it("should get undefined, when trying to get a deleted file", function (done) {
-     var titleOfDocument = 'Article 1';
-     documentMapper.deleteDocument(titleOfDocument, function (err) {
-     if (err) return done(err);
-     documentMapper.getDocument(titleOfDocument, function (err, document) {
-     if (err) return done(err);
-     (document === undefined).should.equal(true);
-     return done();
-     });
-     });
-     });
-     });
-     /*
-     describe("test editing document", function () {
-     it("The selected document should be edited properly", function(done){
-     var authorToBe = 'Christopher Mortensen';
-     var documentToEdit = {doc_id: 1,
-     title: "Article 1",
-     subtitle: "+1 Article of testing",
-     author: "Kasper Hald",
-     timestamp: "27-11-14 10:00:00",
-     abstract: "",
-     body: "Super article text of doom.",
-     images: [],
-     tags: ["Article", "Awesomeness"],
-     comments: []};
-     var oldAuthor = documentToEdit.author;
-     documentToEdit.author = authorToBe;
-     documentMapper.editDocument(documentToEdit, function(err, document){
-     if(err) return done(err);
-     document.should.not.not.have.property('author', oldAuthor);
-     return done();
-     });
-     });
-     });
-     */
+
+
+    describe("test delete document with specific id", function () {
+        it("should get undefined, when trying to get a deleted file", function (done) {
+            titleOfDocument = 'Article 1';
+            var docId;
+            documentMapper.getDocument(1, function (err, document) {
+                if (err) return done(err);
+                docId = document.doc_id;
+
+                documentMapper.deleteDocument(docId, function (err) {
+                    if (err) return done(err);
+                    documentMapper.getDocument(1, function (err, document) {
+                        if (err) return done(err);
+                        (document === undefined).should.equal(true);
+                        return done();
+                    });
+                });
+            });
+        });
+    });
+
+    describe("test get all documents", function () {
+        it("should retreive all existing documents", function (done) {
+            var expectedSize = 2;
+            documentMapper.getAllDocuments(function (err, documents) {
+                if (err) return done(err);
+                (documents.length === expectedSize).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+    //describe("test edit document with specific id", function(){
+    //       it("should update a document properly", function(done){
+    //           var titleOfDocument = 'Article 1';
+    //           var docId;
+    //           documentMapper.getDocumentByTitle(titleOfDocument, function(err, document){
+    //               if(err) return done(err);
+    //               docId = document.doc_id;
+    //               document.title = 'Back to the future';
+    //               documentMapper.saveDocument(document, function(err){
+    //                   if(err) return done(err);
+    //                   documentMapper.getDocument(titleOfDocument, function (err, document) {
+    //                       if (err) return done(err);
+    //                       document.should.have.property('title', 'Back to the future');
+    //                       return done();
+    //                   });
+    //               });
+    //           });
+    //       });
+    //});
 });
