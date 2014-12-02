@@ -39,20 +39,20 @@ describe("Testing of the document mapper interface", function () {
 
     beforeEach(function (done) {
         this.timeout(5000);
-        mongoose.connection.collection('Documentation').insert(preDocs,done);
+        mongoose.connection.collection('documentations').insert(preDocs,done);
     });
 
     afterEach(function (done) {
-        mongoose.connection.collections['Documentation'].remove({},done);
+        mongoose.connection.collections['documentations'].remove({},done);
     });
 
 
     describe("test get document with specific title", function () {
-        var invalidSearchId = '123123123123123123123';
+        var invalidSearchId = -1;
 
 
         it("should return a complete Wiki article", function (done) {
-            documentMapper.getDocumentByTitle(preDocs[0].title, function (err, document) {
+            documentMapper.getDocument(1, function (err, document) {
                 if (err) return done(err);
                 // Here we check if the retrieved data, matches the expected document
                 // We just test for the mandatory properties. It is redundant, to test for all.
@@ -63,7 +63,7 @@ describe("Testing of the document mapper interface", function () {
         });
 
         it("Should return undefined. Document do not exist", function (done) {
-            documentMapper.getDocumentByTitle(invalidSearchId, function (err, document) {
+            documentMapper.getDocument(invalidSearchId, function (err, document) {
                 if (err) return done(err);
                 (document === undefined).should.equal(true);
                 return done();
@@ -86,7 +86,7 @@ describe("Testing of the document mapper interface", function () {
                 comments: []
             };
 
-            documentMapper.postDocument(documentToInsert, function (err) {
+            documentMapper.createDocument(documentToInsert, function (err) {
                 if (err) return done(err);
                 documentMapper.getDocumentByTitle(documentToInsert.title, function (err, document) {
                     if (err) return done(err);
@@ -99,15 +99,16 @@ describe("Testing of the document mapper interface", function () {
 
  describe("test delete document with specific id", function () {
          it("should get undefined, when trying to get a deleted file", function (done) {
-             var titleOfDocument = 'Article 1';
+
+             titleOfDocument = 'Article 1';
              var docId;
-             documentMapper.getDocumentByTitle(titleOfDocument, function(err, document){
+             documentMapper.getDocument(1, function(err, document){
                  if(err) return done(err);
                  docId = document.doc_id;
 
                  documentMapper.deleteDocument(docId, function (err) {
                      if (err) return done(err);
-                     documentMapper.getDocument(titleOfDocument, function (err, document) {
+                     documentMapper.getDocument(1, function (err, document) {
                          if (err) return done(err);
                          (document === undefined).should.equal(true);
                          return done();
@@ -122,7 +123,7 @@ describe("Testing of the document mapper interface", function () {
         var expectedSize = 2;
         documentMapper.getAllDocuments(function(err, documents){
            if(err) return done(err);
-            documents.size.should.equal(expectedSize);
+            (documents.length === expectedSize).should.equal(true);
             return done();
         });
     });
