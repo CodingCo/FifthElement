@@ -52,8 +52,7 @@ exports.deleteDocument = function (id, callback) {
     });
 };
 
-exports.saveDocument = function(document, callback){
-
+exports.update = function(document, callback){
 };
 
 //== Next Sequence

@@ -117,5 +117,36 @@ describe("Testing of the document mapper interface", function () {
      });
  });
 
+ describe("test get all documents", function(){
+    it("should retreive all existing documents", function(done){
+        var expectedSize = 2;
+        documentMapper.getAllDocuments(function(err, documents){
+           if(err) return done(err);
+            documents.size.should.equal(expectedSize);
+            return done();
+        });
+    });
+ });
+
+ //describe("test edit document with specific id", function(){
+ //       it("should update a document properly", function(done){
+ //           var titleOfDocument = 'Article 1';
+ //           var docId;
+ //           documentMapper.getDocumentByTitle(titleOfDocument, function(err, document){
+ //               if(err) return done(err);
+ //               docId = document.doc_id;
+ //               document.title = 'Back to the future';
+ //               documentMapper.saveDocument(document, function(err){
+ //                   if(err) return done(err);
+ //                   documentMapper.getDocument(titleOfDocument, function (err, document) {
+ //                       if (err) return done(err);
+ //                       document.should.have.property('title', 'Back to the future');
+ //                       return done();
+ //                   });
+ //               });
+ //           });
+ //       });
+ //});
+
 
 });
