@@ -2,6 +2,23 @@
     var app = angular.module('CMSApp.controllers', []);
 
 
+    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', function ($scope, docFactory, $sce) {
+        $scope.doc = {};
+
+        docFactory.getDocs(2, function (data) {
+            var hej = dhtml(data.body);
+            data.body = hej;
+            $scope.doc = data;
+        });
+
+        function dhtml(data) {
+            console.log(data);
+            return $sce.trustAsHtml(data);
+        }
+
+    }]);
+
+
     app.controller('CmsController', ['$scope', 'docFactory', function ($scope, docFactory) {
         // Doc information
         $scope.content = "";
@@ -37,7 +54,7 @@
     }]);
 
 
-    app.controller('AceController', ['$scope', '$sce', function ($scope, $sce) {
+    app.controller('AceController', ['$scope', function ($scope) {
         $scope.formats = [
             'bold',
             'italic',
@@ -125,10 +142,6 @@
             }
 
         };
-//    $scope.dhtml = function () {
-//        return $sce.trustAsHtml($scope.content);
-//    };
-
     }]);
 
 

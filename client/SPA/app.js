@@ -19,7 +19,8 @@
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsController'
         }).otherwise({
-            redirectTo: '/justTesting'
+            templateUrl: 'viewsVisitor/projectTemplate.html',
+            controller: 'SingleDocCtrl'
         });
     }]);
 })();

@@ -21,7 +21,6 @@ app.factory('authInterceptor', function ($rootScope, $q, $window) {
 
 app.factory('docFactory', ['$http', function ($http) {
     return {
-        // Creates a post request to server
         saveDoc: function (documentation, callback) {
             $http.post('/api/saveDoc', documentation).
                 success(function (data, status, headers, config) {
@@ -33,12 +32,12 @@ app.factory('docFactory', ['$http', function ($http) {
 
         },
 
-        // Finds all that contains argument inside their title
         getDocs: function (searchTitle, callback) {
-            $http.get('/api/getDocs/' + searchTitle).
-                succes(function (data) {
+            $http.get('/api/getDocument/' + searchTitle).
+                success(function (data) {
                     callback(data);
-                }).error(function () {
+                }).error(function (err) {
+                    callback(err);
                 });
         }
     }
