@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 
 var documentation = mongoose.Schema({
-    _id: {type: Number, unique: true},
-    doc_id: {type: Number, required: true},
+    doc_id: {type: Number, unique: true, required: true},
     title: {type: String},
     subtitle: {type: String},
     author: {type: String},

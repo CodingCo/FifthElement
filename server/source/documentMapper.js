@@ -29,18 +29,10 @@ var getDocumentPartial = function (titlePartial, callback) {
     });
 };
 
-//exports.deleteDocument = function (title, callback) {
-//    con.collection('Documentation').remove({title: title}, function (err, data) {
-//        if (err) return callback(err);
-//        if (data === null) return callback();
-//        return callback(undefined, data);
-//    });
-//};
-
 exports.postDocument = function (document, callback) {
     getNextSequenceValue(function(data){
         //console.log(data);
-        document._id = data;
+        document.doc_id = data;
         //console.log(document);
         model.Document.create(document, callback);
     });
@@ -61,12 +53,5 @@ function getNextSequenceValue(callback){
     });
 }
 
-//exports.getDocuments = function (title, callback) {
-//    con.collection('Documentation').find({title: {$regex: new RegExp(title, "i")}}, function (err, data) {
-//        if (err) return callback(err);
-//        if (data === null) return callback();
-//        return callback(undefined, data);
-//    });
-//};
 
 
