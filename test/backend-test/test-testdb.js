@@ -97,4 +97,25 @@ describe("Testing of the document mapper interface", function () {
         });
     });
 
+ describe("test delete document with specific id", function () {
+         it("should get undefined, when trying to get a deleted file", function (done) {
+             var titleOfDocument = 'Article 1';
+             var docId;
+             documentMapper.getDocumentByTitle(titleOfDocument, function(err, document){
+                 if(err) return done(err);
+                 docId = document.doc_id;
+
+                 documentMapper.deleteDocument(docId, function (err) {
+                     if (err) return done(err);
+                     documentMapper.getDocument(titleOfDocument, function (err, document) {
+                         if (err) return done(err);
+                         (document === undefined).should.equal(true);
+                         return done();
+                     });
+             });
+         });
+     });
+ });
+
+
 });

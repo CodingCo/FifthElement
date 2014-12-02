@@ -38,7 +38,15 @@ exports.postDocument = function (document, callback) {
     });
 };
 
+exports.deleteDocument = function (title, callback) {
 
+};
+
+exports.saveDocument = function(document, callback){
+
+};
+
+//== Next Sequence
 function getNextSequenceValue(callback){
 
     var seq = undefined;
