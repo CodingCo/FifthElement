@@ -37,19 +37,19 @@ describe("Testing of the Document Services", function () {
                 'comment2',
             ]
         };
-        Mock.fillMock();
+        Mock.Document.fillMock();
         done();
     });
 
     afterEach(function (done) {
-        Mock.emptyMock()
+        Mock.Document.emptyMock();
         done();
     });
 
     describe("test getDocument", function () {
         var invalidSearchString = "testblah";
         it("should return a complete Document", function (done) {
-            dbMock.getDocument(testDocument.title, function (err, document) {
+            dbMock.getDocumentByTitle(testDocument.title, function (err, document) {
                 if (err) return done(err);
                 // Here we check if data is equal to expected -> article
                 document.should.have.property('doc_id', testDocument.doc_id);
@@ -77,45 +77,26 @@ describe("Testing of the Document Services", function () {
 
     describe("test postDocument", function () {
         var testDocument = {
-            doc_id: '5',
             title: 'TestDocument',
             subtitle: 'TestDocument',
-            author: {
-                email: 'TestDocument',
-                name: 'TestDocument',
-                resume:"TestDocument",
-                skills:'TestDocument',
-                profile_picture: 'TestDocument',
-                github_link: 'TestDocument',
-                collaborations:'TestDocument'
-            },
-            timestamp: 'TestDocument',
+            author: {},
+            timestamp: 'testStamp',
             abstract: 'TestDocument',
             body: 'TestDocument',
-            images: [
-                'TestDocument',
-                'TestDocument',
-                'TestDocument'
-            ],
-            tags: [
-                'TestDocument',
-                'TestDocument',
-            ],
-            comments: [
-                'TestDocument',
-                'TestDocument',
-            ]
+            images: [],
+            tags: [],
+            comments: []
         };
         it("Should add the document to the collection", function (done) {
-            dbMock.postDocument(testDocument,function (err, data) {
+            dbMock.postDocument(testDocument, function (err, data) {
                 if (err) return done(err);
                 data.should.equal(true);
                 done();
-            })
+            });
         });
     });
 
-    describe("test deleteDocument", function () {
+    /*describe("test deleteDocument", function () {
         var documentTitle = 'Simons Journey to the Farm'
         var invalidTitle = "AcidFace";
 
@@ -156,5 +137,5 @@ describe("Testing of the Document Services", function () {
                 done();
             })
         });
-    });
+    });*/
 });

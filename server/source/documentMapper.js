@@ -1,8 +1,5 @@
-var model = require('../model/models');
-
-//var documentModel = require('../../test/backend-test/dbMock');
-//var profileModel = require('../model/models').Profile;
-//var downloadModel = require('../model/models').Profile;
+//var model = require('../model/models');
+var model = require('../../test/backend-test/dbMock');
 
 exports.getDocument = function (id, callback) {
     model.Document.findOne({_id: id}, function (err, data) {
@@ -31,9 +28,8 @@ var getDocumentPartial = function (titlePartial, callback) {
 
 exports.postDocument = function (document, callback) {
     getNextSequenceValue(function(data){
-        //console.log(data);
         document.doc_id = data;
-        //console.log(document);
+        console.log(document);
         model.Document.create(document, callback);
     });
 };
