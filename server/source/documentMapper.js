@@ -4,8 +4,8 @@ var model = require('../model/models');
 //var profileModel = require('../model/models').Profile;
 //var downloadModel = require('../model/models').Profile;
 
-exports.getDocument = function (id, callback) {
-    model.Document.findOne({_id: id}, function (err, data) {
+exports.getDocument = function (doc_id, callback) {
+    model.Document.findOne({doc_id: id}, function (err, data) {
         if (err) return callback(err);
         if (data === null) return callback();
         return callback(undefined, data);
@@ -20,6 +20,13 @@ exports.getDocumentByTitle = function (title, callback) {
     });
 };
 
+exports.getAllDocuments = function(callback){
+    model.Document.find({}, {_id: 0, title: 1, abstract: 1, author: 1, timestamp: 1, doc_id: 1}, function (err, documents) {
+        if(err) return callback(err);
+        return callback(undefined, documents);
+    })
+}
+
 var getDocumentPartial = function (titlePartial, callback) {
     model.Document.findOne({title: {$regex: new RegExp(titlePartial, "i")}}, function (err, data) {
         console.log('Inside Partial');
@@ -29,7 +36,7 @@ var getDocumentPartial = function (titlePartial, callback) {
     });
 };
 
-exports.postDocument = function (document, callback) {
+exports.createDocument = function (document, callback) {
     getNextSequenceValue(function(data){
         //console.log(data);
         document.doc_id = data;
