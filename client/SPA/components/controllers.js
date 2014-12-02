@@ -21,11 +21,40 @@
             'removeFormat'
         ];
 
+        var map = {};
+        document.getElementById('ace-editor').addEventListener('keydown', function (event) {
+            var chCode = ('charCode' in event) ? event.charCode : event.keyCode;
+
+            map[event.keyCode] = true;
+            if (map[91] && map[85]) {
+                document.execCommand('underline', false, null);
+            }
+            if (chCode === 13) {
+                //alert(chCode);
+                //event.preventDefault();
+                //document.execCommand('insertHTML', false, '<br/>');
+            } // Enter
+
+
+        });
+
         $scope.pressed = false;
         $scope.textFormat = function (cmd) {
+            var elementInFocus = document.activeElement;
+            var editorElement = document.getElementById('ace-editor');
+            if (elementInFocus != editorElement) {
+                editorElement.focus();
+                editorElement.style.outline = "none";
+            } else {
+
+
+            }
+
+
             if ($scope.formats.indexOf(cmd) != -1) {
                 document.execCommand(cmd, false, null);
             }
+
         };
 
         $scope.textJustification = function (cmd) {
@@ -38,13 +67,14 @@
             document.execCommand('insertHTML', false, '<code> code </code> &nbsp');
         };
 
-        function insertImage(imgName, url) {
+        $scope.insertImage = function (imgName, url) {
+            var hej = prompt('enter a url');
             // popup
             // popup som er en url
             // kalde en service som uploader billede til server
             // callback til hent billede og smid ind på siden fra vores server
-            document.execCommand(cmd, false, 'http://www.stunningmesh.com/wp-content/uploads/2011/06/stunningmesh-ipad-wallpapers-61-small.jpg');
-        }
+            document.execCommand('insertImage', false, hej);
+        };
 
         $scope.textTypes = function (type) {
             // p h1 h2 h3 h4 h5 h6
@@ -61,11 +91,6 @@
             }
 
         };
-
-        function customhtml(codeblock) {
-            document.execCommand(cmd, false, 'http://www.stunningmesh.com/wp-content/uploads/2011/06/stunningmesh-ipad-wallpapers-61-small.jpg');
-        }
-
 
 //    $scope.dhtml = function () {
 //        return $sce.trustAsHtml($scope.content);
