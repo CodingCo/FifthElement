@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 
-
 var document = new mongoose.Schema({
     doc_id: {type: Number, unique: true, required: true},
     title: {type: String},
@@ -12,7 +11,6 @@ var document = new mongoose.Schema({
     images: {type: [{type: String}], index: true},
     tags: {type: [{type: String}], index: true},
     comments: [{body: {type: String}, date: {type: Date}}]
-
 });
 
 
@@ -26,6 +24,7 @@ var profile = new mongoose.Schema({
     collaborations: [String]
 });
 
+
 var download = new mongoose.Schema({
     download_id: Number,
     title: String,
@@ -38,6 +37,7 @@ var seq = new mongoose.Schema({
     _id: String,
     sequence_value: Number
 });
+
 
 var Document = mongoose.model('documentation', document);
 var Profile = mongoose.model('profiles', profile);

@@ -8,11 +8,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a ng-click="textTypes('h1')" href="#">h1</a></li>
-                        <li><a ng-click="textTypes('h2')" href="#">h2</a></li>
-                        <li><a ng-click="textTypes('h3')" href="#">h3</a></li>
-                        <li><a ng-click="textTypes('p')" href="#">p</a></li>
-                        <li><a ng-click="codeBlock()" href="#">code</a></li>
+                        <li><a ng-click="textTypes('h1')" href="">h1</a></li>
+                        <li><a ng-click="textTypes('h2')" href="">h2</a></li>
+                        <li><a ng-click="textTypes('h3')" href="">h3</a></li>
+                        <li><a ng-click="textTypes('p')" href="">p</a></li>
+                        <li><a ng-click="codeBlock()" href="">code</a></li>
                     </ul>
                 </div>
                 <button ng-class="{active: pressed}" ng-click="textFormat('bold')" class="btn btn-default" type="button">Bold</button>
@@ -23,10 +23,10 @@
                 <button ng-click="textJustification('justifyCenter')" class="btn btn-default" type="button">center</button>
                 <button ng-click="textJustification('justifyRight')" class="btn btn-default" type="button">right</button>
                 <button ng-click="textFormat('insertHorizontalRule')" class="btn btn-default" type="button">rule</button>
-                <button ng-click="" class="btn btn-default" type="button">image</button>
+                <button ng-click="insertImage('')" class="btn btn-default" type="button">image</button>
                 <button ng-click="textFormat('removeFormat')" class="btn btn-default" type="button">clear</button>
             </div>
         </div>
-        <div class="ace-body document" contenteditable="true" ng-model="content"></div>
+        <div id="ace-editor" class="ace-body document" contenteditable="true" ng-model="content"></div>
     </div>
 </div>

@@ -64,7 +64,8 @@ describe("Testing of the document mapper interface", function () {
 
         it("Should return undefined. Document do not exist", function (done) {
             documentMapper.getDocument(invalidSearchId, function (err, document) {
-                if (err) return done(err);
+                if (err)return done(err);
+                console.log(document);
                 (document === undefined).should.equal(true);
                 return done();
             });

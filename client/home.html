@@ -25,65 +25,9 @@
 </head>
 <body>
 <div navigation></div>
-
-<div class="container">
-    <!-- editor -->
-    <div class="row">
-        <div ace-editor></div>
+    <div class="container">
+        <div ng-view></div>
     </div>
-
-    <!-- title, subtitle, author and abstract -->
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="doc_title">Title</label>
-                <input id="doc_title" class="form-control" name="title" type="text" placeholder="title"/>
-            </div>
-            <div class="form-group">
-                <label for="doc_subtitle">subtitle</label>
-                <input id="doc_subtitle" class="form-control" name="Subtitle" type="text" placeholder="subtitle"/>
-            </div>
-
-            <div class="form-group">
-                <label for="doc_author">Author</label>
-                <input id="doc_author" class="form-control" name="author" type="text" placeholder="author"/>
-            </div>
-        </div>
-        <!-- abstract section -->
-        <div class="col-md-8">
-            <!-- <div class="note-editable" contenteditable="true"></div> -->
-            <div class="form-group">
-                <label for="doc_abstract"> abstract</label>
-                <textarea class="form-control" name="simon" id="doc_abstract" cols="30" rows="10"></textarea>
-            </div>
-        </div>
-    </div>
-    <!-- tags -->
-    <div class="row">
-        <div class="col-md-12">
-            <label for="">Tags</label>
-
-            <div class="panel panel-default">
-                <div class="panel-body" contenteditable="true">
-                    tags goes here
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- submit buttons -->
-    <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="form-group">
-                <button type="button" ng-click="loog()" type="submit" class="btn btn-primary btn-lg btn-block">Add
-                    Documentation
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <footer footer></footer>
 </body>
 </html>

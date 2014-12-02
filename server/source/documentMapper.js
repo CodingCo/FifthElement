@@ -1,6 +1,7 @@
 var model = require('../model/models');
 //var model = require('../../test/backend-test/dbMock');s
 
+
 exports.getDocument = function (doc_id, callback) {
     model.Document.findOne({doc_id: doc_id}, function (err, data) {
         if (err) return callback(err);
@@ -8,6 +9,7 @@ exports.getDocument = function (doc_id, callback) {
         return callback(undefined, data);
     });
 };
+
 
 exports.getAllDocuments = function (callback) {
     model.Document.find({}, {
@@ -18,36 +20,18 @@ exports.getAllDocuments = function (callback) {
         timestamp: 1,
         doc_id: 1
     }, function (err, documents) {
-        console.log(documents);
         if (err) return callback(err);
+        if (documents === null) return callback();
         return callback(undefined, documents);
     });
 };
 
-
 exports.createDocument = function (document, callback) {
     getNextSequenceValue(function (data) {
         document.doc_id = data;
-        console.log(document);
         model.Document.create(document, callback);
     });
 };
-
-exports.deleteDocument = function (id, callback) {
-    model.Document.remove({doc_id: id}, function (err) {
-        if (err) return callback(err);
-        return callback();
-    });
-};
-
-
-exports.getDocumentByTitle = function (title, callback) {
-    model.Document.findOne({title: title}, function (err, document) {
-        if (err) return callback(err);
-        return callback(undefined, document);
-    });
-};
-
 
 function getNextSequenceValue(callback) {
     var seq = undefined;
@@ -59,6 +43,29 @@ function getNextSequenceValue(callback) {
         return callback(seq);
     });
 }
+
+// ====================
+
+exports.deleteDocument = function (id, callback) {
+    model.Document.remove({doc_id: id}, function (err) {
+        if (err) return callback(err);
+        return callback();
+    });
+};
+
+exports.getDocumentByTitle = function (title, callback) {
+    model.Document.findOne({title: title}, function (err, document) {
+        if (err) return callback(err);
+        return callback(undefined, document);
+    });
+};
+
+
+
+
+
+
+
 
 
 

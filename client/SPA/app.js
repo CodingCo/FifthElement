@@ -15,8 +15,13 @@
         $routeProvider.when('/justTesting', {
             templateUrl: 'views/justTesting.html',
             controller: 'justTesting'
-        }).otherwise({redirectTo: '/justTesting'});
-
+        }).when('/projectCreator', {
+            templateUrl: 'viewsCms/projectCreator.html',
+            controller: 'CmsController'
+        }).otherwise({
+            templateUrl: 'viewsVisitor/projectTemplate.html',
+            controller: 'SingleDocCtrl'
+        });
     }]);
 })();
 

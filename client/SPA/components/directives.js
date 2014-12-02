@@ -25,7 +25,7 @@
     });
 
 
-    app.directive('erer', function () {
+    app.directive('contenteditable', function () {
         return {
             restrict: 'A', // only activate on element attribute
             require: '?ngModel', // get a hold of NgModelController
