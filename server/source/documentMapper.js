@@ -38,8 +38,11 @@ exports.postDocument = function (document, callback) {
     });
 };
 
-exports.deleteDocument = function (title, callback) {
-
+exports.deleteDocument = function (id, callback) {
+    model.Document.remove({doc_id: id}, function(err){
+        if(err) return callback(err);
+        return callback();
+    });
 };
 
 exports.saveDocument = function(document, callback){
