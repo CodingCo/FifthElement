@@ -20,7 +20,6 @@ router.get('/getDocs/:searchString', function (request, response) {
     });
 });
 
-// TODO: a 'post'-service, to create a document in the DB
 router.post('/saveDoc', function (request, response) {
     mapper.saveDoc(request.body, function (err) {
 
