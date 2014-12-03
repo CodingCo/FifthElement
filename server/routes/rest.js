@@ -43,14 +43,32 @@ router.post('/createDocument', function (request, response) {
     });
 });
 
-router.put('/editDocument', function (request, response){
+router.put('/editDocument', function (request, response) {
     var document = request.body;
-    mapper.editDocument(document, function(err, data) {
+    mapper.editDocument(document, function (err, data) {
         if (err) {
             response.setHeader('Content-Type', 'application/json');
             response.send({
                 err: "true",
                 data: "Could not be updated"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
+    });
+});
+
+router.delete('/deleteDocument/:doc_id', function (request, response) {
+    var doc_id = request.params.doc_id;
+    mapper.deleteDocument(doc_id, function (err, data) {
+        if (err) {
+            response.setHeader('Content-Type', 'application/json');
+            response.send({
+                err: "true",
+                data: "Could not be deleted"
             });
         } else {
             response.send({

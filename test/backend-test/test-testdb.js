@@ -10,7 +10,7 @@ describe("Testing of the document mapper interface", function () {
         title: "Article 1",
         subtitle: "+1 Article of testing",
         author: "Kasper Hald",
-        timestamp: "27-11-14 10:00:00",
+        timestamp: new Date(),
         abstract: "",
         body: "Super article text of doom.",
         images: [],
@@ -21,7 +21,7 @@ describe("Testing of the document mapper interface", function () {
         title: "Article 2",
         subtitle: "+4 Vorpal Keen Article",
         author: "John Smith",
-        timestamp: "01-01-00 00:00:00",
+        timestamp: new Date(),
         abstract: "",
         body: "Article text made of pure greatness, truly inspiring.",
         images: [],
@@ -130,13 +130,22 @@ describe("Testing of the document mapper interface", function () {
 
     describe("Test edit document with specific id", function(){
         it("should update a document properly", function(done){
+
             var doc_id = 1;
+
             documentMapper.getDocument(doc_id, function(err, document){
                 if(err) return done(err);
+                console.log('Get Document');
+                console.log(document);
+                console.log('');
                 doc_id = document.doc_id;
                 document.title = 'Back to the future';
-                documentMapper.editDocument(document, function(err){
+
+                documentMapper.editDocument(document, function(err, data){
                     if(err) return done(err);
+                    console.log('Edit Document');
+                    console.log(data);
+
                     documentMapper.getDocument(doc_id, function (err, document) {
                         if (err) return done(err);
                         document.should.have.property('title', 'Back to the future');
