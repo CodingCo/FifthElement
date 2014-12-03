@@ -65,7 +65,6 @@ describe("Testing of the document mapper interface", function () {
         it("Should return undefined. Document do not exist", function (done) {
             documentMapper.getDocument(invalidSearchId, function (err, document) {
                 if (err)return done(err);
-                console.log(document);
                 (document === undefined).should.equal(true);
                 return done();
             });
@@ -131,23 +130,22 @@ describe("Testing of the document mapper interface", function () {
         });
     });
 
-    //describe("test edit document with specific id", function(){
-    //       it("should update a document properly", function(done){
-    //           var titleOfDocument = 'Article 1';
-    //           var docId;
-    //           documentMapper.getDocumentByTitle(titleOfDocument, function(err, document){
-    //               if(err) return done(err);
-    //               docId = document.doc_id;
-    //               document.title = 'Back to the future';
-    //               documentMapper.saveDocument(document, function(err){
-    //                   if(err) return done(err);
-    //                   documentMapper.getDocument(titleOfDocument, function (err, document) {
-    //                       if (err) return done(err);
-    //                       document.should.have.property('title', 'Back to the future');
-    //                       return done();
-    //                   });
-    //               });
-    //           });
-    //       });
-    //});
+    describe("Test edit document with specific id", function(){
+           it("should update a document properly", function(done){
+               var doc_id = 1;
+               documentMapper.getDocument(doc_id, function(err, document){
+                   if(err) return done(err);
+                   doc_id = document.doc_id;
+                   document.title = 'Back to the future';
+                   documentMapper.editDocument(document, function(err){
+                       if(err) return done(err);
+                       documentMapper.getDocument(doc_id, function (err, document) {
+                           if (err) return done(err);
+                           document.should.have.property('title', 'Back to the future');
+                           return done();
+                       });
+                   });
+               });
+           });
+    });
 });
