@@ -1,6 +1,5 @@
 var express = require('express');
 var mapper = require('../source/documentMapper');
-var colors = require('colors');
 var router = express.Router();
 
 

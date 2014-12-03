@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var rest = require('./routes/rest');
 var index = require('./routes/index');
 var cms = require('./routes/cms');
+var filehandler = require('./routes/filehandler');
 var connection = require('./model/connection');
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, '../client/SPA')));
 app.use('/', index);
 app.use('/api', rest);
 app.use('/cms',cms);
+app.use('/filehandler', filehandler);
 
 // Error handlers
 app.use(function (req, res, next) {
