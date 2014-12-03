@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('CMSApp.controllers', []);
+    var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
     app.controller('ListDocumentCtrl', ['$scope', function ($scope) {
 
