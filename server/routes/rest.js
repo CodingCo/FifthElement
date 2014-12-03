@@ -25,7 +25,6 @@ router.get('/getDocument/:doc_id', function (request, response) {
     });
 });
 
-// mapper method missing
 router.post('/createDocument', function (request, response) {
     var document = request.body;
     mapper.createDocument(document, function (err, data) {
@@ -34,6 +33,24 @@ router.post('/createDocument', function (request, response) {
             response.send({
                 err: "true",
                 data: "Could not be saved"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
+    });
+});
+
+router.put('/editDocument', function (request, response){
+    var document = request.body;
+    mapper.editDocument(document, function(err, data) {
+        if (err) {
+            response.setHeader('Content-Type', 'application/json');
+            response.send({
+                err: "true",
+                data: "Could not be updated"
             });
         } else {
             response.send({
