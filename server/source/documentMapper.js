@@ -60,6 +60,15 @@ exports.getDocumentByTitle = function (title, callback) {
     });
 };
 
+exports.editDocument = function(document, callback) {
+    model.Document.findOne({doc_id: document.doc_id}, function (err, documentToEdit){
+        if(err) return callback(err);
+        documentToEdit = document;
+        documentToEdit.save();
+        return callback(documentToEdit);
+    });
+};
+
 
 
 
