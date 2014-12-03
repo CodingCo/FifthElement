@@ -21,7 +21,7 @@ app.factory('authInterceptor', function ($rootScope, $q, $window) {
 
 app.factory('docFactory', ['$http', function ($http) {
     return {
-        saveDoc: function (documentation, callback) {
+        createDocument: function (documentation, callback) {
             $http.post('/api/createDocument', documentation).
                 success(function (data, status, headers, config) {
                     callback(null, data);
@@ -32,7 +32,7 @@ app.factory('docFactory', ['$http', function ($http) {
 
         },
 
-        getDocs: function (searchTitle, callback) {
+        getDocument: function (searchTitle, callback) {
             $http.get('/api/getDocument/' + searchTitle).
                 success(function (data) {
                     callback(data);

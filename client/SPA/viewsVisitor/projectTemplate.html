@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../vendor/bootstrap/dist/css/bootstrap.css"/>
-    <script src="../../vendor/bootstrap/dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../../stylesheets/documentation.css"/>
-    <title>{{doc.title}}</title>
-</head>
-<body>
+<div class="row document-body">
+    <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
-            <!-- main title goes in here -->
-            <div class="heading-container">
-                <h1>{{doc.title}}</h1>
+        <div class="heading-container">
+            <h1>{{doc.title}}</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="text-align: center">
             </div>
-
-            <!-- text goes in here -->
-            <div class="text-container">
-                <div ng-bind-html="doc.body"></div>
+            <div class="col-md-6" style="text-align: center">
             </div>
+        </div>
+        <div style="margin-bottom: 80px">
+        </div>
+        <!-- text goes in here -->
+        <div class="text-container">
+            <div ng-bind-html="doc.body"></div>
         </div>
     </div>
 </div>
-</body>
-</html>
+
+

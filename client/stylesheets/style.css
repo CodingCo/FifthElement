@@ -5,22 +5,27 @@ body {
 /* Ace editor section  */
 
 .ace-body{
-    border: 1px solid #ccc;
+    border: 1px dashed #ccc;
     min-height: 400px;
+    outline: none;
 }
 
 /* Ace editor section  */
-.footer {
-    background-color: #4d4d4d;
-    color: rgb(159, 159, 159);
-}
+
 
 .document {
     padding: 10px;
-    box-shadow: 0 0 5px #888;
 }
 
-.footer-bottom {
-    background-color: rgb(38, 38, 38);
-    color: rgb(228, 228, 228);
+.center-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.footer {
+    margin-top: 50px;
+    border-top: 1px solid #f3ecee;
+    padding-top: 10px;
+    background-color: #f8f8f8;
 }

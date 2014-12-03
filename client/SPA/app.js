@@ -12,12 +12,15 @@
     ]);
     app.config(['$routeProvider', function ($routeProvider) {
 
-        $routeProvider.when('/justTesting', {
-            templateUrl: 'views/justTesting.html',
-            controller: 'justTesting'
+        $routeProvider.when('/viewProjectTemplate', {
+            templateUrl: 'viewsVisitor/projectTemplate.html',
+            controller: 'SingleDocCtrl'
         }).when('/projectCreator', {
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsController'
+        }).when('/list',{
+            templateUrl:'viewsVisitor/listDocuments.html',
+            controller:'ListDocumentCtrl'
         }).otherwise({
             templateUrl: 'viewsVisitor/projectTemplate.html',
             controller: 'SingleDocCtrl'

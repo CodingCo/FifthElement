@@ -21,9 +21,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
-app.use('/', index);
+app.use('/',cms);
 app.use('/api', rest);
-app.use('/cms',cms);
+
 
 // Error handlers
 app.use(function (req, res, next) {
