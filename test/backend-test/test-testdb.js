@@ -135,22 +135,12 @@ describe("Testing of the document mapper interface", function () {
 
             documentMapper.getDocument(doc_id, function(err, document){
                 if(err) return done(err);
-                console.log('Get Document');
-                console.log(document);
-                console.log('');
-                doc_id = document.doc_id;
                 document.title = 'Back to the future';
 
                 documentMapper.editDocument(document, function(err, data){
                     if(err) return done(err);
-                    console.log('Edit Document');
-                    console.log(data);
-
-                    documentMapper.getDocument(doc_id, function (err, document) {
-                        if (err) return done(err);
-                        document.should.have.property('title', 'Back to the future');
-                        return done();
-                    });
+                    data.should.have.property('title', 'Back to the future');
+                    return done();
                 });
             });
         });

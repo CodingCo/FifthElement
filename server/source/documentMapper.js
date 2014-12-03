@@ -61,20 +61,20 @@ exports.getDocumentByTitle = function (title, callback) {
 };
 
 exports.editDocument = function(newDocument, callback) {
-    model.Document.findOne({doc_id: document.doc_id}, function (err, documentToEdit){
-        if(err) return callback(err);
-        documentToEdit = document;
-        documentToEdit.title = newDocument.title;
-        documentToEdit.subtitle = newDocument.title;
-        documentToEdit.author = newDocument.author;
-        documentToEdit.timestamp = newDocument.timestamp;
-        documentToEdit.abstract = newDocument.abstract;
-        documentToEdit.body = newDocument.body;
-        documentToEdit.images = newDocument.images;
-        documentToEdit.tags = newDocument.tags;
-        documentToEdit.comments = newDocument.comments;
-        documentToEdit.save();
-        return callback(documentToEdit);
+    model.Document.findOneAndUpdate({doc_id: newDocument.doc_id},{
+        title : newDocument.title,
+        subtitle : newDocument.title,
+        author : newDocument.author,
+        timestamp : newDocument.timestamp,
+        abstract : newDocument.abstract,
+        body : newDocument.body,
+        images : newDocument.images,
+        tags : newDocument.tags,
+        comments : newDocument.comments
+    },function(err, data){
+        if (err) return callback(err);
+        if(data === null) return callback();
+        return callback(undefined, data);
     });
 };
 
