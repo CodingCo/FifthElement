@@ -1,12 +1,17 @@
-<div ng-repeat="document in documents">
+<div ng-repeat="document in documents | orderBy: date">
     <div class="row">
-        <div class="col-md-10">
-            {{document.title}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10">
-            {{document.abstract}}
+        <div class=" col-md-offset-1 col-md-10">
+            <div class="row">
+                <h2 style="display: inline-block">{{document.title}}</h2>
+                <h4 style="display: inline-block">
+                    <small>{{document.author}}</small>
+                </h4>
+            </div>
+            <div class="row">
+                <p class="lead">{{document.abstract}}</p>
+                <a href="#/viewDocument/{{document.doc_id}}">read more</a>
+                <hr/>
+            </div>
         </div>
     </div>
 </div>
