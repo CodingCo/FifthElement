@@ -39,6 +39,16 @@ app.factory('docFactory', ['$http', function ($http) {
                 }).error(function (err) {
                     callback(err);
                 });
+        },
+
+        getAllDocuments: function (callback) {
+            $http.get('/api/getAllDocuments')
+                .success(function (data) {
+                    callback(data);
+                })
+                .error(function (err) {
+                    callback(err);
+                });
         }
     }
 }]);

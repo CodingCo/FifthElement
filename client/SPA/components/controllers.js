@@ -1,28 +1,43 @@
 (function () {
     var app = angular.module('CMSApp.controllers', []);
 
-    app.controller('ListDocumentCtrl', ['$scope', function ($scope) {
 
-    }]);
-
-    var doc = {};
-    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', function ($scope, docFactory, $sce) {
-        $scope.doc = doc;
-        console.log(doc);
-        if (doc.body === undefined) {
-            docFactory.getDocument(71, function (data) {
-                data.body = $sce.trustAsHtml(data.body);
-                doc = data;
-                $scope.doc = data;
+    var currentListOfDocuments = [];
+    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', function ($scope, docFactory) {
+        $scope.documents = currentListOfDocuments;
+        if ($scope.documents[0] === undefined) {
+            docFactory.getAllDocuments(function (data) {
+                if (data.err === false || data.err === undefined) {
+                    currentListOfDocuments = data;
+                    $scope.documents = data;
+                }
             });
         } else {
-
+            docFactory.getAllDocuments(function (data) {
+                if (data.length > currentListOfDocuments.length) {
+                    currentListOfDocuments = data;
+                    $scope.documents = data;
+                }
+            });
         }
     }]);
 
+    var currentArticle = {};
+    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', function ($scope, docFactory, $sce, $routeParams) {
+        var newRequestDocId = $routeParams.doc_id;
+        $scope.doc = currentArticle;
+        console.log(newRequestDocId);
+        if (currentArticle.body === undefined || currentArticle.doc_id != newRequestDocId) {
+            docFactory.getDocument(newRequestDocId, function (data) {
+                data.body = $sce.trustAsHtml(data.body);
+                currentArticle = data;
+                $scope.doc = data;
+            });
+        }
+    }]);
 
     app.controller('CmsController', ['$scope', 'docFactory', function ($scope, docFactory) {
-        // Doc information
+        // Document information
         $scope.content = "";
         $scope.abstract = "";
         $scope.title = "";
@@ -33,9 +48,7 @@
 
         $scope.saveDoc = function () {
             $scope.content = document.getElementById('ace-editor').innerHTML;
-
             docFactory.createDocument({
-                doc_id: 1098374,
                 title: $scope.title,
                 subtitle: $scope.subtitle,
                 author: $scope.author,
@@ -54,7 +67,6 @@
             })
         };
     }]);
-
 
     app.controller('AceController', ['$scope', function ($scope) {
         $scope.formats = [
@@ -84,8 +96,8 @@
             var chCode = ('charCode' in event) ? event.charCode : event.keyCode;
             map[event.keyCode] = true;
             if (map[91] && map[85]) {
-                $scope.underline = !$scope.underline;
-                document.execCommand('underline', false, null);
+                //  $scope.underline = !$scope.underline;
+                // document.execCommand('underline', false, null);
             }
             if (chCode === 13) {
                 //alert(chCode);
@@ -139,7 +151,6 @@
             }
         };
     }]);
-
 
     app.controller('AppCtrl', function ($scope, $http, $window, $location) {
         function url_base64_decode(str) {
@@ -199,12 +210,6 @@
             $location.path("/view1");
         }
     });
-
-    app.controller('DocController', ["$scope", function ($scope) {
-        $scope.title = "Create Documentation";
-        $scope.content = "";
-        $scope.body = "";
-    }]);
 })();
 
 

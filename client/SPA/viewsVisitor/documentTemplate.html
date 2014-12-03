@@ -16,6 +16,12 @@
         <div class="text-container">
             <div ng-bind-html="doc.body"></div>
         </div>
+        <h4 style="display: inline-block">
+            <small>{{doc.author}}</small>
+        </h4>
+        <h4 style="display: inline-block">
+            <small>{{doc.timestamp | date:'yyyy-MM-dd'}}</small>
+        </h4>
     </div>
 </div>
 
