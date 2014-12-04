@@ -1,7 +1,16 @@
 var should = require('should');
 var documentMapper = require('../../server/source/documentMapper');
+var profileMapper = require('../../server/source/profileMapper');
 var connection = require('../../server/model/connection');
 var mongoose = require('mongoose');
+
+before(function (done) {
+    connection.connect(done);
+});
+
+after(function (done) {
+    connection.close(done);
+});
 
 describe("Testing of the document mapper interface", function () {
 
@@ -29,13 +38,6 @@ describe("Testing of the document mapper interface", function () {
         comments: []
     }];
 
-    before(function (done) {
-        connection.connect(done);
-    });
-
-    after(function (done) {
-        connection.close(done);
-    });
 
     beforeEach(function (done) {
         this.timeout(5000);
@@ -147,4 +149,118 @@ describe("Testing of the document mapper interface", function () {
     });
 });
 
-describe("Testing of the profile mapper interface", function () {});
+describe("Testing of the profile mapper interface", function () {
+
+    var preProfiles = [{
+        email: "a@b.c",
+        name: "Robert Elving",
+        resume: "lorem resume",
+        skills: ["Skill 1", "Skill 2"],
+        profile_picture: "img ref link here",
+        github_link: "github.com",
+        collaborations: ["project 1" , "project 2"]
+    }, {
+        email: "kasmhald@gmail.com",
+        name: "Kasper Hald",
+        resume: "merol resume",
+        skills: ["Skill a", "Skill b"],
+        profile_picture: "img ref link here put",
+        github_link: "github.com/kasmhald",
+        collaborations: ["project A" , "project B"]
+    }];
+
+
+    beforeEach(function (done) {
+        this.timeout(5000);
+        mongoose.connection.collection('profiles').insert(preProfiles, done);
+    });
+
+    afterEach(function (done) {
+        mongoose.connection.collections['profiles'].remove({}, done);
+    });
+
+
+    describe("Test get profile with specific email", function () {
+
+        var invalidSearchStr = "not@valid.email";
+
+
+        it("should return a complete profile", function (done) {
+            profileMapper.getProfile(preProfiles[0].email, function (err, profile) {
+                if (err) return done(err);
+                // Here we check if the retrieved data, matches the expected document
+                // We just test for the mandatory properties. It is redundant, to test for all.
+                profile.should.have.property('email', preProfiles[0].email);
+                profile.should.have.property('name', preDocs[0].name);
+                return done();
+            });
+        });
+
+        it("Should return undefined. Document do not exist", function (done) {
+            profileMapper.getProfile(invalidSearchStr, function (err, profile) {
+                if (err)return done(err);
+                (profile === undefined).should.equal(true);
+                return done();
+            });
+        });
+
+    });
+
+
+    describe("test save document", function () {
+
+        var profileToInsert = {
+            email: "googled@gmail.com",
+            name: "George Lucas",
+            resume: "Lorem ipsum man ",
+            skills: ["Skill x", "Skill y"],
+            profile_picture: "idededeeddedet",
+            github_link: "github.com/dbag",
+            collaborations: ["project x" , "project y"]
+        };
+
+        it("should save the profile properly", function (done) {
+            profileMapper.createProfile(profileToInsert, function(err, data){
+                if (err)return done(err);
+                (data!=null).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+
+    describe("test delete profile with specific id", function () {
+        it("should get undefined, when trying to get a deleted profile", function (done) {
+            profileMapper.deleteProfile(preProfiles[0].email, function(err){
+                if (err)return done(err);
+                (err === undefined).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+    describe("test get all profiles", function () {
+        it("should retreive all existing profiles", function (done) {
+            profileMapper.getAllProfiles(function(err, profiles){
+                if (err) return done(err);
+                (profiles.length === 2).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+    describe("Test edit profile with specific id", function(){
+
+        var profile = preProfiles[0];
+        profile.name = Simon;
+        console.log(preProfiles);
+
+        it("should update a profile properly", function(done){
+            profileMapper.editProfile(profile,function(err, profile){
+                if (err) return done(err);
+                profile.should.have.property('name', profile.name);
+                return done;
+            });
+        });
+    });
+});
