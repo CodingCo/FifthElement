@@ -17,8 +17,15 @@ module.exports = function (config) {
         files: [
             'client/vendor/angular/angular.js',
             'client/vendor/angular-route/angular-route.js',
-            //'client/vendor/angular-mocks/angular-mocks.js',
+            'client/vendor/angular-sanitize/angular-sanitize.js',
+            'client/vendor/angular-mocks/angular-mocks.js',
+            'client/vendor/angular-bootstrap/ui-bootstrap-tpls.js', // ui.bootstrap
             'client/SPA/app.js',
+            'client/SPA/components/controllers.js',
+            'client/SPA/components/directives.js',
+            'client/SPA/components/factories.js',
+            'client/SPA/components/filters.js',
+            'client/SPA/components/services.js',
             // Test files goes here
             'test/frontend-test/clientTest.js'
         ],
