@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
 
         <div class="heading-container">
-            <h1>{{doc.title}}</h1>
+            <h1>{{fullDocument.title}}</h1>
         </div>
         <div class="row">
             <div class="col-md-6" style="text-align: center">
@@ -14,13 +14,13 @@
         </div>
         <!-- text goes in here -->
         <div class="text-container">
-            <div ng-bind-html="doc.body"></div>
+            <div ng-bind-html="fullDocument.body"></div>
         </div>
         <h4 style="display: inline-block">
-            <small>{{doc.author}}</small>
+            <small>{{fullDocument.author}}</small>
         </h4>
         <h4 style="display: inline-block">
-            <small>{{doc.timestamp | date:'yyyy-MM-dd'}}</small>
+            <small>{{fullDocument.timestamp | date:'yyyy-MM-dd'}}</small>
         </h4>
     </div>
 </div>

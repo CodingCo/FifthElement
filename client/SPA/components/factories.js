@@ -19,6 +19,40 @@ app.factory('authInterceptor', function ($rootScope, $q, $window) {
     };
 });
 
+
+app.factory('cacheFactory', [function () {
+    var documentCache = [];
+    var listDocumentCache = [];
+
+    return {
+        getDocumentIfCached: function (documentID) {
+            for (var i = 0; i < documentCache.length; ++i) {
+                if (documentCache[i].doc_id == documentID) {
+                    return documentCache[i];
+                }
+            }
+            return false;
+        },
+
+        cacheDocument: function (document) {
+            documentCache.push(document);
+        },
+
+        getListIfCached: function () {
+            if (listDocumentCache[0] === undefined) {
+                return false;
+            } else {
+                return listDocumentCache;
+            }
+        },
+
+        cacheList: function (newList) {
+            listDocumentCache = newList;
+        }
+    }
+}]);
+
+
 app.factory('docFactory', ['$http', function ($http) {
     return {
         createDocument: function (documentation, callback) {

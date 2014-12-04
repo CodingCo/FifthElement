@@ -1,0 +1,23 @@
+<div ng-repeat="document in documents">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-8 col-md-8">
+                    <h3>{{document.title}}</h3>
+
+                    <p>{{document.abstract}}</p>
+                    <a href="#/viewDocument/{{document.doc_id}}">read more</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <div style="margin-top: 20%">
+                        <button ng-click="" class="btn btn-default btn-block" type="button">Edit</button>
+                        <button ng-click="" class="btn btn-danger btn-block" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

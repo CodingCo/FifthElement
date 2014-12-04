@@ -19,7 +19,10 @@
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsController'
         }).when('/list', {
-            templateUrl: 'viewsVisitor/listDocuments.html',
+            templateUrl: 'viewsVisitor/documentList.html',
+            controller: 'ListDocumentCtrl'
+        }).when('/cmsList', {
+            templateUrl: 'viewsCms/cmsDocumentList.html',
             controller: 'ListDocumentCtrl'
         }).otherwise({
             templateUrl: 'viewsVisitor/documentTemplate.html',

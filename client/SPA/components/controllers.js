@@ -2,35 +2,45 @@
     var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
 
-    var currentListOfDocuments = [];
-    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', function ($scope, docFactory) {
-        $scope.documents = currentListOfDocuments;
-        if ($scope.documents[0] === undefined) {
+    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
+        $scope.presentDocument = true;
+        $scope.documents = [];
+        $scope.cache = cacheFactory.getListIfCached();
+        if ($scope.cache) {
+            $scope.documents = $scope.cache;
             docFactory.getAllDocuments(function (data) {
-                if (data.err === false || data.err === undefined) {
-                    currentListOfDocuments = data;
-                    $scope.documents = data;
+                if (data.err === undefined) {
+                    if (data.length > $scope.cache.length) {
+                        cacheFactory.cacheList(data);
+                        $scope.documents = data;
+                    }
                 }
             });
         } else {
             docFactory.getAllDocuments(function (data) {
-                if (data.length > currentListOfDocuments.length) {
-                    currentListOfDocuments = data;
+                if (data.err === undefined) {
+                    cacheFactory.cacheList(data);
                     $scope.documents = data;
+                } else {
+                    $scope.documents = [{title: "No articles found"}];
+                    $scope.presentDocument = false;
                 }
             });
         }
     }]);
 
-    var currentArticle = {};
-    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', function ($scope, docFactory, $sce, $routeParams) {
-        var newRequestDocId = $routeParams.doc_id;
-        $scope.doc = currentArticle;
-        if (currentArticle.body === undefined || currentArticle.doc_id != newRequestDocId) {
-            docFactory.getDocument(newRequestDocId, function (data) {
+
+    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', 'cacheFactory', function ($scope, docFactory, $sce, $routeParams, cacheFactory) {
+        $scope.fullDocument = "";
+        $scope.reqDocID = $routeParams.doc_id;
+        $scope.cache = cacheFactory.getDocumentIfCached($scope.reqDocID);
+        if ($scope.cache) {
+            $scope.fullDocument = $scope.cache;
+        } else {
+            docFactory.getDocument($scope.reqDocID, function (data) {
                 data.body = $sce.trustAsHtml(data.body);
-                currentArticle = data;
-                $scope.doc = data;
+                cacheFactory.cacheDocument(data);
+                $scope.fullDocument = data;
             });
         }
     }]);
