@@ -146,3 +146,5 @@ describe("Testing of the document mapper interface", function () {
         });
     });
 });
+
+describe("Testing of the profile mapper interface", function () {});
