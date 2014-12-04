@@ -191,7 +191,7 @@ describe("Testing of the profile mapper interface", function () {
                 // Here we check if the retrieved data, matches the expected document
                 // We just test for the mandatory properties. It is redundant, to test for all.
                 profile.should.have.property('email', preProfiles[0].email);
-                profile.should.have.property('name', preDocs[0].name);
+                profile.should.have.property('name', preProfiles[0].name);
                 return done();
             });
         });
@@ -251,15 +251,22 @@ describe("Testing of the profile mapper interface", function () {
 
     describe("Test edit profile with specific id", function(){
 
-        var profile = preProfiles[0];
-        profile.name = Simon;
-        console.log(preProfiles);
+        var profile = {
+            email: "a@b.c",
+            name: "Robert Elving",
+            resume: "lorem resume",
+            skills: ["Skill 1", "Skill 2"],
+            profile_picture: "img ref link here",
+            github_link: "github.com",
+            collaborations: ["project 1" , "project 2"]
+        };
+        profile.name = "Simon";
 
         it("should update a profile properly", function(done){
             profileMapper.editProfile(profile,function(err, profile){
                 if (err) return done(err);
                 profile.should.have.property('name', profile.name);
-                return done;
+                return done();
             });
         });
     });

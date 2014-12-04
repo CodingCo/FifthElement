@@ -1,12 +1,14 @@
 var express = require('express');
-var mapper = require('../source/documentMapper');
+var documentMapper = require('../source/documentMapper');
+var profileMapper = require('../source/profileMapper');
+
 var router = express.Router();
 
-
+//Document Services
 router.get('/getAllDocuments', function (request, response) {
-    mapper.getAllDocuments(function (err, data) {
+    documentMapper.getAllDocuments(function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
         if (err) {
-            response.setHeader('Content-Type', 'application/json');
             response.send("{}");
         }
         response.send(data);
@@ -15,9 +17,9 @@ router.get('/getAllDocuments', function (request, response) {
 
 router.get('/getDocument/:doc_id', function (request, response) {
     var doc_id = request.params.doc_id;
-    mapper.getDocument(doc_id, function (err, data) {
+    document.getDocument(doc_id, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
         if (err) {
-            response.setHeader('Content-Type', 'application/json');
             response.send("{}");
         }
         response.send(data);
@@ -26,9 +28,9 @@ router.get('/getDocument/:doc_id', function (request, response) {
 
 router.post('/createDocument', function (request, response) {
     var document = request.body;
-    mapper.createDocument(document, function (err, data) {
+    documentMapper.createDocument(document, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
         if (err) {
-            response.setHeader('Content-Type', 'application/json');
             response.send({
                 err: "true",
                 data: "Could not be saved"
@@ -44,9 +46,9 @@ router.post('/createDocument', function (request, response) {
 
 router.put('/editDocument', function (request, response) {
     var document = request.body;
-    mapper.editDocument(document, function (err, data) {
+    documentMapper.editDocument(document, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
         if (err) {
-            response.setHeader('Content-Type', 'application/json');
             response.send({
                 err: "true",
                 data: "Could not be updated"
@@ -62,9 +64,9 @@ router.put('/editDocument', function (request, response) {
 
 router.delete('/deleteDocument/:doc_id', function (request, response) {
     var doc_id = request.params.doc_id;
-    mapper.deleteDocument(doc_id, function (err, data) {
+    documentMapper.deleteDocument(doc_id, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
         if (err) {
-            response.setHeader('Content-Type', 'application/json');
             response.send({
                 err: "true",
                 data: "Could not be deleted"
@@ -78,5 +80,93 @@ router.delete('/deleteDocument/:doc_id', function (request, response) {
     });
 });
 
+
+//Profile Services
+router.getProfile('/getProfile/:email', function(request, response){
+   var email = request.params.email;
+   profileMapper.getDocument(email, function(err, data){
+       response.setHeader('Content-Type', 'application/json');
+       if (err) {
+           response.send({
+               err: "true",
+               data: "Profile not be found"
+           });
+       } else {
+           response.send({
+               err: "false",
+               data: data
+           });
+       }
+   });
+});
+
+router.get('/getAllProfiles', function (request, response) {
+    profileMapper.getAllProfiles(function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "No Profiles found"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
+    });
+});
+
+router.post('/createProfile', function (request, response) {
+    profileMapper.createProfile(request.body, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be saved"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
+    });
+});
+
+router.put('/editProfile', function (request, response) {
+    documentMapper.editDocument(request.body, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be updated"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
+    });
+});
+
+router.delete('/deleteProfile/:email', function (request, response) {
+    var email = request.params.email;
+    profileMapper.deleteProfile(email, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be deleted"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
+    });
+});
 
 module.exports = router;
