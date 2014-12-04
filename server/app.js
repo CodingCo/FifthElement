@@ -5,10 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var rest = require('./routes/rest');
-var index = require('./routes/index');
 var cms = require('./routes/cms');
 var qt = require('quickthumb');
-var filehandler = require('./routes/filehandler');
+var fileHandler = require('./routes/filehandler');
 var connection = require('./model/connection');
 var app = express();
 
@@ -23,10 +22,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
-app.use('/', index);
+app.use('/',cms);
 app.use('/api', rest);
 app.use('/cms', cms);
-app.use('/filehandler', filehandler);
+app.use('/filehandler', fileHandler);
 app.use(qt.static(__dirname + '/../public/'));
 
 // Error handlers

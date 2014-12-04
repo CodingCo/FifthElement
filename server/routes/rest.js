@@ -7,7 +7,10 @@ router.get('/getAllDocuments', function (request, response) {
     mapper.getAllDocuments(function (err, data) {
         if (err) {
             response.setHeader('Content-Type', 'application/json');
-            response.send("{}");
+            response.send({
+                err: "true",
+                data: "Could not be saved"
+            });
         }
         response.send(data);
     })
@@ -18,7 +21,10 @@ router.get('/getDocument/:doc_id', function (request, response) {
     mapper.getDocument(doc_id, function (err, data) {
         if (err) {
             response.setHeader('Content-Type', 'application/json');
-            response.send("{}");
+            response.send({
+                err: "true",
+                data: "Could not be saved"
+            });
         }
         response.send(data);
     });
