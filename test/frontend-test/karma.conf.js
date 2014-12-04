@@ -7,26 +7,30 @@ module.exports = function (config) {
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '../../',
 
-
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine'],
 
-
         // list of files / patterns to load in the browser
-        files: [
-            'client/vendor/angular/angular.js',
-            'client/vendor/angular-route/angular-route.js',
-            //'client/vendor/angular-mocks/angular-mocks.js',
-            'client/SPA/app.js',
-            // Test files goes here
-            'test/frontend-test/clientTest.js'
-        ],
-
+            files: [
+                'client/vendor/angular/angular.js',
+                'client/vendor/angular-route/angular-route.js',
+                'client/vendor/angular-sanitize/angular-sanitize.js',
+                'client/vendor/angular-mocks/angular-mocks.js',
+                'client/vendor/angular-bootstrap/ui-bootstrap-tpls.js', // ui.bootstrap
+                'client/SPA/app.js',
+                'client/SPA/components/controllers.js',
+                'client/SPA/components/directives.js',
+                'client/SPA/components/factories.js',
+                'client/SPA/components/filters.js',
+                'client/SPA/components/services.js',
+                // Test files goes here
+                'test/frontend-test/clientTest.js',
+                'test/frontend-test/test-getDocument.js'
+            ],
 
         // list of files to exclude
         exclude: [],
-
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -58,7 +62,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', 'Safari'],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode

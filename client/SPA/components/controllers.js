@@ -26,7 +26,6 @@
     app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', function ($scope, docFactory, $sce, $routeParams) {
         var newRequestDocId = $routeParams.doc_id;
         $scope.doc = currentArticle;
-        console.log(newRequestDocId);
         if (currentArticle.body === undefined || currentArticle.doc_id != newRequestDocId) {
             docFactory.getDocument(newRequestDocId, function (data) {
                 data.body = $sce.trustAsHtml(data.body);
@@ -120,11 +119,9 @@
             if (elementInFocus != editorElement) {
                 editorElement.focus();
             }
-
             if ($scope.formats.indexOf(cmd) != -1) {
                 document.execCommand(cmd, false, null);
             }
-
         };
 
         $scope.codeBlock = function () {
@@ -133,7 +130,7 @@
 
         $scope.insertImage = function (imgName, url) {
             var imageUrl = prompt('enter image url');
-            var img = '<img src="' + imageUrl + '" ' + '"style="width:auto; max-width:100%;" >';
+            var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive">';
             document.execCommand('insertHTML', false, img);
         };
 
