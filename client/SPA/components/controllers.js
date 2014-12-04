@@ -7,10 +7,6 @@
     }]);
 
     app.controller('CmsListController', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
-
-    }]);
-
-    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
         $scope.presentDocument = true;
         $scope.documents = [];
         $scope.cache = cacheFactory.getListIfCached();
@@ -35,6 +31,36 @@
                 }
             });
         }
+    }]);
+
+    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
+        $scope.presentDocument = true;
+        $scope.documents = [];
+        $scope.cache = cacheFactory.getListIfCached();
+        $scope.updatePage = function () {
+            if ($scope.cache) {
+                $scope.documents = $scope.cache;
+                docFactory.getAllDocuments(function (data) {
+                    if (data.err === undefined) {
+                        if (data.length > $scope.cache.length) {
+                            cacheFactory.cacheList(data);
+                            $scope.documents = data;
+                        }
+                    }
+                });
+            } else {
+                docFactory.getAllDocuments(function (data) {
+                    if (data.err === undefined) {
+                        cacheFactory.cacheList(data);
+                        $scope.documents = data;
+                    } else {
+                        $scope.documents = [{title: "No articles found"}];
+                        $scope.presentDocument = false;
+                    }
+                });
+            }
+        };
+        $scope.updatePage();
     }]);
 
     app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', 'cacheFactory', function ($scope, docFactory, $sce, $routeParams, cacheFactory) {
