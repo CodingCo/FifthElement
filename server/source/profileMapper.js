@@ -54,7 +54,7 @@ var editProfile = function(newProfile, callback) {
     });
 };
 
-//-----------------------------------------------------------
+//-------------------- EXPORT ----------------------------
 
 module.exports = {
     getProfile: getProfile,
