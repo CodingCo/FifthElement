@@ -3,14 +3,13 @@ var router = express.Router();
 var formidable = require('formidable');
 var fs = require('fs-extra');
 
-// Show the upload form
+// Show the upload form Included for Testing TO-BE Removed when used in views.
 router.get('/', function (req, response) {
     response.writeHead(200, {'Content-Type': 'text/html'});
-    var form = '<form action="/filehandler/postFile" enctype="multipart/form-data" method="post">Add a title: <input name="title" type="text" />' +
-        '<br><br><input multiple="multiple" name="upload" type="file" /><br><br><input type="submit" value="Upload" /></form>';
+    var form = '<form action="/filehandler/postFile" enctype="multipart/form-data" method="post">' +
+        '<input multiple="multiple" name="upload" type="file" /><br><br><input type="submit" value="Upload" /></form>';
     response.end(form);
 });
-
 
 router.post('/postFile', function (request, response) {
 
