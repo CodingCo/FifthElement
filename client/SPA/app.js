@@ -11,7 +11,6 @@
         'CMSApp.filters'
     ]);
     app.config(['$routeProvider', function ($routeProvider) {
-
         $routeProvider.when('/viewDocument/:doc_id', {
             templateUrl: 'viewsVisitor/documentTemplate.html',
             controller: 'SingleDocCtrl'
@@ -24,9 +23,12 @@
         }).when('/cmsList', {
             templateUrl: 'viewsCms/cmsDocumentList.html',
             controller: 'ListDocumentCtrl'
+        }).when('/home', {
+            templateUrl: 'viewsVisitor/frontPage.html',
+            controller: 'FrontPageController'
         }).otherwise({
-            templateUrl: 'viewsVisitor/documentTemplate.html',
-            controller: 'SingleDocCtrl'
+            templateUrl: 'viewsVisitor/frontPage.html',
+            controller: 'FrontPageController'
         });
     }]);
 })();

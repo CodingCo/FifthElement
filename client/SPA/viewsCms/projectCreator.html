@@ -1,57 +1,60 @@
 <!-- editor -->
-<div class="row">
-    <div ace-editor></div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <!-- Title -->
-            <label for="doc_title">Title</label>
-            <input ng-model="title" id="doc_title" class="form-control" name="title" type="text"
-                   placeholder="title"/>
-        </div>
-        <div class="form-group">
-            <!-- Subtitle -->
-            <label for="doc_subtitle">Subtitle</label>
-            <input ng-model="subtitle" id="doc_subtitle" class="form-control" name="Subtitle" type="text"
-                   placeholder="subtitle"/>
-        </div>
-
-        <div class="form-group">
-            <!-- Author -->
-            <label for="doc_author">Author</label>
-            <input ng-model="author" id="doc_author" class="form-control" name="author" type="text" placeholder="author"/>
-        </div>
+<div class="container">
+    <div class="row">
+        <div ace-editor></div>
     </div>
-    <div class="col-md-8">
-        <div class="form-group">
-            <!-- Abstract -->
-            <label for="doc_abstract"> Abstract</label>
-            <textarea ng-model="abstract" class="form-control" name="simon" id="doc_abstract" cols="30" rows="10"></textarea>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <!-- Title -->
+                <label for="doc_title">Title</label>
+                <input ng-model="title" id="doc_title" class="form-control" name="title" type="text"
+                       placeholder="title"/>
+            </div>
+            <div class="form-group">
+                <!-- Subtitle -->
+                <label for="doc_subtitle">Subtitle</label>
+                <input ng-model="subtitle" id="doc_subtitle" class="form-control" name="Subtitle" type="text"
+                       placeholder="subtitle"/>
+            </div>
+
+            <div class="form-group">
+                <!-- Author -->
+                <label for="doc_author">Author</label>
+                <input ng-model="author" id="doc_author" class="form-control" name="author" type="text"
+                       placeholder="author"/>
+            </div>
         </div>
-    </div>
-</div>
-<!-- tags -->
-<div class="row">
-    <div class="col-md-12">
-        <label for="">Tags</label>
-        <div class="panel panel-default">
-            <div class="panel-body" contenteditable="true">
-                tags goes here
+        <div class="col-md-8">
+            <div class="form-group">
+                <!-- Abstract -->
+                <label for="doc_abstract"> Abstract</label>
+                <textarea ng-model="abstract" class="form-control" name="simon" id="doc_abstract" cols="30"
+                          rows="10"></textarea>
             </div>
         </div>
     </div>
-</div>
+    <!-- tags -->
+    <div class="row">
+        <div class="col-md-12">
+            <label for="">Tags</label>
 
-<div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="form-group">
-            <button type="button" ng-click="saveDoc()" type="submit" class="btn btn-primary btn-lg btn-block">
-                Add Documentation
-            </button>
+            <div class="panel panel-default">
+                <div class="panel-body" contenteditable="true">
+                    tags goes here
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <button  ng-disabled="notValid" type="button" ng-click="saveDoc()" class="btn btn-primary btn-lg btn-block">
+                    Add Documentation
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

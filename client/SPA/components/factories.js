@@ -55,19 +55,18 @@ app.factory('cacheFactory', [function () {
 
 app.factory('docFactory', ['$http', function ($http) {
     return {
-        createDocument: function (documentation, callback) {
-            $http.post('/api/createDocument', documentation).
+        createDocument: function (document, callback) {
+            $http.post('/api/createDocument', document).
                 success(function (data, status, headers, config) {
                     callback(null, data);
                 }).
                 error(function (data, status, headers, config) {
                     callback(status);
                 });
-
         },
 
-        getDocument: function (searchTitle, callback) {
-            $http.get('/api/getDocument/' + searchTitle).
+        getDocument: function (documentID, callback) {
+            $http.get('/api/getDocument/' + documentID).
                 success(function (data) {
                     callback(data);
                 }).error(function (err) {
@@ -81,6 +80,15 @@ app.factory('docFactory', ['$http', function ($http) {
                     callback(data);
                 })
                 .error(function (err) {
+                    callback(err);
+                });
+        },
+
+        deleteDocument: function (documentID, callback) {
+            $http.delete('/api/deleteDocument/' + documentID)
+                .success(function (data) {
+                    callback(data);
+                }).error(function (err) {
                     callback(err);
                 });
         }

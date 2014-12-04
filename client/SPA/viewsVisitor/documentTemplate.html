@@ -1,28 +1,29 @@
-<div class="row document-body">
-    <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+<div class="container">
+    <div class="row document-body">
+        <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
 
-        <div class="heading-container">
-            <h1>{{fullDocument.title}}</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="text-align: center">
+            <div class="heading-container">
+                <h1>{{fullDocument.title}}</h1>
             </div>
-            <div class="col-md-6" style="text-align: center">
+            <div class="row">
+                <div class="col-md-6" style="text-align: center">
+                </div>
+                <div class="col-md-6" style="text-align: center">
+                </div>
             </div>
+            <div style="margin-bottom: 80px">
+            </div>
+            <!-- text goes in here -->
+            <div class="text-container">
+                <div ng-bind-html="fullDocument.body"></div>
+            </div>
+            <h4 style="display: inline-block">
+                <small>{{fullDocument.author}}</small>
+            </h4>
+            <h4 style="display: inline-block">
+                <small>{{fullDocument.timestamp | date:'yyyy-MM-dd'}}</small>
+            </h4>
         </div>
-        <div style="margin-bottom: 80px">
-        </div>
-        <!-- text goes in here -->
-        <div class="text-container">
-            <div ng-bind-html="fullDocument.body"></div>
-        </div>
-        <h4 style="display: inline-block">
-            <small>{{fullDocument.author}}</small>
-        </h4>
-        <h4 style="display: inline-block">
-            <small>{{fullDocument.timestamp | date:'yyyy-MM-dd'}}</small>
-        </h4>
     </div>
 </div>
-
 

@@ -2,6 +2,14 @@
     var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
 
+    app.controller('FrontPageController', ['$scope', function ($scope) {
+        $scope.title = "Hello World";
+    }]);
+
+    app.controller('CmsListController', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
+
+    }]);
+
     app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
         $scope.presentDocument = true;
         $scope.documents = [];
@@ -28,7 +36,6 @@
             });
         }
     }]);
-
 
     app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', 'cacheFactory', function ($scope, docFactory, $sce, $routeParams, cacheFactory) {
         $scope.fullDocument = "";
@@ -68,11 +75,12 @@
                 comments: []
             }, function (err, data) {
                 if (err) {
-                    alert("We could not connect to the service");
+                    toastr.options.closeButton = true;
+                    toastr.warning("Document could not be saved. We are sorry");
                     return;
                 }
-                console.log(data);
-                alert("Something happend");
+                toastr.options.closeButton = true;
+                toastr.success("Article uploaded");
             })
         };
     }]);
