@@ -4,7 +4,7 @@ var router = express.Router();
 
 //========================= Profile Services =========================//
 
-router.getProfile('/getProfile/:email', function(request, response){
+router.get('/getProfile/:email', function(request, response){
     var email = request.params.email;
     profileMapper.getDocument(email, function(err, data){
         response.setHeader('Content-Type', 'application/json');
