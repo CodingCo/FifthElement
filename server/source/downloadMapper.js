@@ -48,7 +48,7 @@ function getNextSequenceValue(callback) {
     var seq = undefined;
     model.Sequence.findOne({_id: 'counter'}, function (err, down) {
         down._id = 'counter';
-        seq = doc.download_sequence_value;
+        seq = down.download_sequence_value;
         down.download_sequence_value = seq + 1;
         down.save();
         return callback(seq);

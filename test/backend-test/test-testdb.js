@@ -25,7 +25,8 @@ describe("Testing of the document mapper interface", function () {
         body: "Super article text of doom.",
         images: [],
         tags: ["Article", "Awesomeness"],
-        comments: []
+        comments: [],
+        pinned: true
     }, {
         doc_id: 2,
         title: "Article 2",
@@ -36,7 +37,8 @@ describe("Testing of the document mapper interface", function () {
         body: "Article text made of pure greatness, truly inspiring.",
         images: [],
         tags: ["Article", "Awesomeness", "Greatness"],
-        comments: []
+        comments: [],
+        pinned: false
     }];
 
 
@@ -53,8 +55,7 @@ describe("Testing of the document mapper interface", function () {
     describe("test get document with specific title", function () {
         var invalidSearchId = -1;
 
-
-        it("should return a complete Wiki article", function (done) {
+        it("should return a complete document", function (done) {
             documentMapper.getDocument(1, function (err, document) {
                 if (err) return done(err);
                 // Here we check if the retrieved data, matches the expected document
@@ -72,7 +73,21 @@ describe("Testing of the document mapper interface", function () {
                 return done();
             });
         });
+    });
 
+    describe("test getPinnedDocuments", function () {
+
+        it("should return a list of documents where pinned is true", function (done) {
+            documentMapper.getPinnedDocuments(function (err, documents) {
+                if (err) return done(err);
+                // Here we check if the retrieved data, matches the expected document
+                // We just test for the mandatory properties. It is redundant, to test for all.
+                for(var i = 0; i < documents.length; ++i){
+                    documents[i].should.have.property('pinned', true);
+                }
+                return done();
+            });
+        });
     });
 
 
@@ -110,7 +125,6 @@ describe("Testing of the document mapper interface", function () {
 
                 documentMapper.deleteDocument(docId, function (err,data) {
                     if (err) return done(err);
-                    console.log(data);
                     documentMapper.getDocument(1, function (err, document) {
                         if (err) return done(err);
                         (document === undefined).should.equal(true);

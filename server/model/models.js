@@ -10,7 +10,8 @@ var document = new mongoose.Schema({
     body: {type: String},
     images: {type: [{type: String}], index: true},
     tags: {type: [{type: String}], index: true},
-    comments: [{body: {type: String}, date: {type: Date}}]
+    comments: [{body: {type: String}, date: {type: Date}}],
+    pinned: {type: Boolean}
 });
 
 
