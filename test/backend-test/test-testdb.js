@@ -312,8 +312,8 @@ describe("Testing of the downloads mapper interface", function () {
                 if (err) return done(err);
                 // Here we check if the retrieved data, matches the expected document
                 // We just test for the mandatory properties. It is redundant, to test for all.
-                downloads.should.have.property('download_id', preDownloads[0].download_id);
-                downloads.should.have.property('title', preDownloads[0].title);
+                download.should.have.property('download_id', preDownloads[0].download_id);
+                download.should.have.property('title', preDownloads[0].title);
                 return done();
             });
         });
