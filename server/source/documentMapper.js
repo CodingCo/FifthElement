@@ -35,7 +35,6 @@ var createDocument = function (document, callback) {
 function getNextSequenceValue(callback) {
     var seq = undefined;
     model.Sequence.findOne({_id: 'counter'}, function (err, doc) {
-        doc._id = 'counter';
         seq = doc.document_sequence_value;
         doc.document_sequence_value = seq + 1;
         doc.save();
@@ -59,20 +58,20 @@ var getDocumentByTitle = function (title, callback) {
     });
 };
 
-var editDocument = function(newDocument, callback) {
-    model.Document.findOneAndUpdate({doc_id: newDocument.doc_id},{
-        title : newDocument.title,
-        subtitle : newDocument.title,
-        author : newDocument.author,
-        timestamp : newDocument.timestamp,
-        abstract : newDocument.abstract,
-        body : newDocument.body,
-        images : newDocument.images,
-        tags : newDocument.tags,
-        comments : newDocument.comments
-    },function(err, data){
+var editDocument = function (newDocument, callback) {
+    model.Document.findOneAndUpdate({doc_id: newDocument.doc_id}, {
+        title: newDocument.title,
+        subtitle: newDocument.title,
+        author: newDocument.author,
+        timestamp: newDocument.timestamp,
+        abstract: newDocument.abstract,
+        body: newDocument.body,
+        images: newDocument.images,
+        tags: newDocument.tags,
+        comments: newDocument.comments
+    }, function (err, data) {
         if (err) return callback(err);
-        if(data === null) return callback();
+        if (data === null) return callback();
         return callback(undefined, data);
     });
 };

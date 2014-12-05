@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha test/backend-test/test-testdb"
+    "test": "mocha test/backend-test/test-testdb",
+    "insert": "node ./scripts/dummydataInsert.js"
   },
   "dependencies": {
     "body-parser": "~1.8.1",
