@@ -76,7 +76,7 @@ var editDocument = function (newDocument, callback) {
 };
 
 var getPinnedDocuments = function(callback){
-    model.Document.find({pinned: {$in: [true]}}, function(err, pinnedDocs){
+    model.Document.find({pinned: true}, function(err, pinnedDocs){
         if (err) return callback(err);
         if (pinnedDocs === null) return callback();
         return callback(undefined, pinnedDocs);
