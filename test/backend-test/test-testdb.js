@@ -128,7 +128,7 @@ describe("Testing of the document mapper interface", function () {
     });
 
     describe("test get all documents", function () {
-        it("should retreive all existing documents", function (done) {
+        it("should retrieve all existing documents", function (done) {
             var expectedSize = 2;
             documentMapper.getAllDocuments(function (err, documents) {
                 if (err) return done(err);
