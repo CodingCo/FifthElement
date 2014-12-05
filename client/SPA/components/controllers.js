@@ -1,36 +1,42 @@
 (function () {
     var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
-
     app.controller('FrontPageController', ['$scope', function ($scope) {
         $scope.title = "Hello World";
     }]);
 
-    app.controller('CmsListController', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
+    app.controller('CmsListController', ['$scope', 'docFactory', 'cacheFactory', 'toastr', function ($scope, docFactory, cacheFactory, toastr) {
         $scope.presentDocument = true;
         $scope.documents = [];
         $scope.cache = cacheFactory.getListIfCached();
         if ($scope.cache) {
             $scope.documents = $scope.cache;
-            docFactory.getAllDocuments(function (data) {
-                if (data.err === undefined) {
-                    if (data.length > $scope.cache.length) {
-                        cacheFactory.cacheList(data);
-                        $scope.documents = data;
-                    }
-                }
-            });
         } else {
             docFactory.getAllDocuments(function (data) {
                 if (data.err === undefined) {
                     cacheFactory.cacheList(data);
                     $scope.documents = data;
-                } else {
-                    $scope.documents = [{title: "No articles found"}];
-                    $scope.presentDocument = false;
                 }
             });
         }
+
+        $scope.deleteDocument = function (documentID) {
+            var verify = documentID == prompt("Type in " + '"' + documentID + '" to delete article');
+            if (verify) {
+                docFactory.deleteDocument(documentID, function () {
+                    cacheFactory.popElementFromCacheList(documentID);
+                    $scope.documents = cacheFactory.getListIfCached();
+                    toastr.success("Document Deleted");
+                });
+            } else {
+                toastr.warning("Deletion canceled");
+            }
+        };
+
+        $scope.editDocument = function (documentID) {
+            toastr.success("DocumentID: " + documentID);
+        }
+
     }]);
 
     app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
@@ -78,7 +84,7 @@
         }
     }]);
 
-    app.controller('CmsController', ['$scope', 'docFactory', function ($scope, docFactory) {
+    app.controller('CmsController', ['$scope', 'docFactory', 'toastr', 'storageFactory', function ($scope, docFactory, toastr) {
         // Document information
         $scope.content = "";
         $scope.abstract = "";
@@ -105,13 +111,13 @@
                     toastr.warning("Document could not be saved. We are sorry");
                     return;
                 }
-                toastr.options.closeButton = true;
+                storageFactory.clearStorage();
                 toastr.success("Article uploaded");
             })
         };
     }]);
 
-    app.controller('AceController', ['$scope', function ($scope) {
+    app.controller('AceController', ['$scope', 'storageFactory', 'toastr', '$sce', function ($scope, storageFactory, toastr, $sce) {
         $scope.formats = [
             'bold',
             'italic',
@@ -135,6 +141,25 @@
         var map = {};
 
 
+        var storageKey = "project";
+
+        $scope.onLoadGetProject = function () {
+            var storedProject = storageFactory.getIfExist(storageKey);
+            if (storedProject) {
+                $scope.content = $sce.trustAsHtml(storedProject);
+                //document.getElementById('ace-editor').innerHTML = storedProject;
+                toastr.info("Previous article loaded: " + storedProject);
+            }
+        };
+        $scope.onLoadGetProject();
+
+        $scope.saveDocument = function () {
+            var projectData = document.getElementById('ace-editor').innerHTML;
+            console.log(projectData);
+            storageFactory.saveInLocalStorage(storageKey, projectData);
+            toastr.success("document saved");
+        };
+
         document.getElementById('ace-editor').addEventListener('keydown', function (event) {
             var chCode = ('charCode' in event) ? event.charCode : event.keyCode;
             map[event.keyCode] = true;
@@ -148,7 +173,6 @@
                 //document.execCommand('insertHTML', false, '<br/>');
             } // Enter
         });
-
         document.getElementById('ace-editor').addEventListener('keyup', function (event) {
             if (map[91] && map[85]) {
                 map[91] = false;
@@ -179,17 +203,7 @@
         };
 
         $scope.textTypes = function (type) {
-            switch (type) {
-                case "h1":
-                case "h2":
-                case "h3":
-                case "p":
-                    document.execCommand('formatBlock', false, type);
-                    break;
-                default:
-                    document.execCommand('formatBlock', false, 'p');
-                    break;
-            }
+            document.execCommand('formatBlock', false, type);
         };
     }]);
 

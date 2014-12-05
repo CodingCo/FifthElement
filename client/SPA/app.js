@@ -4,6 +4,7 @@
     var app = angular.module('CMSApp', [
         'ngRoute',
         'ngSanitize',
+        'toastr',
         'CMSApp.controllers',
         'CMSApp.directives',
         'CMSApp.services',
@@ -22,7 +23,7 @@
             controller: 'ListDocumentCtrl'
         }).when('/cmsList', {
             templateUrl: 'viewsCms/cmsDocumentList.html',
-            controller: 'ListDocumentCtrl'
+            controller: 'CmsListController'
         }).when('/home', {
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageController'

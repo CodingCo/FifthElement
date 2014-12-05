@@ -1,8 +1,10 @@
 var mongo = require('mongoose');
-var dbUrl = require('../../config.json').database_connection_url;
-//var dbUrl = require('../../config.json').database_test_url;
 
-function connect(onConnected) {
+var productionUrl = require('../../config.json').database_connection_url;
+var testUrl = require('../../config.json').database_test_url;
+
+function connect(onConnected, enviroment) {
+    var dbUrl = enviroment ? productionUrl : testUrl;
     mongo.connect(dbUrl, function (err) {
         if (onConnected) {
             return onConnected(err);

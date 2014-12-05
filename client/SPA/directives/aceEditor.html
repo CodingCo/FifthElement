@@ -45,8 +45,11 @@
             <button ng-click="textFormat('removeFormat')" class="btn btn-default" type="button">
                 clear
             </button>
+            <button ng-click="saveDocument()" class="btn btn-default" type="button">
+                save
+            </button>
         </div>
     </div>
-    <div id="ace-editor" class="ace-body document" contenteditable="true" ng-model="content"></div>
+    <div id="ace-editor" class="ace-body document" contenteditable="true" ng-bind-html="content"></div>
 </div>
 

@@ -11,7 +11,14 @@ var fileHandler = require('./routes/filehandler');
 var connection = require('./model/connection');
 var app = express();
 
-connection.connect();
+if (app.get('env') === 'production') {
+    console.log("Mode: " + app.get('env'));
+    connection.connect(undefined, "production");
+} else {
+    connection.connect();
+}
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -22,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
-app.use('/',cms);
+app.use('/', cms);
 app.use('/api', rest);
 app.use('/cms', cms);
 app.use('/filehandler', fileHandler);
@@ -46,6 +53,7 @@ if (app.get('env') === 'development') {
     });
 
 }
+
 
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
