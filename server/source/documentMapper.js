@@ -34,10 +34,10 @@ var createDocument = function (document, callback) {
 
 function getNextSequenceValue(callback) {
     var seq = undefined;
-    model.Sequence.findOne({_id: 'documentid'}, function (err, doc) {
-        doc._id = 'documentid';
-        seq = doc.sequence_value;
-        doc.sequence_value = seq + 1;
+    model.Sequence.findOne({_id: 'counter'}, function (err, doc) {
+        doc._id = 'counter';
+        seq = doc.document_sequence_value;
+        doc.document_sequence_value = seq + 1;
         doc.save();
         return callback(seq);
     });
