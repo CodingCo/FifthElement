@@ -142,7 +142,6 @@
 
 
         var storageKey = "project";
-
         $scope.onLoadGetProject = function () {
             var storedProject = storageFactory.getIfExist(storageKey);
             if (storedProject) {

@@ -43,7 +43,7 @@ app.factory('cacheFactory', [function () {
         },
 
         getListIfCached: function () {
-            if (listDocumentCache[0] === undefined) {
+            if (listDocumentCache.length === 0) {
                 return false;
             } else {
                 return listDocumentCache;
@@ -57,7 +57,7 @@ app.factory('cacheFactory', [function () {
         popElementFromCacheList: function (documentID) {
             for (var i = 0; i < listDocumentCache.length; ++i) {
                 if (listDocumentCache[i].doc_id == documentID) {
-                    listDocumentCache.splice(i);
+                    listDocumentCache.splice(i, 1);
                 }
             }
         }
@@ -102,6 +102,10 @@ app.factory('docFactory', ['$http', function ($http) {
                 }).error(function (err) {
                     callback(err);
                 });
+        },
+
+        editDocument: function () {
+
         }
     }
 }]);
