@@ -102,7 +102,8 @@ describe("Testing of the document mapper interface", function () {
                 body: "Super article text of whiteness.",
                 images: [],
                 tags: ["Article", "Awesomeness"],
-                comments: []
+                comments: [],
+                pinned: false
             };
 
             documentMapper.createDocument(documentToInsert, function (err, data) {
@@ -153,11 +154,11 @@ describe("Testing of the document mapper interface", function () {
 
             documentMapper.getDocument(doc_id, function(err, document){
                 if(err) return done(err);
-                document.title = 'Back to the future';
+                document.pinned = 'false';
 
                 documentMapper.editDocument(document, function(err, data){
                     if(err) return done(err);
-                    data.should.have.property('title', 'Back to the future');
+                    data.should.have.property('pinned', false);
                     return done();
                 });
             });

@@ -42,8 +42,6 @@ function getNextSequenceValue(callback) {
     });
 }
 
-// ====================
-
 var deleteDocument = function (id, callback) {
     model.Document.remove({doc_id: id}, function (err) {
         if (err) return callback(err);
@@ -68,13 +66,24 @@ var editDocument = function (newDocument, callback) {
         body: newDocument.body,
         images: newDocument.images,
         tags: newDocument.tags,
-        comments: newDocument.comments
+        comments: newDocument.comments,
+        pinned: newDocument.pinned
     }, function (err, data) {
         if (err) return callback(err);
         if (data === null) return callback();
         return callback(undefined, data);
     });
 };
+
+var getPinnedDocuments = function(callback){
+    model.Document.find({pinned: {$in: [true]}}, function(err, pinnedDocs){
+        console.log(pinnedDocs);
+        if (err) return callback(err);
+        if (pinnedDocs === null) return callback();
+        return callback(undefined, pinnedDocs);
+    })
+}
+
 
 //---------------------- EXPORT ----------------------------
 
@@ -84,7 +93,8 @@ module.exports = {
     createDocument: createDocument,
     deleteDocument: deleteDocument,
     getDocumentByTitle: getDocumentByTitle,
-    editDocument: editDocument
+    editDocument: editDocument,
+    getPinnedDocuments: getPinnedDocuments
 };
 
 
