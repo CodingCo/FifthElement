@@ -1,6 +1,7 @@
 var should = require('should');
 var documentMapper = require('../../server/source/documentMapper');
 var profileMapper = require('../../server/source/profileMapper');
+var downloadMapper = require('../../server/source/downloadMapper');
 var connection = require('../../server/model/connection');
 var mongoose = require('mongoose');
 
@@ -107,8 +108,9 @@ describe("Testing of the document mapper interface", function () {
                 if (err) return done(err);
                 docId = document.doc_id;
 
-                documentMapper.deleteDocument(docId, function (err) {
+                documentMapper.deleteDocument(docId, function (err,data) {
                     if (err) return done(err);
+                    console.log(data);
                     documentMapper.getDocument(1, function (err, document) {
                         if (err) return done(err);
                         (document === undefined).should.equal(true);
@@ -207,7 +209,7 @@ describe("Testing of the profile mapper interface", function () {
     });
 
 
-    describe("test save document", function () {
+    describe("test save profile", function () {
 
         var profileToInsert = {
             email: "googled@gmail.com",
@@ -266,6 +268,121 @@ describe("Testing of the profile mapper interface", function () {
             profileMapper.editProfile(profile,function(err, profile){
                 if (err) return done(err);
                 profile.should.have.property('name', profile.name);
+                return done();
+            });
+        });
+    });
+});
+
+
+describe("Testing of the downloads mapper interface", function () {
+
+    var preDownloads = [{
+        download_id: 1,
+        title: "SuperDownload",
+        description: "The most awesome download",
+        repo_link: "github.link.com.sjov",
+        thumbnail: "hejmeddig"
+    }, {
+        download_id: 2,
+        title: "NotSuperDownload",
+        description: "Not The most awesome download",
+        repo_link: "not.a.github.link.com.sjov",
+        thumbnail: "nothejmeddig"
+    }];
+
+
+    beforeEach(function (done) {
+        this.timeout(5000);
+        mongoose.connection.collection('downloads').insert(preDownloads, done);
+    });
+
+    afterEach(function (done) {
+        mongoose.connection.collections['downloads'].remove({}, done);
+    });
+
+
+    describe("Test get download with specific id", function () {
+
+        var invalidSearchStr = -1;
+
+
+        it("should return a complete download", function (done) {
+            downloadMapper.getDownload(preDownloads[0].download_id, function (err, download) {
+                if (err) return done(err);
+                // Here we check if the retrieved data, matches the expected document
+                // We just test for the mandatory properties. It is redundant, to test for all.
+                download.should.have.property('download_id', preDownloads[0].download_id);
+                download.should.have.property('title', preDownloads[0].title);
+                return done();
+            });
+        });
+
+        it("Should return undefined. Download do not exist", function (done) {
+            downloadMapper.getDownload(invalidSearchStr, function (err, download) {
+                if (err)return done(err);
+                (download === undefined).should.equal(true);
+                return done();
+            });
+        });
+
+    });
+
+
+    describe("test save download", function () {
+
+        var downloadToInsert = {
+            title: "saveDownload",
+            description: "download description",
+            repo_link: "download.link",
+            thumbnail: "download_thumb"
+        };
+
+        it("should save the download properly", function (done) {
+            downloadMapper.createDownload(downloadToInsert, function(err, data){
+                if (err)return done(err);
+                (data!=null).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+
+    describe("test delete download with specific id", function () {
+        it("should not return err when deleting profile", function (done) {
+            downloadMapper.deleteDownload(preDownloads[0].download_id, function(err){
+                if (err)return done(err);
+                (err === undefined).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+    describe("test get all downloads", function () {
+        it("should retreive all existing download", function (done) {
+            downloadMapper.getAllDownloads(function(err, downloads){
+                if (err) return done(err);
+                (downloads.length === 2).should.equal(true);
+                return done();
+            });
+        });
+    });
+
+    describe("Test edit download with specific id", function(){
+
+        var download = {
+            download_id: 1,
+            title: "NotSuperDownload",
+            description: "Not The most awesome download",
+            repo_link: "not.a.github.link.com.sjov",
+            thumbnail: "nothejmeddig"
+        };
+        download.title = "EditTest";
+
+        it("should return updated download", function(done){
+            downloadMapper.editDownload(download,function(err, editedDownload){
+                if (err) return done(err);
+                editedDownload.should.have.property('title', download.title);
                 return done();
             });
         });

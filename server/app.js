@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var rest = require('./routes/rest');
+var documentRest = require('./routes/documentRest');
+var profileRest = require('./routes/profileRest');
+var downloadRest = require('./routes/downloadRest');
 var cms = require('./routes/cms');
 var qt = require('quickthumb');
 var fileHandler = require('./routes/filehandler');
@@ -29,8 +31,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
-app.use('/', cms);
-app.use('/api', rest);
+app.use('/',cms);
+app.use('/api', documentRest);
+app.use('/api', profileRest);
+app.use('/api', downloadRest);
 app.use('/cms', cms);
 app.use('/filehandler', fileHandler);
 app.use(qt.static(__dirname + '/../public/'));
@@ -53,7 +57,6 @@ if (app.get('env') === 'development') {
     });
 
 }
-
 
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);

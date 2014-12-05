@@ -35,7 +35,8 @@ var download = new mongoose.Schema({
 
 var seq = new mongoose.Schema({
     _id: String,
-    sequence_value: Number
+    document_sequence_value: Number,
+    download_sequence_value: Number
 });
 
 
