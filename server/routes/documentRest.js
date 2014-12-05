@@ -23,6 +23,16 @@ router.get('/getDocument/:doc_id', function (request, response) {
     });
 });
 
+router.get('/getPinnedDocuments', function (request, response) {
+    documentMapper.getPinnedDocuments(function(err,data){
+        if (err) {
+            console.log(err);
+            response.send("{}");
+        }
+        response.send(data);
+    });
+});
+
 router.post('/createDocument', function (request, response) {
     var document = request.body;
     documentMapper.createDocument(document, function (err, data) {
