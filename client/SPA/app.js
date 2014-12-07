@@ -18,6 +18,9 @@
         }).when('/projectCreator', {
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsController'
+        }).when('/projectCreator/:edit_id',{
+            templateUrl: 'viewsCms/projectCreator.html',
+            controller: 'CmsController'
         }).when('/list', {
             templateUrl: 'viewsVisitor/documentList.html',
             controller: 'ListDocumentCtrl'

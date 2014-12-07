@@ -104,8 +104,13 @@ app.factory('docFactory', ['$http', function ($http) {
                 });
         },
 
-        editDocument: function () {
-
+        editDocument: function (document, callback) {
+            $http.put('/api/editDocument', document)
+                .success(function (data) {
+                    callback(data);
+                }).error(function (err) {
+                    callback(err);
+                });
         }
     }
 }]);

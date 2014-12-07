@@ -5,7 +5,7 @@
         $scope.title = "Hello World";
     }]);
 
-    app.controller('CmsListController', ['$scope', 'docFactory', 'cacheFactory', 'toastr', function ($scope, docFactory, cacheFactory, toastr) {
+    app.controller('CmsListController', ['$scope', '$location', 'docFactory', 'cacheFactory', 'toastr', function ($scope, $location, docFactory, cacheFactory, toastr) {
         $scope.presentDocument = true;
         $scope.documents = [];
         $scope.cache = cacheFactory.getListIfCached();
@@ -34,8 +34,8 @@
         };
 
         $scope.editDocument = function (documentID) {
-            toastr.success("DocumentID: " + documentID);
-        }
+            $location.path('/projectCreator/' + documentID);
+        };
 
     }]);
 
@@ -84,7 +84,12 @@
         }
     }]);
 
-    app.controller('CmsController', ['$scope', 'docFactory', 'toastr', 'storageFactory', function ($scope, docFactory, toastr) {
+    app.controller('CmsController', ['$scope', 'docFactory', 'toastr', 'storageFactory', function ($scope, docFactory, toastr, storageFactory) {
+        $scope.createMode = true;
+        $scope.editMode = true;
+        $scope.editID;
+
+
         // Document information
         $scope.content = "";
         $scope.abstract = "";
@@ -94,7 +99,8 @@
         $scope.images = [];
         $scope.tags = [];
 
-        $scope.saveDoc = function () {
+
+        $scope.createDoc = function () {
             $scope.content = document.getElementById('ace-editor').innerHTML;
             docFactory.createDocument({
                 title: $scope.title,
@@ -113,11 +119,54 @@
                 }
                 storageFactory.clearStorage();
                 toastr.success("Article uploaded");
-            })
+            });
         };
+
+        $scope.saveDoc = function () {
+            if ($scope.editID != undefined) {
+                $scope.content = document.getElementById('ace-editor').innerHTML;
+                docFactory.editDocument({
+                    doc_id: "",
+                    title: $scope.title,
+                    subtitle: $scope.subtitle,
+                    author: $scope.author,
+                    abstract: $scope.abstract,
+                    body: $scope.content,
+                    images: [],
+                    tags: [],
+                    comments: []
+                }, function (data) {
+                    if (data.err == true) {
+                        alert("shiit");
+                        return;
+                    }
+                    alert("It's okay");
+
+                });
+            } else {
+                alert("undefined");
+
+            }
+        };
+
     }]);
 
-    app.controller('AceController', ['$scope', 'storageFactory', 'toastr', '$sce', function ($scope, storageFactory, toastr, $sce) {
+    app.controller('AceController', ['$scope', 'storageFactory', 'toastr', '$sce', '$routeParams', 'docFactory', function ($scope, storageFactory, toastr, $sce, $routeParams, docFactory) {
+
+        $scope.editingInitiate = function () {
+            $scope.toBeEditedID = $routeParams.edit_id;
+            if ($scope.toBeEditedID) {
+                $scope.$parent.editMode = true;
+                $scope.$parent.createMode = false;
+                docFactory.getDocument($scope.toBeEditedID, function (document) {
+                    document.body = $sce.trustAsHtml(document.body);
+                    $scope.content = document.body;
+                    $scope.$parent.editID = $scope.toBeEditedID;
+                });
+            }
+        };
+        $scope.editingInitiate();
+
         $scope.formats = [
             'bold',
             'italic',
@@ -146,7 +195,6 @@
             var storedProject = storageFactory.getIfExist(storageKey);
             if (storedProject) {
                 $scope.content = $sce.trustAsHtml(storedProject);
-                //document.getElementById('ace-editor').innerHTML = storedProject;
                 toastr.info("Previous article loaded: " + storedProject);
             }
         };
@@ -154,7 +202,6 @@
 
         $scope.saveDocument = function () {
             var projectData = document.getElementById('ace-editor').innerHTML;
-            console.log(projectData);
             storageFactory.saveInLocalStorage(storageKey, projectData);
             toastr.success("document saved");
         };
