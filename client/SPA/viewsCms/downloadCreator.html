@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Download creator</h2>
+    <hr/>
+
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Title -->
+            <div class="form-group">
+                <label for="download_title">Download Title</label>
+                <input ng-model="title" id="download_title" class="form-control" name="title" type="text"
+                       placeholder="download title" required/>
+            </div>
+            <!-- Description -->
+            <div class="form-group">
+                <label for="download_description"> Abstract</label>
+                <textarea ng-model="description" class="form-control" name="description" id="download_description" cols="30"
+                          rows="10"></textarea>
+            </div>
+            <!-- Create button -->
+            <div class="col-md-4">
+                <button type="button" ng-click="saveDoc()"
+                        class="btn btn-success btn-lg btn-block">
+                    Create Download
+                </button>
+            </div>
+        </div>
+        <!-- IMAGE -->
+        <div class="col-md-4">
+            <label for="">Download Image</label>
+            <img ng-src="{{img}}" alt="" class="img-responsive img-rounded"/>
+        </div>
+    </div>
+</div>

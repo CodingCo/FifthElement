@@ -3,6 +3,34 @@
 var app = angular.module('CMSApp.factories', []);
 
 
+app.factory('editFactory', [function () {
+    /*
+     *  Map: keys is the map: download, profile, document
+     * */
+    var editObjects = {};
+
+    return {
+        getEditObject: function (key) {
+            if (editObjects[key]) {
+                return editObjects[key];
+            } else {
+                return false;
+            }
+        },
+
+        setEditObject: function (key, value) {
+            editObjects[key] = value;
+        },
+
+        deleteEditObject: function (key) {
+            console.log(editObjects[key]);
+            return delete editObjects[key];
+        }
+
+
+    }
+}]);
+
 app.factory('storageFactory', [function () {
     return {
         saveInLocalStorage: function (key, valueString) {
@@ -22,7 +50,6 @@ app.factory('storageFactory', [function () {
         }
     }
 }]);
-
 
 app.factory('cacheFactory', [function () {
     var documentCache = [];

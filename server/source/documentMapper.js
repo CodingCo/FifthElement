@@ -81,7 +81,7 @@ var getPinnedDocuments = function(callback){
         if (pinnedDocs === null) return callback();
         return callback(undefined, pinnedDocs);
     })
-}
+};
 
 
 //---------------------- EXPORT ----------------------------

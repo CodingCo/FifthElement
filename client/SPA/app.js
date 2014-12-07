@@ -18,7 +18,7 @@
         }).when('/projectCreator', {
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsController'
-        }).when('/projectCreator/:edit_id',{
+        }).when('/projectCreator/:edit_id', {
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsController'
         }).when('/list', {
@@ -30,6 +30,12 @@
         }).when('/home', {
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageController'
+        }).when('/downloadCreator', {
+            templateUrl: 'viewsCms/downloadCreator.html',
+            controller: 'CmsDownloadCtrl'
+        }).when('/profileCreator', {
+            templateUrl: "viewsCms/profileCreator.html",
+            controller: "CmsProfileCtrl"
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageController'

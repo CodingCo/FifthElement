@@ -1,11 +1,26 @@
 (function () {
     var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
+    app.controller('CmsProfileCtrl', ['$scope', function ($scope) {
+
+
+    }]);
+
+    app.controller('CmsDownloadCtrl', ['$scope', function ($scope) {
+        var imgSrc = prompt("enter url");
+        var image = new Image();
+        image.url = imgSrc;
+        imgSrc = "http://www.online-image-editor.com/styles/2013/images/example_image.png";
+        console.log(image);
+        $scope.img = imgSrc;
+
+    }]);
+
     app.controller('FrontPageController', ['$scope', function ($scope) {
         $scope.title = "Hello World";
     }]);
 
-    app.controller('CmsListController', ['$scope', '$location', 'docFactory', 'cacheFactory', 'toastr', function ($scope, $location, docFactory, cacheFactory, toastr) {
+    app.controller('CmsListController', ['$scope', '$location', 'docFactory', 'cacheFactory', 'toastr', 'editFactory', function ($scope, $location, docFactory, cacheFactory, toastr, editFactory) {
         $scope.presentDocument = true;
         $scope.documents = [];
         $scope.cache = cacheFactory.getListIfCached();
@@ -34,6 +49,7 @@
         };
 
         $scope.editDocument = function (documentID) {
+            editFactory.setEditObject("document", documentID);
             $location.path('/projectCreator/' + documentID);
         };
 
@@ -84,13 +100,7 @@
         }
     }]);
 
-    app.controller('CmsController', ['$scope', 'docFactory', 'toastr', 'storageFactory', function ($scope, docFactory, toastr, storageFactory) {
-        $scope.createMode = true;
-        $scope.editMode = true;
-        $scope.editID;
-
-
-        // Document information
+    app.controller('CmsController', ['$scope', 'docFactory', 'toastr', 'storageFactory', 'editFactory', function ($scope, docFactory, toastr, storageFactory, editFactory) {
         $scope.content = "";
         $scope.abstract = "";
         $scope.title = "";
@@ -98,6 +108,13 @@
         $scope.author = "";
         $scope.images = [];
         $scope.tags = [];
+
+        var edit = editFactory.getEditObject("document");
+        if (edit) {
+            docFactory.getDocument(edit, function (data) {
+                $scope.title = data.title;
+            });
+        }
 
 
         $scope.createDoc = function () {
@@ -122,6 +139,8 @@
             });
         };
 
+
+        //
         $scope.saveDoc = function () {
             if ($scope.editID != undefined) {
                 $scope.content = document.getElementById('ace-editor').innerHTML;
@@ -156,12 +175,10 @@
         $scope.editingInitiate = function () {
             $scope.toBeEditedID = $routeParams.edit_id;
             if ($scope.toBeEditedID) {
-                $scope.$parent.editMode = true;
-                $scope.$parent.createMode = false;
                 docFactory.getDocument($scope.toBeEditedID, function (document) {
                     document.body = $sce.trustAsHtml(document.body);
                     $scope.content = document.body;
-                    $scope.$parent.editID = $scope.toBeEditedID;
+
                 });
             }
         };
