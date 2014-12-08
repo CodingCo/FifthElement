@@ -27,7 +27,7 @@ module.exports = function (config) {
             'client/SPA/components/services.js',
             // Test files goes here
             'test/frontend-test/clientTest.js',
-            'test/frontend-test/test-getDocument.js'
+            'test/frontend-test/factories-test.js'
         ],
 
 
