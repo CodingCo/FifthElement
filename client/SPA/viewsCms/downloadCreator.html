@@ -13,7 +13,8 @@
             <!-- Description -->
             <div class="form-group">
                 <label for="download_description"> Abstract</label>
-                <textarea ng-model="description" class="form-control" name="description" id="download_description" cols="30"
+                <textarea ng-model="description" class="form-control" name="description" id="download_description"
+                          cols="30"
                           rows="10"></textarea>
             </div>
             <!-- Create button -->
@@ -29,5 +30,7 @@
             <label for="">Download Image</label>
             <img ng-src="{{img}}" alt="" class="img-responsive img-rounded"/>
         </div>
+        <input type="file" file-model="myFile"/>
+        <button ng-click="uploadFile()">upload me</button>
     </div>
 </div>

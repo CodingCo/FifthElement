@@ -13,6 +13,10 @@ router.get('/', function (req, response) {
 
 router.post('/postFile', function (request, response) {
 
+    console.log(request.file);
+    console.log(request.files);
+    console.log(request.body);
+
     var form = new formidable.IncomingForm();
     var fileInfo;
 

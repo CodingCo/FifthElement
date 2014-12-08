@@ -6,13 +6,21 @@
 
     }]);
 
-    app.controller('CmsDownloadCtrl', ['$scope', function ($scope) {
-        var imgSrc = prompt("enter url");
+    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', function ($scope, fileUpload) {
+        var imgSrc;// = prompt("enter url");
         var image = new Image();
         image.url = imgSrc;
         imgSrc = "http://www.online-image-editor.com/styles/2013/images/example_image.png";
         console.log(image);
         $scope.img = imgSrc;
+
+        $scope.uploadFile = function () {
+            var file = $scope.myFile;
+            console.log(file);
+            var uploadUrl = 'fileHandler/postFile';
+            fileUpload.uploadFileToUrl(file, uploadUrl);
+        };
+
 
     }]);
 
