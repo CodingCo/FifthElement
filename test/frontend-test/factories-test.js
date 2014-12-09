@@ -1,49 +1,57 @@
 describe('Factories in project FifthElement', function () {
 
+    beforeEach(function () {
+        module('CMSApp.factories');
+    });
+
+    var mockDocuments = [{
+        "doc_id": 0,
+        "title": "TestTitle1",
+        "subtitle": "TestSubtitle1",
+        "author": "Thomas",
+        "abstract": "TestAbstract1",
+        "body": "Testbody1",
+        "comments": [],
+        "tags": [],
+        "images": []
+    }, {
+        "doc_id": 1,
+        "title": "TestTitle2",
+        "subtitle": "TestSubtitle2",
+        "author": "Thomas",
+        "abstract": "TestAbstract2",
+        "body": "Testbody2",
+        "comments": [],
+        "tags": [],
+        "images": []
+    }, {
+        "doc_id": 2,
+        "title": "TestTitle3",
+        "subtitle": "TestSubtitle3",
+        "author": "Thomas",
+        "abstract": "TestAbstract3",
+        "body": "Testbody3",
+        "comments": [],
+        "tags": [],
+        "images": []
+    }];
+
     describe('docFactory', function () {
 
         var $scope, $httpBackend, $doc;
-
-        var mockDocuments = [{
-            "doc_id": 0,
-            "title": "TestTitle1",
-            "subtitle": "TestSubtitle1",
-            "author": "Thomas",
-            "abstract": "TestAbstract1",
-            "body": "Testbody1",
-            "comments": [],
-            "tags": [],
-            "images": []
-        }, {
-            "doc_id": 0,
-            "title": "TestTitle2",
-            "subtitle": "TestSubtitle2",
-            "author": "Thomas",
-            "abstract": "TestAbstract2",
-            "body": "Testbody2",
-            "comments": [],
-            "tags": [],
-            "images": []
-        }, {
-            "doc_id": 0,
-            "title": "TestTitle3",
-            "subtitle": "TestSubtitle3",
-            "author": "Thomas",
-            "abstract": "TestAbstract3",
-            "body": "Testbody3",
-            "comments": [],
-            "tags": [],
-            "images": []
-        }];
-
-        beforeEach(function () {
-            module('CMSApp.factories');
-        });
 
         beforeEach(inject(function (_$httpBackend_, $rootScope, docFactory) {
             $scope = $rootScope.$new();
             $httpBackend = _$httpBackend_;
             $httpBackend.whenGET("/api/getAllDocuments").respond(mockDocuments); // Make a mock-controller that uses the factoruy
+
+            // When request.body is not an object
+            $httpBackend.when('POST', "/api/createDocument", "this should be an object").respond({err: "true",data: "Could not be saved"});
+            $httpBackend.when('POST', "/api/createDocument", (mockDocuments[0]) || (mockDocuments[0])).respond(mockDocuments[0]);
+            $httpBackend.when('POST', "/api/createDocument", (mockDocuments[1]) || (mockDocuments[1])).respond(mockDocuments[1]);
+            $httpBackend.when('POST', "/api/createDocument", (mockDocuments[1]) || (mockDocuments[2])).respond(mockDocuments[2]);
+            $httpBackend.when('GET', "/api/getDocument/" + mockDocuments[0].doc_id).respond(mockDocuments[0]);
+            $httpBackend.when('DELETE', "/api/deleteDocument/" + mockDocuments[2].doc_id).respond({err: "false",data: mockDocuments[2]});
 
             $doc = docFactory;
 
@@ -68,6 +76,61 @@ describe('Factories in project FifthElement', function () {
 
         });
 
+        it("should return the document we try to create", function () {
+
+            $doc.createDocument(mockDocuments[1], function (err, data) {
+
+                expect(data).toBeDefined();
+                expect(data).toEqual(mockDocuments[1]);
+
+            });
+
+            $httpBackend.flush();
+
+        });
+
+        it("should fail when trying to create a document", function () {
+
+            $doc.createDocument("this should be an object", function (err, data) {
+
+                console.log(data.err);
+                expect(data).toBeDefined();
+                expect(data.err).toBe('true');
+                expect(data.data).toBe('Could not be saved');
+
+            });
+
+            $httpBackend.flush();
+
+        });
+
+        it("should return the document with the same id", function () {
+
+            $doc.getDocument(mockDocuments[0].doc_id, function (data) {
+                expect(data.doc_id).toEqual(mockDocuments[0].doc_id);
+            });
+
+            $httpBackend.flush();
+
+        });
+
+        it("should delete the document from mock", function () {
+
+            $doc.deleteDocument(mockDocuments[2].doc_id, function (data) {
+                expect(data.err).toBe('false');
+            });
+
+            $httpBackend.flush();
+
+        });
 
     });
+
+    xdescribe('cacheFactory', function () {
+
+
+
+    });
+
+
 });
