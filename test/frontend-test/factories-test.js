@@ -1,6 +1,6 @@
 describe('Factories in project FifthElement', function () {
 
-    beforeEach(function () {
+    beforeEach(function () {        // docFactory, cacheFactory
         module('CMSApp.factories');
     });
 
@@ -128,14 +128,10 @@ describe('Factories in project FifthElement', function () {
 
     describe('cacheFactory', function () {
 
-        var $httpBackend, $doc;
+        var $doc;
 
         beforeEach(inject(function (_$httpBackend_, cacheFactory) {
-            $httpBackend = _$httpBackend_;
-            $httpBackend.whenGET("/api/getAllDocuments").respond(mockDocuments); // Make a mock-controller that uses the factoruy
-
             $doc = cacheFactory;
-
         }));
 
         it("should be defined", function(){
