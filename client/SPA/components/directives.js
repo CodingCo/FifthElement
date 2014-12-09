@@ -5,7 +5,7 @@
     app.directive('navigation', function () {
         return {
             restrict: 'A',
-            templateUrl: "../directives/navigation.html"
+            templateUrl: "../directives/navigation.html",
         }
     });
 
@@ -18,9 +18,15 @@
 
     app.directive('aceEditor', function () {
         return {
-            restrict: 'A',
+            restrict: 'EA',
             templateUrl: "../directives/aceEditor.html",
-            controller: 'AceController'
+            controller: 'AceCtrl',
+            scope: {
+                contentField: "@"
+            },
+
+            link: function (scope, elemt, attrs) {
+            }
         }
     });
 

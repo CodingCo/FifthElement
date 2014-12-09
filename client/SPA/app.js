@@ -17,19 +17,19 @@
             controller: 'SingleDocCtrl'
         }).when('/projectCreator', {
             templateUrl: 'viewsCms/projectCreator.html',
-            controller: 'CmsController'
+            controller: 'CmsCtrl'
         }).when('/projectCreator/:edit_id', {
             templateUrl: 'viewsCms/projectCreator.html',
-            controller: 'CmsController'
+            controller: 'CmsCtrl'
         }).when('/list', {
             templateUrl: 'viewsVisitor/documentList.html',
             controller: 'ListDocumentCtrl'
         }).when('/cmsList', {
             templateUrl: 'viewsCms/cmsDocumentList.html',
-            controller: 'CmsListController'
+            controller: 'CmsListCtrl'
         }).when('/home', {
             templateUrl: 'viewsVisitor/frontPage.html',
-            controller: 'FrontPageController'
+            controller: 'FrontPageCtrl'
         }).when('/downloadCreator', {
             templateUrl: 'viewsCms/downloadCreator.html',
             controller: 'CmsDownloadCtrl'
@@ -38,7 +38,7 @@
             controller: "CmsProfileCtrl"
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
-            controller: 'FrontPageController'
+            controller: 'FrontPageCtrl'
         });
     }]);
 })();

@@ -8,10 +8,11 @@ app.factory('editFactory', [function () {
      *  Map: keys is the map: download, profile, document
      * */
     var editObjects = {};
-
+    var currentDoc = {};
     return {
         getEditObject: function (key) {
             if (editObjects[key]) {
+                currentDoc = editObjects[key];
                 return editObjects[key];
             } else {
                 return false;
@@ -23,9 +24,10 @@ app.factory('editFactory', [function () {
         },
 
         deleteEditObject: function (key) {
-            console.log(editObjects[key]);
             return delete editObjects[key];
-        }
+        },
+
+        currentDoc: currentDoc
 
 
     }
