@@ -126,8 +126,55 @@ describe('Factories in project FifthElement', function () {
 
     });
 
-    xdescribe('cacheFactory', function () {
+    describe('cacheFactory', function () {
 
+        var $httpBackend, $doc;
+
+        beforeEach(inject(function (_$httpBackend_, cacheFactory) {
+            $httpBackend = _$httpBackend_;
+            $httpBackend.whenGET("/api/getAllDocuments").respond(mockDocuments); // Make a mock-controller that uses the factoruy
+
+            $doc = cacheFactory;
+
+        }));
+
+        it("should be defined", function(){
+            expect($doc).toBeDefined();
+        });
+
+        it("should be empty", function(){
+            expect($doc.getDocumentIfCached()).toBeFalsy();
+        });
+
+        it("should cache the document", function(){
+
+            $doc.cacheDocument(mockDocuments[0]);
+            expect($doc.getDocumentIfCached(mockDocuments[0].doc_id)).toEqual(mockDocuments[0]);
+
+        });
+
+        it("should return false", function(){
+
+            expect($doc.getListIfCached()).toBeFalsy();
+
+        });
+
+        it("should cache a whole list", function(){
+
+            $doc.cacheList(mockDocuments);
+            expect($doc.getListIfCached()).toEqual(mockDocuments);
+
+        });
+
+        it("should eventually have a length of 2", function(){
+
+            $doc.cacheList(mockDocuments);
+            expect($doc.getListIfCached().length).toEqual(3);
+
+            $doc.popElementFromCacheList(mockDocuments[2].doc_id);
+            expect($doc.getListIfCached().length).toEqual(2);
+
+        });
 
 
     });
