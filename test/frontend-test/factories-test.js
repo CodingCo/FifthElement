@@ -4,37 +4,37 @@ describe('Factories in project FifthElement', function () {
         module('CMSApp.factories');
     });
 
-    var mockDocuments = [{
-        "doc_id": 0,
-        "title": "TestTitle1",
-        "subtitle": "TestSubtitle1",
-        "author": "Thomas",
-        "abstract": "TestAbstract1",
-        "body": "Testbody1",
-        "comments": [],
-        "tags": [],
-        "images": []
-    }, {
-        "doc_id": 1,
-        "title": "TestTitle2",
-        "subtitle": "TestSubtitle2",
-        "author": "Thomas",
-        "abstract": "TestAbstract2",
-        "body": "Testbody2",
-        "comments": [],
-        "tags": [],
-        "images": []
-    }, {
-        "doc_id": 2,
-        "title": "TestTitle3",
-        "subtitle": "TestSubtitle3",
-        "author": "Thomas",
-        "abstract": "TestAbstract3",
-        "body": "Testbody3",
-        "comments": [],
-        "tags": [],
-        "images": []
-    }];
+        var mockDocuments = [{
+            "doc_id": 0,
+            "title": "TestTitle1",
+            "subtitle": "TestSubtitle1",
+            "author": "Thomas",
+            "abstract": "TestAbstract1",
+            "body": "Testbody1",
+            "comments": [],
+            "tags": [],
+            "images": []
+        }, {
+            "doc_id": 1,
+            "title": "TestTitle2",
+            "subtitle": "TestSubtitle2",
+            "author": "Thomas",
+            "abstract": "TestAbstract2",
+            "body": "Testbody2",
+            "comments": [],
+            "tags": [],
+            "images": []
+        }, {
+            "doc_id": 2,
+            "title": "TestTitle3",
+            "subtitle": "TestSubtitle3",
+            "author": "Thomas",
+            "abstract": "TestAbstract3",
+            "body": "Testbody3",
+            "comments": [],
+            "tags": [],
+            "images": []
+        }];
 
     describe('docFactory', function () {
 
@@ -49,7 +49,7 @@ describe('Factories in project FifthElement', function () {
             $httpBackend.when('POST', "/api/createDocument", "this should be an object").respond({err: "true",data: "Could not be saved"});
             $httpBackend.when('POST', "/api/createDocument", (mockDocuments[0]) || (mockDocuments[0])).respond(mockDocuments[0]);
             $httpBackend.when('POST', "/api/createDocument", (mockDocuments[1]) || (mockDocuments[1])).respond(mockDocuments[1]);
-            $httpBackend.when('POST', "/api/createDocument", (mockDocuments[1]) || (mockDocuments[2])).respond(mockDocuments[2]);
+            $httpBackend.when('POST', "/api/createDocument", (mockDocuments[2]) || (mockDocuments[2])).respond(mockDocuments[2]);
             $httpBackend.when('GET', "/api/getDocument/" + mockDocuments[0].doc_id).respond(mockDocuments[0]);
             $httpBackend.when('DELETE', "/api/deleteDocument/" + mockDocuments[2].doc_id).respond({err: "false",data: mockDocuments[2]});
 
@@ -128,52 +128,94 @@ describe('Factories in project FifthElement', function () {
 
     describe('cacheFactory', function () {
 
-        var $doc;
+        var $cache;
 
         beforeEach(inject(function (_$httpBackend_, cacheFactory) {
-            $doc = cacheFactory;
+            $cache = cacheFactory;
         }));
 
         it("should be defined", function(){
-            expect($doc).toBeDefined();
+            expect($cache).toBeDefined();
         });
 
         it("should be empty", function(){
-            expect($doc.getDocumentIfCached()).toBeFalsy();
+            expect($cache.getDocumentIfCached()).toBeFalsy();
         });
 
         it("should cache the document", function(){
 
-            $doc.cacheDocument(mockDocuments[0]);
-            expect($doc.getDocumentIfCached(mockDocuments[0].doc_id)).toEqual(mockDocuments[0]);
+            $cache.cacheDocument(mockDocuments[0]);
+            expect($cache.getDocumentIfCached(mockDocuments[0].doc_id)).toEqual(mockDocuments[0]);
 
         });
 
         it("should return false", function(){
 
-            expect($doc.getListIfCached()).toBeFalsy();
+            expect($cache.getListIfCached()).toBeFalsy();
 
         });
 
         it("should cache a whole list", function(){
 
-            $doc.cacheList(mockDocuments);
-            expect($doc.getListIfCached()).toEqual(mockDocuments);
+            $cache.cacheList(mockDocuments);
+            expect($cache.getListIfCached()).toEqual(mockDocuments);
 
         });
 
         it("should eventually have a length of 2", function(){
 
-            $doc.cacheList(mockDocuments);
-            expect($doc.getListIfCached().length).toEqual(3);
+            $cache.cacheList(mockDocuments);
+            expect($cache.getListIfCached().length).toEqual(3);
 
-            $doc.popElementFromCacheList(mockDocuments[2].doc_id);
-            expect($doc.getListIfCached().length).toEqual(2);
+            $cache.popElementFromCacheList(mockDocuments[2].doc_id);
+            expect($cache.getListIfCached().length).toEqual(2);
+
+        });
+
+    });
+
+    describe('editFactory', function () {
+
+        var $edit, key = mockDocuments[0].doc_id;
+
+        beforeEach(inject(function (_$httpBackend_, $rootScope, editFactory) {
+            $edit = editFactory;
+        }));
+
+        it("should be empty", function(){
+
+            expect($edit.getEditObject(key)).toBeFalsy();
+
+        });
+
+        it("should return correct documentation", function(){
+
+            $edit.setEditObject(mockDocuments[0].doc_id, mockDocuments[0]);
+            $edit.setEditObject(mockDocuments[1].doc_id, mockDocuments[1]);
+
+            expect($edit.getEditObject(key)).toEqual(mockDocuments[key]);
+
+        });
+
+        it("should delete documentation", function(){
+
+            $edit.setEditObject(mockDocuments[0].doc_id, mockDocuments[0]);
+            $edit.setEditObject(mockDocuments[1].doc_id, mockDocuments[1]);
+
+            expect($edit.deleteEditObject(0)).toBeTruthy();
+
+        });
+
+        xit("should return false for invalid key", function () { // Deprecated for now, the method always returns true
+
+            $edit.setEditObject(mockDocuments[1].doc_id, mockDocuments[1]);
+            expect($edit.deleteEditObject(0)).toBeFalsy();
 
         });
 
 
     });
+    
 
 
 });
