@@ -129,12 +129,12 @@
 
         $scope.createDoc = function () {
             $scope.document.body = document.getElementById('ace-editor').innerHTML;
-            docFactory.createDocument($scope.document, function (err, data) {
+            docFactory.createDocument($scope.document, function (err, document) {
                 if (err) {
                     toastr.warning("Document could not be saved. We are sorry");
                 } else {
                     storageFactory.clearStorage();
-                    cacheFactory.cacheDocument(data);
+                    cacheFactory.cacheDocument(document.data);
                     toastr.success("Article uploaded");
                 }
             });
@@ -144,12 +144,14 @@
             $scope.document.body = document.getElementById('ace-editor').innerHTML;
             docFactory.editDocument($scope.document, function (data) {
                 if (data.err == true) {
-                    alert("shiit");
-                    return;
+                    toastr.alert("Something went wrong");
+                } else {
+                    storageFactory.clearStorage();
+                    editFactory.deleteEditObject("document");
+                    cacheFactory.popElementFromCacheList($scope.document.doc_id);
+                    cacheFactory.cacheDocument(data);
+                    toastr.success("Document saved");
                 }
-                alert("It's okay" + $scope.document.title);
-                alert("id: " + $scope.document.doc_id);
-
             });
         };
 

@@ -25,11 +25,7 @@ app.factory('editFactory', [function () {
 
         deleteEditObject: function (key) {
             return delete editObjects[key];
-        },
-
-        currentDoc: currentDoc
-
-
+        }
     }
 }]);
 
