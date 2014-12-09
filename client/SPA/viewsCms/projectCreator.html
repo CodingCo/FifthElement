@@ -1,36 +1,35 @@
 <!-- editor -->
 <div class="container">
+    <h2>Document creator</h2>
+    <hr/>
     <div class="row">
-        <div ace-editor></div>
+        <div ace-editor content-field="{{document.body}}"></div>
     </div>
-
+    <hr/>
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <!-- Title -->
-                <label for="doc_title">Title</label>
-                <input ng-model="title" id="doc_title" class="form-control" name="title" type="text"
-                       placeholder="title"/>
+                <label>Title</label>
+                <input ng-model="document.title" class="form-control" name="title" type="text" required/>
             </div>
             <div class="form-group">
                 <!-- Subtitle -->
-                <label for="doc_subtitle">Subtitle</label>
-                <input ng-model="subtitle" id="doc_subtitle" class="form-control" name="Subtitle" type="text"
-                       placeholder="subtitle"/>
+                <label>Subtitle</label>
+                <input ng-model="document.subtitle" class="form-control" name="Subtitle" type="text" required/>
             </div>
 
             <div class="form-group">
                 <!-- Author -->
-                <label for="doc_author">Author</label>
-                <input ng-model="author" id="doc_author" class="form-control" name="author" type="text"
-                       placeholder="author"/>
+                <label>Author</label>
+                <input ng-model="document.author" class="form-control" name="author" type="text" required/>
             </div>
         </div>
         <div class="col-md-8">
             <div class="form-group">
                 <!-- Abstract -->
-                <label for="doc_abstract"> Abstract</label>
-                <textarea ng-model="abstract" class="form-control" name="simon" id="doc_abstract" cols="30"
+                <label> Abstract</label>
+                <textarea ng-model="document.abstract" class="form-control" name="abstract" cols="30"
                           rows="10"></textarea>
             </div>
         </div>
@@ -38,21 +37,20 @@
     <!-- tags -->
     <div class="row">
         <div class="col-md-12">
-            <label for="">Tags</label>
-
-            <div class="panel panel-default">
-                <div class="panel-body" contenteditable="true">
-                    tags goes here
-                </div>
-            </div>
+            <label>Image Links</label>
+            <input ng-model="document.tags" class="form-control" name="tags" type="text" required/>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="form-group">
-                <button  ng-disabled="notValid" type="button" ng-click="saveDoc()" class="btn btn-primary btn-lg btn-block">
+                <button type="button" ng-click="createDoc()"
+                        class="btn btn-primary btn-lg btn-block">
                     Add Documentation
+                </button>
+                <button type="button" ng-click="saveDoc()"
+                        class="btn btn-success btn-lg btn-block">
+                    Edit Documentation
                 </button>
             </div>
         </div>

@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
-app.use('/',cms);
+app.use('/', cms);
 app.use('/api', documentRest);
 app.use('/api', profileRest);
 app.use('/api', downloadRest);

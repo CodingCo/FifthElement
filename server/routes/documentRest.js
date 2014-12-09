@@ -24,7 +24,7 @@ router.get('/getDocument/:doc_id', function (request, response) {
 });
 
 router.get('/getPinnedDocuments', function (request, response) {
-    documentMapper.getPinnedDocuments(function(err,data){
+    documentMapper.getPinnedDocuments(function (err, data) {
         if (err) {
             console.log(err);
             response.send("{}");

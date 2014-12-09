@@ -3,6 +3,36 @@
 var app = angular.module('CMSApp.factories', []);
 
 
+app.factory('editFactory', [function () {
+    /*
+     *  Map: keys is the map: download, profile, document
+     * */
+    var editObjects = {};
+    var currentDoc = {};
+    return {
+        getEditObject: function (key) {
+            if (editObjects[key]) {
+                currentDoc = editObjects[key];
+                return editObjects[key];
+            } else {
+                return false;
+            }
+        },
+
+        setEditObject: function (key, value) {
+            editObjects[key] = value;
+        },
+
+        deleteEditObject: function (key) {
+            return delete editObjects[key];
+        },
+
+        currentDoc: currentDoc
+
+
+    }
+}]);
+
 app.factory('storageFactory', [function () {
     return {
         saveInLocalStorage: function (key, valueString) {
@@ -23,7 +53,6 @@ app.factory('storageFactory', [function () {
     }
 }]);
 
-
 app.factory('cacheFactory', [function () {
     var documentCache = [];
     var listDocumentCache = [];
@@ -43,7 +72,7 @@ app.factory('cacheFactory', [function () {
         },
 
         getListIfCached: function () {
-            if (listDocumentCache[0] === undefined) {
+            if (listDocumentCache.length === 0) {
                 return false;
             } else {
                 return listDocumentCache;
@@ -57,7 +86,7 @@ app.factory('cacheFactory', [function () {
         popElementFromCacheList: function (documentID) {
             for (var i = 0; i < listDocumentCache.length; ++i) {
                 if (listDocumentCache[i].doc_id == documentID) {
-                    listDocumentCache.splice(i);
+                    listDocumentCache.splice(i, 1);
                 }
             }
         }
@@ -100,6 +129,15 @@ app.factory('docFactory', ['$http', function ($http) {
 
         deleteDocument: function (documentID, callback) {
             $http.delete('/api/deleteDocument/' + documentID)
+                .success(function (data) {
+                    callback(data);
+                }).error(function (err) {
+                    callback(err);
+                });
+        },
+
+        editDocument: function (document, callback) {
+            $http.put('/api/editDocument', document)
                 .success(function (data) {
                     callback(data);
                 }).error(function (err) {

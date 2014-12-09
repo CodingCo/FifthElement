@@ -5,7 +5,7 @@
     app.directive('navigation', function () {
         return {
             restrict: 'A',
-            templateUrl: "../directives/navigation.html"
+            templateUrl: "../directives/navigation.html",
         }
     });
 
@@ -18,12 +18,34 @@
 
     app.directive('aceEditor', function () {
         return {
-            restrict: 'A',
+            restrict: 'EA',
             templateUrl: "../directives/aceEditor.html",
-            controller: 'AceController'
+            controller: 'AceCtrl',
+            scope: {
+                contentField: "@"
+            },
+
+            link: function (scope, elemt, attrs) {
+            }
         }
     });
 
+
+    app.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function () {
+                    scope.$apply(function () {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        }
+    }]);
 
     app.directive('contenteditable', function () {
         return {
