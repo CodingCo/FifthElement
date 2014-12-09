@@ -29,7 +29,6 @@ app.factory('editFactory', [function () {
 
         currentDoc: currentDoc
 
-
     }
 }]);
 

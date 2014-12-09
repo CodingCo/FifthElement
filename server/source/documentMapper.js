@@ -17,7 +17,8 @@ var getAllDocuments = function (callback) {
         abstract: 1,
         author: 1,
         timestamp: 1,
-        doc_id: 1
+        doc_id: 1,
+        pinned: 1
     }, function (err, documents) {
         if (err) return callback(err);
         if (documents === null) return callback();
