@@ -12,7 +12,17 @@ exports.Document = {
     },
 
     create : function(doc, callback){
-        return callback(undefined,0 < mockDB.push(doc));
+        return callback(undefined, 0 < mockDB.push(doc));
+    },
+
+    remove : function(doc_id, callback){
+
+        for(var i = 0; i < mockDB.length; ++i){
+            if(mockDB[i].doc_id === doc_id.doc_id){
+                mockDB.splice(i,1);
+                return callback(undefined, undefined);
+            }
+        }
     },
 
     fillMock : function(){
@@ -39,11 +49,11 @@ exports.Document = {
             ],
             tags: [
                 'tag1',
-                'tag2',
+                'tag2'
             ],
             comments: [
                 'comment1',
-                'comment2',
+                'comment2'
             ]
         }, {
             doc_id: '2',
@@ -68,11 +78,11 @@ exports.Document = {
             ],
             tags: [
                 'tag1',
-                'tag2',
+                'tag2'
             ],
             comments: [
                 'comment1',
-                'comment2',
+                'comment2'
             ]
         }, {
             doc_id: '3',
@@ -97,11 +107,11 @@ exports.Document = {
             ],
             tags: [
                 'tag1',
-                'tag2',
+                'tag2'
             ],
             comments: [
                 'comment1',
-                'comment2',
+                'comment2'
             ]
         })
     },
@@ -111,50 +121,25 @@ exports.Document = {
     }
 }
 
-exports.Seq =  {
+exports.Sequence =  {
 
-    seqValue : seqValue = 0,
+    document_sequence_value : document_sequence_value = 0,
 
     findOne : function(idString, callback){
-        seqValue++;
+        document_sequence_value++;
 
         var seqDoc =
         {
-            _id:'documentid',
-            sequence_value: seqValue
+            _id:'counter',
+            document_sequence_value: document_sequence_value
 
-        }
+        };
 
         seqDoc.save = function(){};
 
         callback(undefined, seqDoc);
 
     }
-}
-
-
-/*
-exports.remove = function(title, callback){
-
-    for(var i=0;i < mockDB.length;i++){
-        if(mockDB[i].title === title.title){
-            mockDB.splice(i,1);
-            return callback(undefined,true);
-        }
-    }
-    return callback(undefined , false);
-}
-
-exports.find = function(title, callback){
-
-    var returnDocs = [];
-    for(var i=0; i < mockDB.length;i++){
-        if(~mockDB[i].title.indexOf(title.title)){
-            returnDocs.push(mockDB[i]);
-        }
-    }
-    return callback(undefined, returnDocs);
-}
-*/
+};
 
 

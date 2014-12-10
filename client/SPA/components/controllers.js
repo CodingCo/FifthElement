@@ -73,8 +73,57 @@
 
     }]);
 
-    app.controller('FrontPageCtrl', ['$scope', function ($scope) {
+    app.controller('FrontPageCtrl', ['$scope', 'cacheFactory', 'docFactory', function ($scope, cacheFactory, docFactory) {
         $scope.title = "Hello World";
+
+        $scope.pinnedDocuments = [];
+
+        $scope.documents = [];
+
+        $scope.cache = cacheFactory.getListIfCached();
+
+        $scope.updatePage = function (callback) {
+            if ($scope.cache) {
+                $scope.documents = $scope.cache;
+
+                docFactory.getAllDocuments(function (data) {
+                    if (data.err === undefined) {
+                        if (data.length > $scope.cache.length) {
+                            cacheFactory.cacheList(data);
+                            $scope.documents = data;
+                            callback();
+                        }
+                    }
+                });
+            } else {
+                docFactory.getAllDocuments(function (data) {
+                    if (data.err === undefined) {
+                        cacheFactory.cacheList(data);
+                        $scope.documents = data;
+                        callback();
+                    }
+                });
+            }
+        };
+
+        var findPinned = function(){
+            if($scope.pinnedDocuments){
+                for(var i = 0; i < $scope.documents.length; ++i){
+                    if($scope.documents[i].pinned === true){
+                        $scope.pinnedDocuments.push($scope.documents[i]);
+                    }
+                }
+                console.log($scope.pinnedDocuments);
+            }
+        }
+
+        $scope.hasImg = function(index){
+            if($scope.pinnedDocuments[index].images[0]) return true;
+            return false ;
+        }
+
+        $scope.updatePage(findPinned);
+
     }]);
 
     app.controller('CmsListCtrl', ['$scope', '$location', 'docFactory', 'cacheFactory', 'toastr', 'editFactory', function ($scope, $location, docFactory, cacheFactory, toastr, editFactory) {
