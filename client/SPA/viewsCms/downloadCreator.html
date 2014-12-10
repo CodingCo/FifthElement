@@ -6,31 +6,36 @@
         <div class="col-md-8">
             <!-- Title -->
             <div class="form-group">
-                <label for="download_title">Download Title</label>
-                <input ng-model="title" id="download_title" class="form-control" name="title" type="text"
-                       placeholder="download title" required/>
+                <label>Download Title</label>
+                <input ng-model="download.title" class="form-control" name="title" type="text" required/>
             </div>
             <!-- Description -->
             <div class="form-group">
-                <label for="download_description"> Abstract</label>
-                <textarea ng-model="description" class="form-control" name="description" id="download_description"
-                          cols="30"
+                <label>Description</label>
+                <textarea ng-model="download.description" class="form-control" name="description" cols="30"
                           rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Github Repository Link</label>
+                <input ng-model="download.repo_link" class="form-control" name="title" type="text" required/>
             </div>
             <!-- Create button -->
             <div class="col-md-4">
-                <button type="button" ng-click="saveDoc()"
-                        class="btn btn-success btn-lg btn-block">
-                    Create Download
+                <button type="button" ng-click="saveDownload()"
+                        class="btn btn-default"> Save
+                </button>
+                <button type="button" ng-click="createDownload()"
+                        class="btn btn-default"> New
                 </button>
             </div>
         </div>
         <!-- IMAGE -->
         <div class="col-md-4">
-            <label for="">Download Image</label>
-            <img ng-src="{{img}}" alt="" class="img-responsive img-rounded"/>
+            <div class="form-group">
+                <label>Thumbnail</label>
+                <img ng-src="{{download.thumbnail}}" alt="" class="img-responsive img-rounded"/>
+            </div>
+            <button class="btn btn-default" ng-click="addImage()">upload me</button>
         </div>
-        <input type="file" file-model="myFile"/>
-        <button ng-click="uploadFile()">upload me</button>
     </div>
 </div>

@@ -1,0 +1,16 @@
+<div class="container">
+    <div ng-repeat="download in downloads">
+        <div class="media" style="margin-bottom: 30px">
+            <a class="pull-left" href="">
+                <img class="img-thumbnail" ng-src="{{download.thumbnail}}" alt=""
+                     style="max-height: 120px; max-width: 120px;">
+            </a>
+
+            <div class="media-body">
+                <h4 class="media-heading">{{download.title}}</h4>
+                {{download.description}}
+                <div class="well-sm"><a ng-href="{{download.repo_link}}">View on github</a></div>
+            </div>
+        </div>
+    </div>
+</div>

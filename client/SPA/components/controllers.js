@@ -6,21 +6,70 @@
 
     }]);
 
-    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', function ($scope, fileUpload) {
-        var imgSrc;// = prompt("enter url");
-        var image = new Image();
-        image.url = imgSrc;
-        imgSrc = "http://www.online-image-editor.com/styles/2013/images/example_image.png";
-        console.log(image);
-        $scope.img = imgSrc;
+    app.controller('DownloadCtrl', ['$scope', 'cacheFactory', 'downloadFactory', function ($scope, cacheFactory, downloadFactory) {
+        $scope.downloads = [];
 
-        $scope.uploadFile = function () {
-            var file = $scope.myFile;
-            console.log(file);
-            var uploadUrl = 'fileHandler/postFile';
-            fileUpload.uploadFileToUrl(file, uploadUrl);
+        $scope.refreshDownload = function () {
+            $scope.cache = cacheFactory.getDownloadsIfExist();
+            if ($scope.cache) {
+                $scope.downloads = $scope.cache;
+                downloadFactory.getAllDownloads(function (err, downloads) {
+                    if (!err) {
+                        if ($scope.downloads.length < downloads.length) {
+                            $scope.downloads = downloads.data;
+                            cacheFactory.setDownloads($scope.downloads);
+                        }
+                    }
+                });
+            } else {
+                downloadFactory.getAllDownloads(function (err, downloads) {
+                    $scope.downloads = downloads.data;
+                    cacheFactory.setDownloads($scope.downloads);
+                });
+            }
+        };
+        $scope.refreshDownload();
+
+    }]);
+
+    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', 'toastr', 'downloadFactory', 'cacheFactory', function ($scope, fileUpload, toastr, downloadFactory, cacheFactory) {
+        $scope.download = {};
+
+        $scope.addImage = function () {
+            var imageUrl = prompt("Enter URL for image" + " - Preferred size 400x400");
+            if (imageUrl) {
+                $scope.download.thumbnail = imageUrl;
+                toastr.info("image added");
+            } else {
+                toastr.warning("No image added - add new one")
+            }
         };
 
+        $scope.createDownload = function () {
+            downloadFactory.createDownload($scope.download, function (err, data) {
+                if (err) {
+                    toastr.warning("Something went terribly wrong");
+                    return;
+                }
+                $scope.download = {};
+                toastr.success("new download added");
+
+            });
+        };
+
+        $scope.saveDownload = function () {
+            downloadFactory.editDownload($scope.download, function (err, download) {
+                if (err) {
+                    toastr.warning("Something went terribly wrong");
+                    return;
+                }
+                if (download.err == false) {
+                    cacheFactory.replaceDownload(download.data);
+                    $scope.download = {};
+                    toastr.success("download saved");
+                }
+            });
+        }
 
     }]);
 
@@ -188,7 +237,7 @@
         $scope.onLoadGetProject = function () {
             var storedProject = storageFactory.getIfExist(storageKey);
             if (storedProject) {
-                $scope.content = $sce.trustAsHtml(storedProject);
+                $scope.contentField = $sce.trustAsHtml(storedProject);
                 toastr.info("Previous article loaded: " + storedProject);
             }
         };
