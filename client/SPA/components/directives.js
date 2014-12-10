@@ -22,7 +22,7 @@
             templateUrl: "../directives/aceEditor.html",
             controller: 'AceCtrl',
             scope: {
-                contentField: "@"
+                contentField: "="
             },
 
             link: function (scope, elemt, attrs) {

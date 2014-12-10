@@ -24,7 +24,6 @@ router.get('/getDownload/:download_id', function (request, response) {
 
 router.get('/getAllDownloads', function (request, response) {
     downloadMapper.getAllDownloads(function (err, data) {
-        response.setHeader('Content-Type', 'application/json');
         if (err) {
             response.send({
                 err: "true",
@@ -40,6 +39,7 @@ router.get('/getAllDownloads', function (request, response) {
 });
 
 router.post('/createDownload', function (request, response) {
+console.log("JDKSLFJHDSKLJFKLDJFKLDSJFSDKLJFKDLSJFDKSLFJDS");
     downloadMapper.createDownload(request.body, function (err, data) {
         response.setHeader('Content-Type', 'application/json');
         if (err) {

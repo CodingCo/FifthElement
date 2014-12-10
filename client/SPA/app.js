@@ -36,6 +36,11 @@
         }).when('/profileCreator', {
             templateUrl: "viewsCms/profileCreator.html",
             controller: "CmsProfileCtrl"
+        }).when('/downloads', {
+            templateUrl: "viewsVisitor/downloadList.html",
+            controller: "DownloadCtrl"
+        }).when('/dashboard', {
+            templateUrl: "viewsCms/cmsDashboard.html"
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageCtrl'

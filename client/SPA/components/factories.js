@@ -25,11 +25,7 @@ app.factory('editFactory', [function () {
 
         deleteEditObject: function (key) {
             return delete editObjects[key];
-        },
-
-        currentDoc: currentDoc
-
-
+        }
     }
 }]);
 
@@ -56,8 +52,29 @@ app.factory('storageFactory', [function () {
 app.factory('cacheFactory', [function () {
     var documentCache = [];
     var listDocumentCache = [];
+    var downloadsCache = [];
 
     return {
+
+        replaceDownload: function (download) {
+            for (var i = 0; i < downloadsCache.length; ++i) {
+                if (download.download_id == downloadsCache[i].download_id) {
+                    downloadsCache[i] = download;
+                }
+            }
+        },
+
+        setDownloads: function (downloads) {
+            downloadsCache = downloads;
+        },
+
+        getDownloadsIfExist: function () {
+            if (downloadsCache.length > 0) {
+                return downloadsCache;
+            }
+            return false;
+        },
+
         getDocumentIfCached: function (documentID) {
             for (var i = 0; i < documentCache.length; ++i) {
                 if (documentCache[i].doc_id == documentID) {
@@ -90,6 +107,37 @@ app.factory('cacheFactory', [function () {
                 }
             }
         }
+    }
+}]);
+
+app.factory('downloadFactory', ['$http', function ($http) {
+    return {
+        createDownload: function (download, callback) {
+            $http.post('/api/createDownload', download).
+                success(function (data) {
+                    callback(undefined, data);
+                }).
+                error(function (err) {
+                    callback(err);
+                });
+        },
+        editDownload: function (download, callback) {
+            $http.put('/api/editDownload', download)
+                .success(function (data) {
+                    callback(undefined, data);
+                }).error(function (err) {
+                    callback(err);
+                });
+        },
+        getAllDownloads: function (callback) {
+            $http.get('/api/getAllDownloads')
+                .success(function (data) {
+                    callback(undefined, data)
+                }).error(function (err) {
+                    callback(err);
+                });
+        }
+
     }
 }]);
 
