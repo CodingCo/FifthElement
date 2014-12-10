@@ -56,6 +56,16 @@ app.factory('cacheFactory', [function () {
 
     return {
 
+        getPinnedDocumentsIfExist: function () {
+            var documents = [];
+            for (var i = 0; i < listDocumentCache.length; ++i) {
+                if (listDocumentCache[i].pinned === true) {
+                    documents.push(listDocumentCache[i]);
+                }
+            }
+            return documents.length > 0 ? documents : false;
+        },
+
         replaceDownload: function (download) {
             for (var i = 0; i < downloadsCache.length; ++i) {
                 if (download.download_id == downloadsCache[i].download_id) {
