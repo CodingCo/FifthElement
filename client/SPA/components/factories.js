@@ -115,14 +115,11 @@ app.factory('docFactory', ['$http', function ($http) {
         },
 
         getAllDocuments: function (callback) {
-            console.log("Factory called");
             $http.get('/api/getAllDocuments')
                 .success(function (data) {
-                    console.log("Factory called SUCCES");
                     callback(data);
                 })
                 .error(function (err) {
-                    console.log("Factory called FAIL");
                     callback(err);
                 });
         },

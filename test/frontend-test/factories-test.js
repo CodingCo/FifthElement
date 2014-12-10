@@ -1,6 +1,14 @@
 describe('Factories in project FifthElement', function () {
 
-    beforeEach(function () {        // docFactory, cacheFactory
+   /*
+    * Below are tests for following factories: docFactory, cacheFactory, editFactory
+    *
+    * Each factory has its own describe. Variable mockDocuments are accessed by all
+    * describes, and is simply some mock data to feed the request from the factories.
+    * We use httpBackend to serve request called from SPA.
+    */
+
+    beforeEach(function () {
         module('CMSApp.factories');
     });
 
@@ -43,7 +51,7 @@ describe('Factories in project FifthElement', function () {
         beforeEach(inject(function (_$httpBackend_, $rootScope, docFactory) {
             $scope = $rootScope.$new();
             $httpBackend = _$httpBackend_;
-            $httpBackend.whenGET("/api/getAllDocuments").respond(mockDocuments); // Make a mock-controller that uses the factoruy
+            $httpBackend.whenGET("/api/getAllDocuments").respond(mockDocuments);
 
             // When request.body is not an object
             $httpBackend.when('POST', "/api/createDocument", "this should be an object").respond({err: "true",data: "Could not be saved"});
@@ -57,7 +65,6 @@ describe('Factories in project FifthElement', function () {
 
         }));
 
-        // It's tests
         it("should be defined", function () {
             expect($doc).toBeDefined();
         });
@@ -89,11 +96,10 @@ describe('Factories in project FifthElement', function () {
 
         });
 
-        it("should fail when trying to create a document", function () {
+        it("should return with error when trying to create a document", function () {
 
             $doc.createDocument("this should be an object", function (err, data) {
 
-                console.log(data.err);
                 expect(data).toBeDefined();
                 expect(data.err).toBe('true');
                 expect(data.data).toBe('Could not be saved');
@@ -114,7 +120,7 @@ describe('Factories in project FifthElement', function () {
 
         });
 
-        it("should delete the document from mock", function () {
+        it("should delete the document from server", function () {
 
             $doc.deleteDocument(mockDocuments[2].doc_id, function (data) {
                 expect(data.err).toBe('false');
@@ -130,7 +136,7 @@ describe('Factories in project FifthElement', function () {
 
         var $cache;
 
-        beforeEach(inject(function (_$httpBackend_, cacheFactory) {
+        beforeEach(inject(function (cacheFactory) {
             $cache = cacheFactory;
         }));
 
@@ -149,7 +155,7 @@ describe('Factories in project FifthElement', function () {
 
         });
 
-        it("should return false", function(){
+        it("should not have a cached list", function(){
 
             expect($cache.getListIfCached()).toBeFalsy();
 
@@ -178,7 +184,7 @@ describe('Factories in project FifthElement', function () {
 
         var $edit, key = mockDocuments[0].doc_id;
 
-        beforeEach(inject(function (_$httpBackend_, $rootScope, editFactory) {
+        beforeEach(inject(function (editFactory) {
             $edit = editFactory;
         }));
 
@@ -198,24 +204,18 @@ describe('Factories in project FifthElement', function () {
         });
 
         it("should delete documentation", function(){
+            var key1 = mockDocuments[0].doc_id;
+            var key2 = mockDocuments[1].doc_id;
 
-            $edit.setEditObject(mockDocuments[0].doc_id, mockDocuments[0]);
-            $edit.setEditObject(mockDocuments[1].doc_id, mockDocuments[1]);
+            $edit.setEditObject(key1, mockDocuments[0]);
+            $edit.setEditObject(key2, mockDocuments[1]);
 
-            expect($edit.deleteEditObject(0)).toBeTruthy();
-
-        });
-
-        xit("should return false for invalid key", function () { // Deprecated for now, the method always returns true
-
-            $edit.setEditObject(mockDocuments[1].doc_id, mockDocuments[1]);
-            expect($edit.deleteEditObject(0)).toBeFalsy();
+            expect($edit.getEditObject(key1)).toEqual(mockDocuments[0]);
+            $edit.deleteEditObject(key1);
+            expect($edit.getEditObject(key1)).toBeFalsy();
 
         });
-
 
     });
-    
-
 
 });
