@@ -113,7 +113,6 @@
                         $scope.pinnedDocuments.push($scope.documents[i]);
                     }
                 }
-                console.log($scope.pinnedDocuments);
             }
         }
 

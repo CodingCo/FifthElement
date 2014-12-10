@@ -1,5 +1,5 @@
-//var model = require('../model/models');
-var model = require('../../test/backend-test/dbMock');
+var model = require('../model/models');
+//var model = require('../../test/backend-test/dbMock');
 
 
 var getDocument = function (doc_id, callback) {
