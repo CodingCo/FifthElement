@@ -53,7 +53,7 @@ describe('Factories in project FifthElement', function () {
             $httpBackend = _$httpBackend_;
             $httpBackend.whenGET("/api/getAllDocuments").respond(mockDocuments);
 
-            // When request.body is not an object
+            // When request.body is not a valid object
             $httpBackend.when('POST', "/api/createDocument", "this should be an object").respond({err: "true",data: "Could not be saved"});
             $httpBackend.when('POST', "/api/createDocument", (mockDocuments[0]) || (mockDocuments[0])).respond(mockDocuments[0]);
             $httpBackend.when('POST', "/api/createDocument", (mockDocuments[1]) || (mockDocuments[1])).respond(mockDocuments[1]);
