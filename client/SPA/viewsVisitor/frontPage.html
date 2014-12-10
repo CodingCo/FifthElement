@@ -10,7 +10,7 @@
 </div>
 
 <div ng-repeat="document in pinnedDocuments" ng-class="{even: $even, odd: $odd}">
-    <div class="container" ng-class="$even">
+    <div class="container" ng-if="$even">
         <hr class="featurette-divider">
         <div class="row featurette">
             <div class="col-md-9">
@@ -24,13 +24,16 @@
                     <a href="#/viewDocument/{{document.doc_id}}">read more</a>
                 </p>
             </div>
-
+            <div class="col-md-3" style="padding-top: 100px">
+                <img ng-if="hasImg($index)" class="documentImage" ng-src="{{document.images[0]}}" style="max-height: 200px; max-width: 200px;"/>
+            </div>
         </div>
     </div>
-    <div class="container" ng-class="$odd">
+    <div class="container" ng-if="$odd">
         <hr class="featurette-divider">
         <div class="row featurette">
             <div class="col-md-3" style="padding-top: 100px">
+                <img ng-if="hasImg($index)" class="documentImage" ng-src={{document.images[0]}} style="max-height: 200px; max-width: 200px;"/>
             </div>
             <div class="col-md-9">
                 <h2 class="featurette-heading">

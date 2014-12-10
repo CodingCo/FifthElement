@@ -58,15 +58,19 @@
         };
 
         var findPinned = function(){
-            console.log('test');
             if($scope.pinnedDocuments){
                 for(var i = 0; i < $scope.documents.length; ++i){
                     if($scope.documents[i].pinned === true){
-                        console.log('true');
                         $scope.pinnedDocuments.push($scope.documents[i]);
                     }
                 }
+                console.log($scope.pinnedDocuments);
             }
+        }
+
+        $scope.hasImg = function(index){
+            if($scope.pinnedDocuments[index].images[0]) return true;
+            return false ;
         }
 
         $scope.updatePage(findPinned);
