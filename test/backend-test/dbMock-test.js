@@ -88,7 +88,7 @@ describe("Testing of the Document Services", function () {
             comments: []
         };
         it("Should add the document to the collection", function (done) {
-            dbMock.postDocument(testDocument, function (err, data) {
+            dbMock.createDocument(testDocument, function (err, data) {
                 if (err) return done(err);
                 data.should.equal(true);
                 done();
@@ -96,46 +96,15 @@ describe("Testing of the Document Services", function () {
         });
     });
 
-    /*describe("test deleteDocument", function () {
-        var documentTitle = 'Simons Journey to the Farm'
-        var invalidTitle = "AcidFace";
+    describe("test deleteDocument", function () {
+        var documentId = '1';
 
         it("Should delete Document if it exist in collection. Test with valid title", function (done) {
-            dbMock.deleteDocument(documentTitle, function (err, data) {
+            dbMock.deleteDocument(documentId, function (err, data) {
                 if (err) return done(err);
-                data.should.equal(true);
+                (data === undefined).should.equal(true);
                 done();
             })
         });
-
-        it("Should delete Document if it exist in collection. Test with invalid title", function (done) {
-            dbMock.deleteDocument(invalidTitle, function (err, data) {
-                if (err) return done(err);
-                data.should.equal(false);
-                return done();
-            })
-        });
     });
-
-    describe("test partial matching", function () {
-        it("Should find document from part of title", function (done) {
-            dbMock.getDocument(testDocument.title.substring(0,4), function (err, document) {
-                if (err) return done(err);
-                document.should.have.property('title', testDocument.title);
-                return done();
-            })
-        });
-    });
-
-    //for testing search
-    describe("test getDocuments", function () {
-        var searchString = "as";
-        it("Should return an array of distinct object matching searchString", function (done) {
-            dbMock.getDocuments(searchString,function (err, data) {
-                if (err) return done(err);
-                data.length.should.be.above(0);
-                done();
-            })
-        });
-    });*/
 });
