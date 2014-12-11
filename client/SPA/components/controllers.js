@@ -383,8 +383,10 @@
 
         $scope.insertImage = function (imgName, url) {
             var imageUrl = prompt('enter image url');
-            var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive  center-block">';
-            document.execCommand('insertHTML', false, img);
+            if (imageUrl != null) {
+                var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive  center-block">';
+                document.execCommand('insertHTML', false, img);
+            }
         };
 
         $scope.textTypes = function (type) {
