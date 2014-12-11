@@ -1,139 +1,171 @@
-var model = require('../model/models');
+var express = require('express');
+var documentMapper = require('../source/documentMapper');
+var profileMapper = require('../source/profileMapper');
+var downloadMapper = require('../source/downloadMapper');
+var router = express.Router();
 
-var createDocument = function (document, callback) {
-    getNextSequenceValue(function (data) {
-        document.doc_id = data;
-        model.Document.create(document, function (err, data) {
-            if (err) return callback(err);
-            callback(undefined, data);
-        });
+router.post('/createDocument', function (request, response) {
+    var document = request.body;
+    documentMapper.createDocument(document, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: true,
+                data: "Could not be saved"
+            });
+        } else {
+            response.send({
+                err: false,
+                data: data
+            });
+        }
     });
-};
+});
 
-function getNextSequenceValue(callback) {
-    var seq = undefined;
-    model.Sequence.findOne({_id: 'counter'}, function (err, doc) {
-        seq = doc.document_sequence_value;
-        doc.document_sequence_value = seq + 1;
-        doc.save();
-        return callback(seq);
+router.put('/editDocument', function (request, response) {
+    var document = request.body;
+    documentMapper.editDocument(document, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: true,
+                data: "Could not be updated"
+            });
+        } else {
+            response.send({
+                err: false,
+                data: data
+            });
+        }
     });
-}
+});
 
-var deleteDocument = function (id, callback) {
-    model.Document.remove({doc_id: id}, function (err) {
-        if (err) return callback(err);
-        return callback();
+router.delete('/deleteDocument/:doc_id', function (request, response) {
+    var doc_id = request.params.doc_id;
+    documentMapper.deleteDocument(doc_id, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: true,
+                data: "Could not be deleted"
+            });
+        } else {
+            response.send({
+                err: false,
+                data: data
+            });
+        }
     });
-};
+});
 
-var editDocument = function (newDocument, callback) {
-    model.Document.findOneAndUpdate({doc_id: newDocument.doc_id}, {
-        title: newDocument.title,
-        subtitle: newDocument.title,
-        author: newDocument.author,
-        timestamp: newDocument.timestamp,
-        abstract: newDocument.abstract,
-        body: newDocument.body,
-        images: newDocument.images,
-        tags: newDocument.tags,
-        comments: newDocument.comments,
-        pinned: newDocument.pinned
-    }, function (err, data) {
-        if (err) return callback(err);
-        if (data === null) return callback();
-        return callback(undefined, data);
-    });
-};
 
 //=========================download==========================//
 
-var editDownload = function (download, callback) {
-    model.Download.findOneAndUpdate({download_id: download.download_id}, {
-        title: download.title,
-        description: download.description,
-        repo_link: download.repo_link,
-        thumbnail: download.thumbnail
-    }, function (err, data) {
-        if (err) return callback(err);
-        if (data === null) return callback();
-        return callback(undefined, data);
+router.post('/createDownload', function (request, response) {
+    console.log("JDKSLFJHDSKLJFKLDJFKLDSJFSDKLJFKDLSJFDKSLFJDS");
+    downloadMapper.createDownload(request.body, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be saved"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
     });
-};
+});
 
-var deleteDownload = function (id, callback) {
-    model.Download.remove({download_id: id}, function (err) {
-        if (err) return callback(err);
-        return callback();
+router.put('/editDownload', function (request, response) {
+    downloadMapper.editDownload(request.body, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be updated"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
     });
-};
+});
 
-var createDownload = function (download, callback) {
-    getNextSequenceValue(function (data) {
-        download.download_id = data;
-        model.Download.create(download, function (err, d) {
-            if (err) return callback(err);
-            return callback(undefined, d);
-        });
+router.delete('/deleteDownload/:download_id', function (request, response) {
+    var download_id = request.params.download_id;
+    downloadMapper.deleteDownload(download_id, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: true,
+                data: "Could not be deleted"
+            });
+        } else {
+            response.send({
+                err: false,
+                data: data
+            });
+        }
     });
-};
-
-function getNextSequenceValue(callback) {
-    var seq = undefined;
-    model.Sequence.findOne({_id: 'counter'}, function (err, down) {
-        down._id = 'counter';
-        seq = down.download_sequence_value;
-        down.download_sequence_value = seq + 1;
-        down.save();
-        return callback(seq);
-    });
-}
+});
 
 //=============Profiles==================//
-
-//== Create Profile
-var createProfile = function (profile, callback) {
-    model.Profile.create(profile, function (err, data) {
-        if (err) return callback(err);
-        return callback(undefined, data);
+router.post('/createProfile', function (request, response) {
+    profileMapper.createProfile(request.body, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be saved"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
     });
-};
+});
 
-//== Delete Profile
-var deleteProfile = function (email, callback) {
-    model.Profile.remove({email: email}, function (err) {
-        if (err) return callback(err);
-        return callback();
+router.put('/editProfile', function (request, response) {
+    documentMapper.editDocument(request.body, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be updated"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
     });
-};
+});
 
-//== Edit Profile
-var editProfile = function(newProfile, callback) {
-    model.Profile.findOneAndUpdate({email: newProfile.email},{
-        name : newProfile.name,
-        resume : newProfile.resume,
-        skills : newProfile.skills,
-        profile_picture : newProfile.profile_picture,
-        github_link : newProfile.github_link,
-        collaborations : newProfile.collaborations
-    },function(err, data){
-        if (err) return callback(err);
-        if(data === null) return callback();
-        return callback(undefined, data);
+router.delete('/deleteProfile/:email', function (request, response) {
+    var email = request.params.email;
+    profileMapper.deleteProfile(email, function (err, data) {
+        response.setHeader('Content-Type', 'application/json');
+        if (err) {
+            response.send({
+                err: "true",
+                data: "Could not be deleted"
+            });
+        } else {
+            response.send({
+                err: "false",
+                data: data
+            });
+        }
     });
-};
+});
 
-
-
-module.exports = {
-    createDocument: createDocument,
-    deleteDocument: deleteDocument,
-    editDocument: editDocument,
-    editDownload: editDownload,
-    deleteDownload: deleteDownload,
-    createDownload: createDownload,
-    createProfile: createProfile,
-    deleteProfile: deleteProfile,
-    editProfile: editProfile
-};
+module.exports = router;
 

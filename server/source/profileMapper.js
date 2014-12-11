@@ -25,10 +25,43 @@ var getAllProfiles = function (callback) {
     });
 };
 
+var createProfile = function (profile, callback) {
+    model.Profile.create(profile, function (err, data) {
+        if (err) return callback(err);
+        return callback(undefined, data);
+    });
+};
+
+//== Delete Profile
+var deleteProfile = function (email, callback) {
+    model.Profile.remove({email: email}, function (err) {
+        if (err) return callback(err);
+        return callback();
+    });
+};
+
+//== Edit Profile
+var editProfile = function(newProfile, callback) {
+    model.Profile.findOneAndUpdate({email: newProfile.email},{
+        name : newProfile.name,
+        resume : newProfile.resume,
+        skills : newProfile.skills,
+        profile_picture : newProfile.profile_picture,
+        github_link : newProfile.github_link,
+        collaborations : newProfile.collaborations
+    },function(err, data){
+        if (err) return callback(err);
+        if(data === null) return callback();
+        return callback(undefined, data);
+    });
+};
 
 //-------------------- EXPORT ----------------------------
 
 module.exports = {
     getProfile: getProfile,
-    getAllProfiles: getAllProfiles
+    getAllProfiles: getAllProfiles,
+    createProfile: createProfile,
+    deleteProfile: deleteProfile,
+    editProfile: editProfile
 };
