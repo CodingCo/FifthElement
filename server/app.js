@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var documentRest = require('./routes/documentRest');
 var profileRest = require('./routes/profileRest');
 var downloadRest = require('./routes/downloadRest');
+var cmsRest = require('./routes/cmsRest');
 var expressJwt = require('express-jwt');
-var cms = require('./routes/cms');
+var home = require('./routes/home');
 var qt = require('quickthumb');
 var fileHandler = require('./routes/filehandler');
 var connection = require('./model/connection');
@@ -41,11 +42,11 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
 app.use('/uri',authenticate);
-app.use('/', cms);
+app.use('/', home);
 app.use('/api', documentRest);
 app.use('/api', profileRest);
 app.use('/api', downloadRest);
-app.use('/cms', cms);
+app.use('/cms', cmsRest);
 app.use('/filehandler', fileHandler);
 app.use(qt.static(__dirname + '/../public/'));
 
