@@ -66,6 +66,14 @@ app.factory('cacheFactory', [function () {
             return documents.length > 0 ? documents : false;
         },
 
+        getDownload: function (downloadID) {
+            for (var i = 0; i < downloadsCache.length; ++i) {
+                if (downloadID == downloadsCache[i].download_id) {
+                    return downloadsCache[i];
+                }
+            }
+        },
+
         replaceDownload: function (download) {
             for (var i = 0; i < downloadsCache.length; ++i) {
                 if (download.download_id == downloadsCache[i].download_id) {
@@ -83,6 +91,14 @@ app.factory('cacheFactory', [function () {
                 return downloadsCache;
             }
             return false;
+        },
+
+        popDownload: function (downloadID) {
+            for (var i = 0; i < downloadsCache.length; ++i) {
+                if (downloadsCache[i].download_id == downloadID) {
+                    downloadsCache.splice(i, 1);
+                }
+            }
         },
 
         getDocumentIfCached: function (documentID) {
@@ -146,8 +162,16 @@ app.factory('downloadFactory', ['$http', function ($http) {
                 }).error(function (err) {
                     callback(err);
                 });
-        }
+        },
 
+        deleteDownload: function (ID, callback) {
+            $http.delete('/api/deleteDownload/' + ID)
+                .success(function (data) {
+                    callback(undefined, data)
+                }).error(function (err) {
+                    callback(err);
+                });
+        }
     }
 }]);
 

@@ -25,7 +25,8 @@
                 </p>
             </div>
             <div class="col-md-3" style="padding-top: 100px">
-                <img ng-if="hasImg($index)" class="documentImage" ng-src="{{document.images[0]}}" style="max-height: 200px; max-width: 200px;"/>
+                <img ng-if="hasImg($index)" class="documentImage img-responsive" ng-src="{{document.images[0]}}"
+                     style="max-height: 200px; max-width: 200px;"/>
             </div>
         </div>
     </div>
@@ -33,15 +34,18 @@
         <hr class="featurette-divider">
         <div class="row featurette">
             <div class="col-md-3" style="padding-top: 100px">
-                <img ng-if="hasImg($index)" class="documentImage" ng-src={{document.images[0]}} style="max-height: 200px; max-width: 200px;"/>
+                <img ng-if="hasImg($index)" class="documentImage img-responsive" ng-src={{document.images[0]}}
+                     style="max-height: 200px; max-width: 200px;"/>
             </div>
             <div class="col-md-9">
                 <h2 class="featurette-heading">
                     {{document.title}}
                 </h2>
+
                 <p class="lead">
                     {{document.abstract}}
                 </p>
+
                 <p>
                     <a href="#/viewDocument/{{document.doc_id}}">read more</a>
                 </p>

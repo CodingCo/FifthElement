@@ -15,13 +15,15 @@
                         <a href="#/viewDocument/{{document.doc_id}}">read more</a>
                     </div>
                     <div class="col-sm-4 col-md-4">
-                        <div style="margin-top: 20%">
+                        <div>
                             <button ng-click="editDocument(document.doc_id)" class="btn btn-default btn-block"
                                     type="button">Edit
                             </button>
                             <button ng-click="deleteDocument(document.doc_id)" class="btn btn-danger btn-block"
                                     type="button">Delete
                             </button>
+                            <input id="c1" type="checkbox" value="" ng-checked="document.pinned" ng-disabled="true">
+                            <label class="checkbox" for="c1"><span></span>Pinned to frontpage </label>
                         </div>
                     </div>
                 </div>

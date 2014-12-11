@@ -6,7 +6,7 @@
             <div class="well">To the Editors</div>
             <h4>Documents</h4>
             <a href="#/projectCreator" class="btn btn-default btn-block" role="button">New Document</a>
-            <a href="#/cmsList" class="btn btn-default btn-block" role="button">All documents</a>
+            <a href="#/cmsList" class="btn btn-default btn-block" role="button">All Documents</a>
             <hr/>
             <h4>Downloads</h4>
             <a href="#/downloadCreator" class="btn btn-default btn-block" role="button">New Download</a>
@@ -18,16 +18,11 @@
         </div>
         <div class="col-md-5">
             <div class="well">Created downloads</div>
-            <ul class="list-group">
+            <ul class="list-group" ng-repeat="download in downloads">
                 <li class="list-group-item">
-                    <a href="#" class="btn btn-warning" role="button">delete</a>
-                    <a href="#" class="btn btn-info" role="button">edit</a>
-                    <span style="margin-left: 30px">71 - The new Dawn</span>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="btn btn-warning" role="button">delete</a>
-                    <a href="#" class="btn btn-info" role="button">edit</a>
-                    <span style="margin-left: 30px">71 - The new Dawn</span>
+                    <button class="btn btn-warning" ng-click="deleteDownload(download.download_id)">Delete</button>
+                    <button class="btn btn-info" ng-click="editDownload(download.download_id)">Edit</button>
+                    <span style="margin-left: 30px">{{download.download_id}} - {{download.title}}</span>
                 </li>
             </ul>
         </div>

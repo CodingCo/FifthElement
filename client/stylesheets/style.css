@@ -49,10 +49,32 @@ body {
     font-size: 70px;
 }
 
-.documentImage {
-    padding-top: 80px;
-    position:absolute;
-    top:0;
-    bottom:0;
-    margin:auto;
+.form-signin, p, .checkbox, .btn{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+
+.login-box{
+    padding: 20px 15px 30px 15px;
+    background: #ffffff;
+}
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label span {
+    display: inline-block;
+    cursor: pointer;
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
+    margin: -1px 4px 0 0;
+    border: 1px solid #c9cbcc;
+}
+
+input[type="checkbox"]:checked + label span {
+    background: #c9cbcc;
 }

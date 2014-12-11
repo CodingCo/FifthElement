@@ -1,6 +1,52 @@
 (function () {
     var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
+    app.controller('CmsDashboardCtrl', ['$scope', 'downloadFactory', 'cacheFactory', 'editFactory', '$location', 'toastr', function ($scope, downloadFactory, cacheFactory, editFactory, $location, toastr) {
+        $scope.downloads = [];
+
+        ($scope.refreshDownload = function () {
+            $scope.cache = cacheFactory.getDownloadsIfExist();
+            if ($scope.cache) {
+                $scope.downloads = $scope.cache;
+                downloadFactory.getAllDownloads(function (err, downloads) {
+                    if (!err) {
+                        if ($scope.downloads.length < downloads.length) {
+                            $scope.downloads = downloads.data;
+                            cacheFactory.setDownloads($scope.downloads);
+                        }
+                    }
+                });
+            } else {
+                downloadFactory.getAllDownloads(function (err, downloads) {
+                    $scope.downloads = downloads.data;
+                    cacheFactory.setDownloads($scope.downloads);
+                });
+            }
+        })();
+
+
+        $scope.editDownload = function (downloadID) {
+            editFactory.setEditObject("download", downloadID);
+            $location.path('/downloadCreator');
+        };
+
+        $scope.deleteDownload = function (downloadID) {
+            var validDeletion = downloadID == prompt("Type in " + downloadID + " to delete download");
+            if (validDeletion) {
+                console.log(downloadID);
+                downloadFactory.deleteDownload(downloadID, function (err, data) {
+                    if (err) {
+                        toastr.warning("Something went horrible wrong");
+                    } else {
+                        cacheFactory.popDownload(downloadID);
+                        toastr.success("Download deleted");
+                    }
+                });
+            }
+        }
+
+    }]);
+
     app.controller('CmsProfileCtrl', ['$scope', function ($scope) {
 
 
@@ -32,8 +78,16 @@
 
     }]);
 
-    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', 'toastr', 'downloadFactory', 'cacheFactory', function ($scope, fileUpload, toastr, downloadFactory, cacheFactory) {
+    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', 'toastr', 'downloadFactory', 'cacheFactory', 'editFactory', function ($scope, fileUpload, toastr, downloadFactory, cacheFactory, editFactory) {
         $scope.download = {};
+
+
+        if (editFactory.getEditObject("download")) {
+            var id = editFactory.getEditObject("download");
+            var data = cacheFactory.getDownload(id);
+            editFactory.setEditObject("download", data);
+            $scope.download = data;
+        }
 
         $scope.addImage = function () {
             var imageUrl = prompt("Enter URL for image" + " - Preferred size 400x400");
@@ -62,10 +116,10 @@
                 if (err) {
                     toastr.warning("Something went terribly wrong");
                     return;
-                }
-                if (download.err == false) {
+                } else {
                     cacheFactory.replaceDownload(download.data);
                     $scope.download = {};
+                    $scope.download.thumbnail = "";
                     toastr.success("download saved");
                 }
             });
@@ -107,7 +161,7 @@
         if ($scope.cache) {
             $scope.documents = $scope.cache;
             docFactory.getAllDocuments(function (data) {
-                if(data.length > $scope.documents.length){
+                if (data.length > $scope.documents.length) {
                     cacheFactory.cacheList(data);
                     $scope.documents = data;
                     toastr.info("New elements loaded");
@@ -194,15 +248,29 @@
         $scope.document.doc_id = "";
         $scope.document.images = [];
         $scope.document.tags = [];
-
+        $scope.pinMessage = "Pin to frontpage";
+        $scope.editMode = false;
 
         if (editFactory.getEditObject("document")) {
             var id = editFactory.getEditObject("document");
             docFactory.getDocument(id, function (data) {
-                editFactory.setEditObject("document", data);
+                editFactory.deleteEditObject("document");
                 $scope.document = data;
+                $scope.editMode = true;
+                if ($scope.document.pinned == true) {
+                    $scope.pinMessage = "Unpin from frontpage";
+                }
             });
         }
+
+        $scope.togglePinSelection = function () {
+            $scope.document.pinned = !$scope.document.pinned;
+            if ($scope.document.pinned) {
+                $scope.pinMessage = "Unpin from frontpage";
+            } else {
+                $scope.pinMessage = "Pin to frontpage";
+            }
+        };
 
         $scope.createDoc = function () {
             $scope.document.body = document.getElementById('ace-editor').innerHTML;
@@ -315,7 +383,7 @@
 
         $scope.insertImage = function (imgName, url) {
             var imageUrl = prompt('enter image url');
-            var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive">';
+            var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive  center-block">';
             document.execCommand('insertHTML', false, img);
         };
 

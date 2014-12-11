@@ -6,7 +6,7 @@
 
 .document-body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     color: #4d4d4d;
 }
 
@@ -14,7 +14,7 @@
     font-family: "Helvetica Neue Light", Helvetica, Arial, sans-serif;
     font-size: 63px;
     color: #444444;
-    text-align: center;
+
 }
 
 code {

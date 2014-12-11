@@ -79,12 +79,12 @@ router.delete('/deleteDownload/:download_id', function (request, response) {
         response.setHeader('Content-Type', 'application/json');
         if (err) {
             response.send({
-                err: "true",
+                err: true,
                 data: "Could not be deleted"
             });
         } else {
             response.send({
-                err: "false",
+                err: false,
                 data: data
             });
         }

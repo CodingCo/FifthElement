@@ -40,7 +40,8 @@
             templateUrl: "viewsVisitor/downloadList.html",
             controller: "DownloadCtrl"
         }).when('/dashboard', {
-            templateUrl: "viewsCms/cmsDashboard.html"
+            templateUrl: "viewsCms/cmsDashboard.html",
+            controller: "CmsDashboardCtrl"
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageCtrl'

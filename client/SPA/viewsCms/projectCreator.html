@@ -37,20 +37,24 @@
     <!-- tags -->
     <div class="row">
         <div class="col-md-12">
-            <label>Image Links</label>
-            <input ng-model="document.tags" class="form-control" name="tags" type="text" required/>
+            <div class="form-group">
+                <label>Image Links</label>
+                <input ng-model="document.tags" class="form-control" name="tags" type="text" required>
+                <input id="c1" type="checkbox" value="" ng-checked="document.pinned" ng-click="togglePinSelection()">
+                <label class="checkbox" for="c1"><span></span>{{pinMessage}}</label>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="form-group">
-                <button type="button" ng-click="createDoc()"
+            <div class="form">
+                <button type="button" ng-click="createDoc()" ng-hide="editMode"
                         class="btn btn-primary btn-block">
-                    Add Documentation
+                    Add
                 </button>
-                <button type="button" ng-click="saveDoc()"
+                <button type="button" ng-click="saveDoc()" ng-show="editMode"
                         class="btn btn-success btn-block">
-                    Edit Documentation
+                    Save
                 </button>
             </div>
         </div>
