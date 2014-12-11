@@ -1,104 +1,5 @@
 [
   {
-    "_id": "5481ad31ec64f75b0e2f6b77",
-    "title": "Frederiks wild workout",
-    "subtitle": "+4 Vorpal Keen Article",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "doc_id": 72,
-    "__v": 0,
-    "pinned": true,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad31ec64f75b0e2f6b78"
-      }
-    ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
-    ],
-    "images": [
-      "https://lh6.googleusercontent.com/-sU5IRCCxMYc/TiZsuwV0nFI/AAAAAAAAALc/dH1OxZImcJU/nodejs2.png"
-    ],
-    "timestamp": "2014-12-05T13:03:43.681Z"
-  },
-  {
-    "_id": "5481ad2823bfce570e114ef1",
-    "title": "Roberts quest for energydrink",
-    "subtitle": "+4 Vorpal Keen Article",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "doc_id": 61,
-    "__v": 0,
-    "pinned": true,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad2823bfce570e114ef2"
-      }
-    ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
-    ],
-    "images": [
-      "http://fc00.deviantart.net/fs71/i/2011/093/3/e/monster_energy_drink_icon_by_guglielmetti-d3d4jga.png"
-    ],
-    "timestamp": "2014-12-05T13:03:30.528Z"
-  },
-  {
-    "_id": "5481ad2823bfce570e114ef3",
-    "title": "Frederiks wild workout",
-    "subtitle": "+4 Vorpal Keen Article",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "doc_id": 62,
-    "__v": 0,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad2823bfce570e114ef4"
-      }
-    ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
-    ],
-    "images": [],
-    "timestamp": "2014-12-05T13:03:30.528Z"
-  },
-  {
-    "_id": "5481ad2823bfce570e114ef5",
-    "title": "The mighty misinterpreted quest for candy",
-    "subtitle": "The mighty misinterpreted quest for candy",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "doc_id": 63,
-    "__v": 0,
-    "pinned": false,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad2823bfce570e114ef6"
-      }
-    ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
-    ],
-    "images": [],
-    "timestamp": "2014-12-05T13:03:30.528Z"
-  },
-  {
     "_id": "5481ad2c2af00a590e9ee7d1",
     "title": "The adventure of deleting articles",
     "subtitle": "+1 Article of testing",
@@ -116,53 +17,6 @@
     "tags": [
       "Article",
       "Awesomeness"
-    ],
-    "images": [],
-    "timestamp": "2014-12-05T13:03:39.272Z"
-  },
-  {
-    "_id": "5481ad2c2af00a590e9ee7d3",
-    "title": "Roberts quest for energydrink",
-    "subtitle": "+4 Vorpal Keen Article",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.swsw",
-    "doc_id": 66,
-    "__v": 0,
-    "pinned": false,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad2c2af00a590e9ee7d4"
-      }
-    ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
-    ],
-    "images": [],
-    "timestamp": "2014-12-05T13:03:39.272Z"
-  },
-  {
-    "_id": "5481ad2d2af00a590e9ee7d7",
-    "title": "The mighty misinterpreted quest for candy",
-    "subtitle": "+4 Vorpal Keen Article",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "doc_id": 68,
-    "__v": 0,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad2d2af00a590e9ee7d8"
-      }
-    ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
     ],
     "images": [],
     "timestamp": "2014-12-05T13:03:39.272Z"
@@ -220,23 +74,6 @@
     "timestamp": "2014-12-11T08:34:28.679Z"
   },
   {
-    "_id": "5489799c0b5bdb9c72d9aa7a",
-    "doc_id": 97,
-    "body": "<h2><hr></h2><h2>Relational DBMS&nbsp;</h2><div><hr></div><p style=\"text-align: center;\"><br></p><div><hr></div><h2>Non-Relational DBMS</h2><div><hr></div>",
-    "title": "Persistence Strategies",
-    "subtitle": "Relational vs. NoSQL",
-    "author": "Robert Elving",
-    "pinned": true,
-    "__v": 0,
-    "abstract": "Choosing an optimal strategy to persist information is crucial when releasing a product. \nEach different strategy has its own pro's and cons, choosing a strategy that doesn't suit the needed solution, could not only effect the overall runtime performance of the system, but also the disrupt the development process.",
-    "comments": [],
-    "tags": [],
-    "images": [
-      "uploads/image/png/1418295691737_mongovssql.png"
-    ],
-    "timestamp": "2014-12-11T10:16:54.447Z"
-  },
-  {
     "_id": "5489645055eebc4d71a8d175",
     "doc_id": 92,
     "body": "<div class=\"jumbotron\"><h1><span>General Design</span><br></h1><p><span>The program is written in accordance to the MVC pattern. Our webpage functions as the view, showing the user all the information. Our MongoDb database functions as our model, storing all of our information. The server acts the controller, handling all request, and manipulating the database without storing any information locally. we choose this structure because it allowed us to better organize our code; we always know where everything happens, and where everything is stored.</span></p><p></p><div><br></div><span><img src=\"uploads/image/png/1418289725204_mvc-2.png\" class=\"img-responsive\"></span><p></p></div><hr><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><div><h2>Server</h2></div><p class=\"lead\">Express is the keyword here! We wrote an express server using the jade template engine to render the templates with data from our database. The layout of the project, is the classic layout of an express project. The changes we have made, was to separate the dependencies and create separate layers, where we could place all the logic handling the connection, querying, requests and the mongo database. We have followed the MVC pattern, also known as the Model View Controller pattern, as much as our javascript skills allowed us. With the patterns applied to our project; the Model is the “database folder” containing all the necessary mongoose Models and Schemas used in all database operation.</p><p>Something worth mentioning, is the way we delegate all the database operations to each router. Since this is a new “and way more dynamic” language, we are allowed to do some interesting stuff. All the functions have been assign to variables in an object we export. The problems, connecting the layers with various abstractions and facades classes, in a type-strong language like java, are now gone. we can make a clean transport of the functionality, just by dynamically binding functions to objects.</p><p></p></div></div><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><br><p class=\"lead\">The Controller is the “routes folder” and the app.js file. That is where we control and handle all the requests and responses from the clients.</p><p>The Controller is the “routes folder” and the app.js file. That is where we control and handle all the requests and responses from the clients. Each View have been given its own router, so we have delegated the different task over a wide selection files. This has made the code easier to read and debug. Hence each file contains less code. The most interesting part here is that we have binded the db-object to each request, so all the operations are available to all request no matter where in the routing system they may be. Node Js asynchronous way of doing things makes this way of querying very nice and clean. Alas.. thats atleast what we hope.</p><p></p></div></div><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><br><p class=\"lead\">The View is naturally named “view folder”, here we handle all the information displayed to the user.</p><p>We use Jade as our template engine, which renders all the html combined with the information fetched from the server, before we send it back with a http response. This is operation requires a greater amount of resources from the server, compared to binding the data on the client side. But it’s a good way to create a custom page, with data directly from the server. and limiting the amount of requests without bundling the page. Preferably is this the way of doing things, when doing operations like creating long lists of information, and customized views. The other model is perfect for a more user friendly and responsive design.<br></p><hr><div><h2><br></h2><h2>Website</h2></div><p class=\"lead\">The website for this project is designed to give the user an easy, interface to view detailed information about a given order. The main page shows a list of orders, where you see their id, address, name and date. The shown orders will(when clicked) expand and show the order details. Within the exploded view it is possible to click on buttons that navigate to new pages that display information on the customer or the employee assigned to the order. It also possible to delete the orders by pressing a delete button in the exploded view. The website is rendered in jade and styled using bootstrap. It’s very easy to get a sleek beautiful design in just a few lines of code when styling with bootstrap. Furthermore, Jade also gives us the possibility to extend from other templates, which add to “lesser” code. Note that layout.jade includes both the navigation and footer, thus all that extends from layout.jade, has the same header and footer. We chose to use the expanded orderview instead of navigating to another page, because it gives the user a better overview.<br></p><p class=\"lead\"><br></p><hr><div><h2><br></h2><h2>Database</h2></div><p class=\"lead\">The database contains all the stored information; any queries takes information directly from it, and all information is saved directly to it as well. An order contains references to an order-detail, which in turn contains a reference to a product. Since all orders are shown along with their respective order-details and products, any query calls to the database, also retrieves the referenced documents. Despite the order having the one-to-many reference to orderdetails, we start by retrieving the order-details first, since this object contains references to both order and product, making retrieval less complicated. These queries coded to provide a limited number of results, as to avoid information overload and slowdown. The terminology here is not completely correct: Mongo is not a relational database, so technically there are no references; in mongo it’s called links, but is conceptually the same thing. Where relational databases would reference, mongo would nest data instead. This makes scalability very easy, since all the information is stored in the same collection (table in R-model). So we could spread the data across hundreds of servers. But hold your horses for a second, this does not mean you should storm out and convert your relational database to the almighty mongo deity. The relational model is still smart, since we can avoid duplication of data, which can be a problem in mongo. And performance is not something you should worry about, unless you're handling data sets in google scale.&nbsp;<br><br>Customers and employees, are queried individually by their id. Since all customers and employees contain references to associated orders, and therefore orders also containing a reference back, querying for the correct customer/employee is easy. All queries regarding customers and employees are done only when explicitly needed.&nbsp;<br><br>All updates and removal of data in the database, start by querying for information by an order id, and then simply removes the order or updates it with new information.</p></div></div>",
@@ -273,27 +110,20 @@
     "timestamp": "2014-12-11T08:34:28.679Z"
   },
   {
-    "_id": "5481ad2c2af00a590e9ee7d5",
-    "title": "Frederiks wild workout",
-    "subtitle": "Frederiks wild workout",
-    "author": "John Smith",
-    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
-    "doc_id": 67,
+    "_id": "5489799c0b5bdb9c72d9aa7a",
+    "doc_id": 97,
+    "body": "<h2></h2><h2>Relational DBMS&nbsp;</h2><div><hr></div><p>We are storing our information about users in an Oracle SQL database managed by JPA.&nbsp;<br><br>Thomas Write stuff here plz</p><p><br></p><p><br></p><p>Pros</p><p></p><ol><li>pro 1</li></ol><div>Cons</div><div><ol><li>con 1</li></ol><div><br></div></div><p></p><div><hr></div><h2>NoSQL</h2><div><hr>All documents on the this site is stored in a NoSQL document-oriented MongoDB database. Document-oriented databases are one of the main categories of NoSQL, so much as people often use the two terms interchangeably. In contrast to relational databases and their tuples(rows), document-oriented databases are designed around the notion of a \"Document\". &nbsp;&nbsp;</div><div><br></div><div>Pros</div><div><ol><li>de</li></ol><div>Cons</div></div><div><ol><li>Joins</li></ol></div>",
+    "title": "Persistence Strategies",
+    "subtitle": "Relational vs. NoSQL",
+    "author": "Robert Elving",
+    "pinned": true,
     "__v": 0,
-    "pinned": false,
-    "comments": [
-      {
-        "body": "I am comment 1",
-        "_id": "5481ad2c2af00a590e9ee7d6"
-      }
+    "abstract": "Choosing an optimal strategy to persist information is crucial when releasing a product. \nEach different strategy has its own pro's and cons, choosing a strategy that doesn't suit the needed solution, could not only effect the overall runtime performance of the system, but also the disrupt the development process.",
+    "comments": [],
+    "tags": [],
+    "images": [
+      "uploads/image/png/1418295691737_mongovssql.png"
     ],
-    "tags": [
-      "Article",
-      "Awesomeness",
-      "Greatness"
-    ],
-    "images": [],
-    "timestamp": "2014-12-05T13:03:39.272Z"
+    "timestamp": "2014-12-11T10:16:54.447Z"
   }
 ]

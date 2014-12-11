@@ -139,7 +139,7 @@ app.factory('cacheFactory', [function () {
 app.factory('downloadFactory', ['$http', function ($http) {
     return {
         createDownload: function (download, callback) {
-            $http.post('/api/createDownload', download).
+            $http.post('/cms/createDownload', download).
                 success(function (data) {
                     callback(undefined, data);
                 }).
@@ -148,7 +148,7 @@ app.factory('downloadFactory', ['$http', function ($http) {
                 });
         },
         editDownload: function (download, callback) {
-            $http.put('/api/editDownload', download)
+            $http.put('/cms/editDownload', download)
                 .success(function (data) {
                     callback(undefined, data);
                 }).error(function (err) {
@@ -165,7 +165,7 @@ app.factory('downloadFactory', ['$http', function ($http) {
         },
 
         deleteDownload: function (ID, callback) {
-            $http.delete('/api/deleteDownload/' + ID)
+            $http.delete('/cms/deleteDownload/' + ID)
                 .success(function (data) {
                     callback(undefined, data)
                 }).error(function (err) {
@@ -178,7 +178,7 @@ app.factory('downloadFactory', ['$http', function ($http) {
 app.factory('docFactory', ['$http', function ($http) {
     return {
         createDocument: function (document, callback) {
-            $http.post('/api/createDocument', document).
+            $http.post('/cms/createDocument', document).
                 success(function (data, status, headers, config) {
                     callback(null, data);
                 }).
@@ -216,7 +216,7 @@ app.factory('docFactory', ['$http', function ($http) {
         },
 
         editDocument: function (document, callback) {
-            $http.put('/api/editDocument', document)
+            $http.put('/cms/editDocument', document)
                 .success(function (data) {
                     callback(data);
                 }).error(function (err) {
