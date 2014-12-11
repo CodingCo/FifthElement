@@ -413,8 +413,8 @@
             return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
         }
 
-
         $scope.isAuthenticated = false;
+        $scope.name = "";
         $scope.isAdmin = false;
         $scope.message = '';
         $scope.user = {};
@@ -424,16 +424,18 @@
             $http
                 .post('/uri/authenticate', $scope.user)
                 .success(function (data, status, headers, config) {
-                    console.log(data);
                     $window.sessionStorage.token = data.token;
+                    var encodedProfile = data.token.split('.')[1];
+                    var profile = JSON.parse(url_base64_decode(encodedProfile));
+                    $scope.user = profile;
                     $scope.isAuthenticated = true;
                     $scope.error = null;
+                    $location.path("/dashboard");
                 })
                 .error(function (data, status, headers, config) {
                     // Erase the token if the user fails to log in
                     delete $window.sessionStorage.token;
                     $scope.isAuthenticated = false;
-
                     $scope.error = 'You failed to login. Invalid User or Password';
                 });
         };
@@ -443,8 +445,9 @@
             $scope.isAuthenticated = false;
             $scope.isAdmin = false;
             $scope.isUser = false;
+            $scope.user = {};
             delete $window.sessionStorage.token;
-            $location.path("/view1");
+            $location.path("/home");
         }
     });
 })();

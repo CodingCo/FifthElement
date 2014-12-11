@@ -207,7 +207,7 @@ app.factory('docFactory', ['$http', function ($http) {
         },
 
         deleteDocument: function (documentID, callback) {
-            $http.delete('/api/deleteDocument/' + documentID)
+            $http.delete('/cms/deleteDocument/' + documentID)
                 .success(function (data) {
                     callback(data);
                 }).error(function (err) {
@@ -225,6 +225,16 @@ app.factory('docFactory', ['$http', function ($http) {
         }
     }
 }]);
+
+app.factory('authInspector', function ($location, $window) {
+    return {
+        auth: function () {
+            if ($window.sessionStorage.token == undefined) {
+                $location.path('/signIn');
+            }
+        }
+    }
+});
 
 app.factory('authInterceptor', function ($rootScope, $q, $window) {
     return {

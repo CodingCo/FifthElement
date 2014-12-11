@@ -13,7 +13,6 @@ var home = require('./routes/home');
 var qt = require('quickthumb');
 var fileHandler = require('./routes/filehandler');
 var connection = require('./model/connection');
-var jwt = require('jsonwebtoken');
 var authenticate = require('./routes/loginRest');
 var auth = true; // TEMP: only in user under dev
 var app = express();
@@ -32,7 +31,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 
 if (auth === true) {
-    app.use('/api', expressJwt({secret: "secret"}));
+    app.use('/cms', expressJwt({secret: "secret"}));
 }
 
 app.use(bodyParser.json());
@@ -41,8 +40,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
-app.use('/uri',authenticate);
 app.use('/', home);
+app.use('/uri',authenticate);
 app.use('/api', documentRest);
 app.use('/api', profileRest);
 app.use('/api', downloadRest);
