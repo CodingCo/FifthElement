@@ -42,6 +42,9 @@
         }).when('/dashboard', {
             templateUrl: "viewsCms/cmsDashboard.html",
             controller: "CmsDashboardCtrl"
+        }).when('/signIn',{
+            templateUrl: "viewsVisitor/login.html",
+            controller: ""
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageCtrl'
