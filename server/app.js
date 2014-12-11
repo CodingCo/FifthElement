@@ -7,10 +7,14 @@ var bodyParser = require('body-parser');
 var documentRest = require('./routes/documentRest');
 var profileRest = require('./routes/profileRest');
 var downloadRest = require('./routes/downloadRest');
+var expressJwt = require('express-jwt');
 var cms = require('./routes/cms');
 var qt = require('quickthumb');
 var fileHandler = require('./routes/filehandler');
 var connection = require('./model/connection');
+var jwt = require('jsonwebtoken');
+var authenticate = require('./routes/loginRest');
+var auth = true; // TEMP: only in user under dev
 var app = express();
 
 if (app.get('env') === 'production') {
@@ -25,12 +29,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+
+if (auth === true) {
+    app.use('/api', expressJwt({secret: "secret"}));
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
+app.use('/uri',authenticate);
 app.use('/', cms);
 app.use('/api', documentRest);
 app.use('/api', profileRest);

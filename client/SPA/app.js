@@ -44,7 +44,7 @@
             controller: "CmsDashboardCtrl"
         }).when('/signIn',{
             templateUrl: "viewsVisitor/login.html",
-            controller: ""
+            controller: "AppCtrl"
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageCtrl'

@@ -9,7 +9,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-sm-8 col-md-8">
-                        <h3>{{document.title}}</h3>
+                        <h3>{{document.title}} <small> {{document.timestamp | date:'yyyy-MM-dd'}} </small></h3>
 
                         <p>{{document.abstract}}</p>
                         <a href="#/viewDocument/{{document.doc_id}}">read more</a>

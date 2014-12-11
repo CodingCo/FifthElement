@@ -1,4 +1,5 @@
 (function () {
+
     var app = angular.module('CMSApp.controllers', ['ui.bootstrap']);
 
     app.controller('CmsDashboardCtrl', ['$scope', 'downloadFactory', 'cacheFactory', 'editFactory', '$location', 'toastr', function ($scope, downloadFactory, cacheFactory, editFactory, $location, toastr) {
@@ -50,197 +51,6 @@
     app.controller('CmsProfileCtrl', ['$scope', function ($scope) {
 
 
-    }]);
-
-    app.controller('DownloadCtrl', ['$scope', 'cacheFactory', 'downloadFactory', function ($scope, cacheFactory, downloadFactory) {
-        $scope.downloads = [];
-
-        $scope.refreshDownload = function () {
-            $scope.cache = cacheFactory.getDownloadsIfExist();
-            if ($scope.cache) {
-                $scope.downloads = $scope.cache;
-                downloadFactory.getAllDownloads(function (err, downloads) {
-                    if (!err) {
-                        if ($scope.downloads.length < downloads.length) {
-                            $scope.downloads = downloads.data;
-                            cacheFactory.setDownloads($scope.downloads);
-                        }
-                    }
-                });
-            } else {
-                downloadFactory.getAllDownloads(function (err, downloads) {
-                    $scope.downloads = downloads.data;
-                    cacheFactory.setDownloads($scope.downloads);
-                });
-            }
-        };
-        $scope.refreshDownload();
-
-    }]);
-
-    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', 'toastr', 'downloadFactory', 'cacheFactory', 'editFactory', function ($scope, fileUpload, toastr, downloadFactory, cacheFactory, editFactory) {
-        $scope.download = {};
-
-
-        if (editFactory.getEditObject("download")) {
-            var id = editFactory.getEditObject("download");
-            var data = cacheFactory.getDownload(id);
-            editFactory.setEditObject("download", data);
-            $scope.download = data;
-        }
-
-        $scope.addImage = function () {
-            var imageUrl = prompt("Enter URL for image" + " - Preferred size 400x400");
-            if (imageUrl) {
-                $scope.download.thumbnail = imageUrl;
-                toastr.info("image added");
-            } else {
-                toastr.warning("No image added - add new one")
-            }
-        };
-
-        $scope.createDownload = function () {
-            downloadFactory.createDownload($scope.download, function (err, data) {
-                if (err) {
-                    toastr.warning("Something went terribly wrong");
-                    return;
-                }
-                $scope.download = {};
-                toastr.success("new download added");
-
-            });
-        };
-
-        $scope.saveDownload = function () {
-            downloadFactory.editDownload($scope.download, function (err, download) {
-                if (err) {
-                    toastr.warning("Something went terribly wrong");
-                    return;
-                } else {
-                    cacheFactory.replaceDownload(download.data);
-                    $scope.download = {};
-                    $scope.download.thumbnail = "";
-                    toastr.success("download saved");
-                }
-            });
-        }
-
-    }]);
-
-    app.controller('FrontPageCtrl', ['$scope', 'cacheFactory', 'docFactory', function ($scope, cacheFactory, docFactory) {
-        $scope.pinnedDocuments = [];
-        $scope.cache = cacheFactory.getPinnedDocumentsIfExist();
-        $scope.refreshPage = function () {
-            if ($scope.cache) {
-                $scope.pinnedDocuments = $scope.cache;
-                docFactory.getAllDocuments(function (data) {
-                    if (data.length > $scope.pinnedDocuments.length) {
-                        cacheFactory.cacheList(data);
-                        $scope.pinnedDocuments = cacheFactory.getPinnedDocumentsIfExist();
-                    }
-                });
-            } else {
-                docFactory.getAllDocuments(function (data) {
-                    cacheFactory.cacheList(data);
-                    $scope.pinnedDocuments = cacheFactory.getPinnedDocumentsIfExist();
-                });
-            }
-        };
-
-        $scope.hasImg = function (index) {
-            return ($scope.pinnedDocuments[index].images[0]) ? true : false
-        };
-        $scope.refreshPage();
-
-    }]);
-
-    app.controller('CmsListCtrl', ['$scope', '$location', 'docFactory', 'cacheFactory', 'toastr', 'editFactory', function ($scope, $location, docFactory, cacheFactory, toastr, editFactory) {
-        $scope.presentDocument = true;
-        $scope.documents = [];
-        $scope.cache = cacheFactory.getListIfCached();
-        if ($scope.cache) {
-            $scope.documents = $scope.cache;
-            docFactory.getAllDocuments(function (data) {
-                if (data.length > $scope.documents.length) {
-                    cacheFactory.cacheList(data);
-                    $scope.documents = data;
-                    toastr.info("New elements loaded");
-                }
-            });
-        } else {
-            docFactory.getAllDocuments(function (data) {
-                cacheFactory.cacheList(data);
-                $scope.documents = data;
-            });
-        }
-
-        $scope.deleteDocument = function (documentID) {
-            var verify = documentID == prompt("Type in " + '"' + documentID + '" to delete article');
-            if (verify) {
-                docFactory.deleteDocument(documentID, function () {
-                    cacheFactory.popElementFromCacheList(documentID);
-                    $scope.documents = cacheFactory.getListIfCached();
-                    toastr.success("Document Deleted");
-                });
-            } else {
-                toastr.warning("Deletion canceled");
-            }
-        };
-
-        $scope.editDocument = function (documentID) {
-            editFactory.setEditObject("document", documentID);
-            $location.path('/projectCreator/' + documentID);
-        };
-
-        $scope.GoToDocumentEditor = function () {
-            $location.path('/projectCreator');
-        }
-
-    }]);
-
-    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
-        $scope.presentDocument = true;
-        $scope.documents = [];
-        $scope.cache = cacheFactory.getListIfCached();
-        $scope.updatePage = function () {
-            if ($scope.cache) {
-                $scope.documents = $scope.cache;
-                docFactory.getAllDocuments(function (data) {
-                    if (data.err === undefined) {
-                        if (data.length > $scope.cache.length) {
-                            cacheFactory.cacheList(data);
-                            $scope.documents = data;
-                        }
-                    }
-                });
-            } else {
-                docFactory.getAllDocuments(function (data) {
-                    if (data.err === undefined) {
-                        cacheFactory.cacheList(data);
-                        $scope.documents = data;
-                    } else {
-                        $scope.documents = [{title: "No articles found"}];
-                        $scope.presentDocument = false;
-                    }
-                });
-            }
-        };
-        $scope.updatePage();
-    }]);
-
-    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', 'cacheFactory', function ($scope, docFactory, $sce, $routeParams, cacheFactory) {
-        $scope.fullDocument = "";
-        $scope.reqDocID = $routeParams.doc_id;
-        $scope.cache = cacheFactory.getDocumentIfCached($scope.reqDocID);
-        if ($scope.cache) {
-            $scope.fullDocument = $scope.cache;
-        } else {
-            docFactory.getDocument($scope.reqDocID, function (data) {
-                data.body = $sce.trustAsHtml(data.body);
-                cacheFactory.cacheDocument(data);
-                $scope.fullDocument = data;
-            });
-        }
     }]);
 
     app.controller('CmsCtrl', ['$scope', 'docFactory', 'toastr', 'storageFactory', 'editFactory', 'cacheFactory', function ($scope, docFactory, toastr, storageFactory, editFactory, cacheFactory) {
@@ -300,6 +110,197 @@
             });
         };
 
+    }]);
+
+    app.controller('CmsDownloadCtrl', ['$scope', 'fileUpload', 'toastr', 'downloadFactory', 'cacheFactory', 'editFactory', function ($scope, fileUpload, toastr, downloadFactory, cacheFactory, editFactory) {
+        $scope.download = {};
+
+
+        if (editFactory.getEditObject("download")) {
+            var id = editFactory.getEditObject("download");
+            var data = cacheFactory.getDownload(id);
+            editFactory.setEditObject("download", data);
+            $scope.download = data;
+        }
+
+        $scope.addImage = function () {
+            var imageUrl = prompt("Enter URL for image" + " - Preferred size 400x400");
+            if (imageUrl) {
+                $scope.download.thumbnail = imageUrl;
+                toastr.info("image added");
+            } else {
+                toastr.warning("No image added - add new one")
+            }
+        };
+
+        $scope.createDownload = function () {
+            downloadFactory.createDownload($scope.download, function (err, data) {
+                if (err) {
+                    toastr.warning("Something went terribly wrong");
+                    return;
+                }
+                $scope.download = {};
+                toastr.success("new download added");
+
+            });
+        };
+
+        $scope.saveDownload = function () {
+            downloadFactory.editDownload($scope.download, function (err, download) {
+                if (err) {
+                    toastr.warning("Something went terribly wrong");
+                    return;
+                } else {
+                    cacheFactory.replaceDownload(download.data);
+                    $scope.download = {};
+                    $scope.download.thumbnail = "";
+                    toastr.success("download saved");
+                }
+            });
+        }
+
+    }]);
+
+    app.controller('CmsListCtrl', ['$scope', '$location', 'docFactory', 'cacheFactory', 'toastr', 'editFactory', function ($scope, $location, docFactory, cacheFactory, toastr, editFactory) {
+        $scope.presentDocument = true;
+        $scope.documents = [];
+        $scope.cache = cacheFactory.getListIfCached();
+        if ($scope.cache) {
+            $scope.documents = $scope.cache;
+            docFactory.getAllDocuments(function (data) {
+                if (data.length > $scope.documents.length) {
+                    cacheFactory.cacheList(data);
+                    $scope.documents = data;
+                    toastr.info("New elements loaded");
+                }
+            });
+        } else {
+            docFactory.getAllDocuments(function (data) {
+                cacheFactory.cacheList(data);
+                $scope.documents = data;
+            });
+        }
+
+        $scope.deleteDocument = function (documentID) {
+            var verify = documentID == prompt("Type in " + '"' + documentID + '" to delete article');
+            if (verify) {
+                docFactory.deleteDocument(documentID, function () {
+                    cacheFactory.popElementFromCacheList(documentID);
+                    $scope.documents = cacheFactory.getListIfCached();
+                    toastr.success("Document Deleted");
+                });
+            } else {
+                toastr.warning("Deletion canceled");
+            }
+        };
+
+        $scope.editDocument = function (documentID) {
+            editFactory.setEditObject("document", documentID);
+            $location.path('/projectCreator/' + documentID);
+        };
+
+        $scope.GoToDocumentEditor = function () {
+            $location.path('/projectCreator');
+        }
+
+    }]);
+
+    app.controller('FrontPageCtrl', ['$scope', 'cacheFactory', 'docFactory', function ($scope, cacheFactory, docFactory) {
+        $scope.pinnedDocuments = [];
+        $scope.cache = cacheFactory.getPinnedDocumentsIfExist();
+        $scope.refreshPage = function () {
+            if ($scope.cache) {
+                $scope.pinnedDocuments = $scope.cache;
+                docFactory.getAllDocuments(function (data) {
+                    if (data.length > $scope.pinnedDocuments.length) {
+                        cacheFactory.cacheList(data);
+                        $scope.pinnedDocuments = cacheFactory.getPinnedDocumentsIfExist();
+                    }
+                });
+            } else {
+                docFactory.getAllDocuments(function (data) {
+                    cacheFactory.cacheList(data);
+                    $scope.pinnedDocuments = cacheFactory.getPinnedDocumentsIfExist();
+                });
+            }
+        };
+
+        $scope.hasImg = function (index) {
+            return ($scope.pinnedDocuments[index].images[0]) ? true : false
+        };
+        $scope.refreshPage();
+
+    }]);
+
+    app.controller('DownloadCtrl', ['$scope', 'cacheFactory', 'downloadFactory', function ($scope, cacheFactory, downloadFactory) {
+        $scope.downloads = [];
+
+        $scope.refreshDownload = function () {
+            $scope.cache = cacheFactory.getDownloadsIfExist();
+            if ($scope.cache) {
+                $scope.downloads = $scope.cache;
+                downloadFactory.getAllDownloads(function (err, downloads) {
+                    if (!err) {
+                        if ($scope.downloads.length < downloads.length) {
+                            $scope.downloads = downloads.data;
+                            cacheFactory.setDownloads($scope.downloads);
+                        }
+                    }
+                });
+            } else {
+                downloadFactory.getAllDownloads(function (err, downloads) {
+                    $scope.downloads = downloads.data;
+                    cacheFactory.setDownloads($scope.downloads);
+                });
+            }
+        };
+        $scope.refreshDownload();
+
+    }]);
+
+    app.controller('ListDocumentCtrl', ['$scope', 'docFactory', 'cacheFactory', function ($scope, docFactory, cacheFactory) {
+        $scope.presentDocument = true;
+        $scope.documents = [];
+        $scope.cache = cacheFactory.getListIfCached();
+        $scope.updatePage = function () {
+            if ($scope.cache) {
+                $scope.documents = $scope.cache;
+                docFactory.getAllDocuments(function (data) {
+                    if (data.err === undefined) {
+                        if (data.length > $scope.cache.length) {
+                            cacheFactory.cacheList(data);
+                            $scope.documents = data;
+                        }
+                    }
+                });
+            } else {
+                docFactory.getAllDocuments(function (data) {
+                    if (data.err === undefined) {
+                        cacheFactory.cacheList(data);
+                        $scope.documents = data;
+                    } else {
+                        $scope.documents = [{title: "No articles found"}];
+                        $scope.presentDocument = false;
+                    }
+                });
+            }
+        };
+        $scope.updatePage();
+    }]);
+
+    app.controller('SingleDocCtrl', ['$scope', 'docFactory', '$sce', '$routeParams', 'cacheFactory', function ($scope, docFactory, $sce, $routeParams, cacheFactory) {
+        $scope.fullDocument = "";
+        $scope.reqDocID = $routeParams.doc_id;
+        $scope.cache = cacheFactory.getDocumentIfCached($scope.reqDocID);
+        if ($scope.cache) {
+            $scope.fullDocument = $scope.cache;
+        } else {
+            docFactory.getDocument($scope.reqDocID, function (data) {
+                data.body = $sce.trustAsHtml(data.body);
+                cacheFactory.cacheDocument(data);
+                $scope.fullDocument = data;
+            });
+        }
     }]);
 
     app.controller('AceCtrl', ['$scope', 'storageFactory', 'toastr', '$sce', '$routeParams', 'docFactory', 'editFactory', function ($scope, storageFactory, toastr, $sce, $routeParams, docFactory, editFactory) {
@@ -412,26 +413,20 @@
             return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
         }
 
-        $scope.title = "Semester Project";
-        $scope.username = "";
+
         $scope.isAuthenticated = false;
         $scope.isAdmin = false;
-        $scope.isUser = false;
         $scope.message = '';
-        $scope.error = null;
+        $scope.user = {};
 
         //login
         $scope.submit = function () {
             $http
-                .post('/authenticate', $scope.user)
+                .post('/uri/authenticate', $scope.user)
                 .success(function (data, status, headers, config) {
+                    console.log(data);
                     $window.sessionStorage.token = data.token;
                     $scope.isAuthenticated = true;
-                    var encodedProfile = data.token.split('.')[1];
-                    var profile = JSON.parse(url_base64_decode(encodedProfile));
-                    $scope.username = profile.username;
-                    $scope.isAdmin = profile.role == "admin";
-                    $scope.isUser = !$scope.isAdmin;
                     $scope.error = null;
                 })
                 .error(function (data, status, headers, config) {
