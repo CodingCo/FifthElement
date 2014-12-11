@@ -64,7 +64,7 @@ var getDocumentByTitle = function (title, callback) {
 var editDocument = function (newDocument, callback) {
     model.Document.findOneAndUpdate({doc_id: newDocument.doc_id}, {
         title: newDocument.title,
-        subtitle: newDocument.title,
+        subtitle: newDocument.subtitle,
         author: newDocument.author,
         timestamp: newDocument.timestamp,
         abstract: newDocument.abstract,
