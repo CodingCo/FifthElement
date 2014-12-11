@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha test/backend-test/test-testdb",
-    "insert": "node ./scripts/dummydataInsert.js"
+    "insert": "node ./scripts/dummydataInsert.js",
+    "backup": "node ./scripts/backupDB.js"
   },
   "dependencies": {
     "body-parser": "~1.8.1",

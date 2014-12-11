@@ -1,0 +1,299 @@
+[
+  {
+    "_id": "5481ad31ec64f75b0e2f6b77",
+    "title": "Frederiks wild workout",
+    "subtitle": "+4 Vorpal Keen Article",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 72,
+    "__v": 0,
+    "pinned": true,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad31ec64f75b0e2f6b78"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [
+      "https://lh6.googleusercontent.com/-sU5IRCCxMYc/TiZsuwV0nFI/AAAAAAAAALc/dH1OxZImcJU/nodejs2.png"
+    ],
+    "timestamp": "2014-12-05T13:03:43.681Z"
+  },
+  {
+    "_id": "5481ad2823bfce570e114ef1",
+    "title": "Roberts quest for energydrink",
+    "subtitle": "+4 Vorpal Keen Article",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 61,
+    "__v": 0,
+    "pinned": true,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2823bfce570e114ef2"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [
+      "http://fc00.deviantart.net/fs71/i/2011/093/3/e/monster_energy_drink_icon_by_guglielmetti-d3d4jga.png"
+    ],
+    "timestamp": "2014-12-05T13:03:30.528Z"
+  },
+  {
+    "_id": "5481ad2823bfce570e114ef3",
+    "title": "Frederiks wild workout",
+    "subtitle": "+4 Vorpal Keen Article",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 62,
+    "__v": 0,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2823bfce570e114ef4"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [],
+    "timestamp": "2014-12-05T13:03:30.528Z"
+  },
+  {
+    "_id": "5481ad2823bfce570e114ef5",
+    "title": "The mighty misinterpreted quest for candy",
+    "subtitle": "The mighty misinterpreted quest for candy",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 63,
+    "__v": 0,
+    "pinned": false,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2823bfce570e114ef6"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [],
+    "timestamp": "2014-12-05T13:03:30.528Z"
+  },
+  {
+    "_id": "5481ad2c2af00a590e9ee7d1",
+    "title": "The adventure of deleting articles",
+    "subtitle": "+1 Article of testing",
+    "author": "Kasper Hald",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 65,
+    "__v": 0,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2c2af00a590e9ee7d2"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness"
+    ],
+    "images": [],
+    "timestamp": "2014-12-05T13:03:39.272Z"
+  },
+  {
+    "_id": "5481ad2c2af00a590e9ee7d3",
+    "title": "Roberts quest for energydrink",
+    "subtitle": "+4 Vorpal Keen Article",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.swsw",
+    "doc_id": 66,
+    "__v": 0,
+    "pinned": false,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2c2af00a590e9ee7d4"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [],
+    "timestamp": "2014-12-05T13:03:39.272Z"
+  },
+  {
+    "_id": "5481ad2d2af00a590e9ee7d7",
+    "title": "The mighty misinterpreted quest for candy",
+    "subtitle": "+4 Vorpal Keen Article",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 68,
+    "__v": 0,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2d2af00a590e9ee7d8"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [],
+    "timestamp": "2014-12-05T13:03:39.272Z"
+  },
+  {
+    "_id": "5488900f546271000034fb2a",
+    "doc_id": 89,
+    "body": "<h1 style=\"text-align: center;\">Something Awesome</h1><div><br></div>Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.<div>Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.<br></div><div>Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.<span style=\"line-height: 1.42857143;\">Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.</span><br></div><div><span style=\"line-height: 1.42857143;\"><br></span></div><div><hr>Yet again.<span style=\"line-height: 1.42857143;\">Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.</span><span style=\"line-height: 1.42857143;\">Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.</span></div>",
+    "abstract": "Ah.. we thought you would be back. Downloaded the client eh!? Well it does work with other clients supporting the Lars Mortensen protocol. But we are pretty much the only team able to deliver a functional server, so you will need our server aswell. But fear not. It works like a charm and it is even made for system cross compatability. It is also avialable on git like everything else we create.",
+    "title": "A New Dawn",
+    "subtitle": "is rising in the horizon",
+    "author": "Simon Grønborg",
+    "__v": 0,
+    "comments": [],
+    "tags": [
+      "http://velocityagency.com/wp-content/uploads/2013/08/go.jpg"
+    ],
+    "images": [],
+    "timestamp": "2014-12-10T17:31:24.364Z"
+  },
+  {
+    "_id": "548956f643700fd870268708",
+    "doc_id": 90,
+    "body": "<h2><span>Wireshark captures</span><br></h2><div class=\"panel panel-default\"><div class=\"panel-body\"><div class=\"well\"><h4>How it works</h4></div><p>We used Wireshark to sniff all the TCP packets, which was send and received on our client. There is no connection between our Client and our server when we start the Client so we can expect to see a Three Way Handshake among the first three packets, when we attempt to connect. First we connected to the server using the CONNECT# command in our client. It was easy to see the packet send and the expected (Online#) packet received. When another user logged in, our Client again received the packet containing the ONLINE# command along with the list of online users. We also tested the SEND# command, by sending a message both from and to our Client and received the expected answer from our Server. Upon closing our Chat Client the CLOSE# command was send to our Server, which send back a CLOSE# command after which a graceful shutdown was done. The last packets received contains the expected FIN ACK packets.</p><img src=\"uploads/image/png/1418287371293_images4Site.png\" class=\"img-responsive\"></div></div><div class=\"panel panel-default\"><div class=\"panel-body\"><div class=\"well\"><h4>Package content</h4></div><img src=\"uploads/image/png/1418287539016_flow.png\" class=\"img-responsive\"><p>The image above shows the above mentioned test. The text left of the image describes the content of the packets. The image below shows the content as sniffed by wireshark.</p></div></div><div class=\"panel panel-default\"><div class=\"panel-body\"><div class=\"well\"><h4>Package content</h4></div><img src=\"uploads/image/png/1418287598255_sc.png\" class=\"img-responsive\"><p>The image above depicts the flow diagram. It is easy to spot the three way handshake, psh, ack and corresponding acks and the final FIN ACK teardown.</p></div></div><h3>General Documentation</h3><div class=\"panel panel-default\"><div class=\"panel-heading\"><h3 class=\"panel-title\">Server and Client design</h3></div><div class=\"panel-body\"><h4>Client</h4><p>In the client application, every class has its own interface. An observer pattern has been implemented in the GUI class and clientSide class, which calls for an interface solution. This makes it possible, not having the Swing interface “blocked”, while waiting for a response(in this case a message) from the server. Originally, the program only had one interface: ”ViewListener”, which was implemented in the GUI. We then added the SocketClass, which contains the thread that listens for inputs from the server. We thought the best way to tell ClientSide that a new message had arrived, was to contain it as an observer of SocketClass. That way, we can do it, without SocketClass knowing anything about ClientSide class. The SocketClass also implements an interface: “SocketIF”. This way, it’s easier to use another connector class in the program, thous it implements the SocketIF interface. This also makes it easier to set op a mock.</p><div class=\"well\">The awesome client</div></div><div class=\"panel-body\"><h4>Server</h4><p>The ServerSide project gets started from the class ServerExecutor. This class starts both the ChatServer and the WebServer. Overall we’ve tried to create a layer of abstraction by making interfaces. This also makes it easier for us to test(making mockups). We’ve tried to aim for high testability in all our classes, hence it has a lot of responsibilities. The server logs to a file, using a FileHandler. This way, we can log everything that happens on the server.</p><div class=\"well\">The awesome server</div></div></div>",
+    "title": "CA 1 - Documentation",
+    "author": "Robert Elving",
+    "subtitle": "CA 1 - Documentation",
+    "abstract": "The G5 Chatserver is the end product of the first CA. This is the Documentation describing the system.\nIt works with other clients supporting the Lars Mortensen protocol. It works like a charm and it is even made for system cross compatibility. It is also available on Git like everything else we create.",
+    "__v": 0,
+    "pinned": true,
+    "comments": [],
+    "tags": [
+      "uploads/image/gif/1418286814837_Chat.gif"
+    ],
+    "images": [
+      "uploads/image/gif/1418286814837_Chat.gif"
+    ],
+    "timestamp": "2014-12-10T14:20:54.262Z"
+  },
+  {
+    "_id": "5489616755eebc4d71a8d174",
+    "doc_id": 91,
+    "body": "<div class=\"panel panel-default\"><div class=\"panel-body\"><h2>Design</h2><p>This CA builds upon the project from CA1, so we’ll be able to host the website, run the chatServer(CA1) and offer the new REST-services we’ve been making in this CA.</p><ul class=\"list-group\"><li class=\"list-group-item disabled\">The new classes added in this project:</li><li class=\"list-group-item\">PersonFacade</li><li class=\"list-group-item\">RoleSchoolAdapter</li><li class=\"list-group-item\">PersonHandler</li><li class=\"list-group-item\">All entity Classes in model-package: Person, Roleschool, Course, etc.</li><li class=\"list-group-item\">Test: All classes in package facadeTests.</li><li class=\"list-group-item\">Interface: FacadeInterface</li></ul><p>We’ve created a JUnit test of the class PersonFacade. This is relevant for the assignment, because this class handles all JPA calls, which persists data on the database. Because of the importance of this class, we wanted a well written test that verifies the functionality. We’re testing both on a mock(a class that “acts as a database”), which uses its own collection to to store data, and a test database(PersonFacadeDB). The class PersonFacade is used to persist data on the database using JPA. It acts like a “facade”, because the class is the link between the application and the database(Like we made facade classes in 2.sem project, to call each layer functionality). We use PersonFacade every time we want to deal with info about a person. Note that all our entities is placed under the model package. We use JPA to map our entity classes to our database. Our approach was to create the classes in java first, and then use JPA to generate all the tables on the database, based on the annotations on each entity class. We use only the PersonHandler class for handling the database calls for Person and the Roleschool objects. Since there is only one method related to RoleSchool, we decided to include it in the PersonHandler class.</p></div><div class=\"panel-body\"><h2>Test</h2><p>We added an additional test-package to our Test Packages folder named “facadeTests”. It consist of the following java-classes; “PersonFacadeDB”, “PersonFacadeMock”, “RoleSchoolAdapter” and the crucial testfile “PersonFacadeTest”.</p><p>We created a JUnit test that should test our facade class. First we wanted to test up against a class, that did not need a physical database. Therefore we wanted to make use of Mocking, and created the “PersonFacadeMock” and the “PersonFacadeDB”, both implementing an interface named “IPersonFacade”. This secures, that both facade-classes should contain some specific methods, that are stated in the interface.</p><p>When unit-testing, we created our file “PersonFacadeTest”, that has a test-method for each method located in the interface, and that makes the testfile capable of testing the same behavior on “PersonFacadeMock” and the “PersonFacadeDB”. The “PersonFacadeMock” works up against a collection of persons, that is a replacement of the database we are going to use in the final version, but the behavior is exactly the same whether we are testing up against a collection of persons or a DB with the necessary tables. In the final version we should use our “PersonFacadeDB”, that uses JPA to manipulate with entities inside our DB.</p><p>It is a good habit, when developing programs that are dependent on a database, to test up against a Mock-database at first, which we earlier stated only is a collection. This test-class should be adaptable to test up against both facades, so we can avoid to create two almost identical test-classes, one for each facade. When the result of the tests on our Mock is 100% error-free, we can start to develop our real facade, that is working with the DB and test it later on with the exact same testmethods.</p><p>Because we let the two facades implement the same interface, it was possible to test up against our mock and our real database. Inside our test-class we created a method with the @Before annotation, which ensures, that everything inside the body is executed BEFORE every single test-method. This method contains a new instantiation of the specific Facade we are creating, so every test-method is working with a an empty collection or DB. The collection is instantiated in the constructor of “PersonFacadeMock” and an entitymanager is instantiated in the constructor of “PersonFacadeDB”, that works with our persistence.xml, with the “drop-and-create” Table Generation Strategy. This strategy empties the tables we are working with in the DB.</p></div><div class=\"panel-body\"><h2>Inheritance</h2><p>We have multiple strategies to choose from, when we want to map an inheritance solution from the OO world, to the relational world using JPA: JOINED, TABLE_PER_CLASS or SINGLE_TABLE.</p><p>The abstract class RoleSchool, has three subclasses: Teacher, Student and AssistentTeacher. The super class RoleSchool(which is the highest class in the hiarchy) must be mapped with an inheritance strategy, if none is defined, JPA uses InheritanceType.SINGLE_TABLE as default strategy.</p><p>The assignment required us to choose from either single table or joined. We ended up with the single table strategy. We did this because it’s simple to understand, and a faster solution, if the database gets many queries(comparing this to the alternative join strategy). The simplicity is of course the fact that we only have one table, and because of the attribute DTYPE. This attribute is the “discriminator”-value, which descriminates each tuple from each other, telling us what every tuple is; Student, Teacher or AssistentTeacher.</p><p>As mentioned above, the single table strategy is faster than joined, which is one of the reason we didn’t choose joined. Unlike the single strategy, the joined solution creates multiple join operations, if we query data that covers more than one class of the class hierarchy. If we chose join, the database would have a table for every single entity, containing data specific for that subclass. A table would also be generated for the super class. This is also why this solution is considered a bit more “OO-friendly”.</p></div></div>",
+    "title": "CA 2 - Documentation",
+    "subtitle": "JPA",
+    "author": "Robert Elving",
+    "abstract": "This is the documentation on the work and the end result of the second CA.\nIn the second CA, JPA was integrated into the webpage. \nWe now have built in a system to crete persons and manage institutions.\nTo see the result in action visit http://137.135.176.102:8028",
+    "__v": 0,
+    "pinned": true,
+    "comments": [],
+    "tags": [],
+    "images": [
+      "http://www.jpapencen.gov.my/images/logojpa2.png"
+    ],
+    "timestamp": "2014-12-11T08:34:28.679Z"
+  },
+  {
+    "_id": "5489799c0b5bdb9c72d9aa7a",
+    "doc_id": 97,
+    "body": "<h2><hr></h2><h2>Relational DBMS&nbsp;</h2><div><hr></div><p style=\"text-align: center;\"><br></p><div><hr></div><h2>Non-Relational DBMS</h2><div><hr></div>",
+    "title": "Persistence Strategies",
+    "subtitle": "Relational vs. NoSQL",
+    "author": "Robert Elving",
+    "pinned": true,
+    "__v": 0,
+    "abstract": "Choosing an optimal strategy to persist information is crucial when releasing a product. \nEach different strategy has its own pro's and cons, choosing a strategy that doesn't suit the needed solution, could not only effect the overall runtime performance of the system, but also the disrupt the development process.",
+    "comments": [],
+    "tags": [],
+    "images": [
+      "uploads/image/png/1418295691737_mongovssql.png"
+    ],
+    "timestamp": "2014-12-11T10:16:54.447Z"
+  },
+  {
+    "_id": "5489645055eebc4d71a8d175",
+    "doc_id": 92,
+    "body": "<div class=\"jumbotron\"><h1><span>General Design</span><br></h1><p><span>The program is written in accordance to the MVC pattern. Our webpage functions as the view, showing the user all the information. Our MongoDb database functions as our model, storing all of our information. The server acts the controller, handling all request, and manipulating the database without storing any information locally. we choose this structure because it allowed us to better organize our code; we always know where everything happens, and where everything is stored.</span></p><p></p><div><br></div><span><img src=\"uploads/image/png/1418289725204_mvc-2.png\" class=\"img-responsive\"></span><p></p></div><hr><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><div><h2>Server</h2></div><p class=\"lead\">Express is the keyword here! We wrote an express server using the jade template engine to render the templates with data from our database. The layout of the project, is the classic layout of an express project. The changes we have made, was to separate the dependencies and create separate layers, where we could place all the logic handling the connection, querying, requests and the mongo database. We have followed the MVC pattern, also known as the Model View Controller pattern, as much as our javascript skills allowed us. With the patterns applied to our project; the Model is the “database folder” containing all the necessary mongoose Models and Schemas used in all database operation.</p><p>Something worth mentioning, is the way we delegate all the database operations to each router. Since this is a new “and way more dynamic” language, we are allowed to do some interesting stuff. All the functions have been assign to variables in an object we export. The problems, connecting the layers with various abstractions and facades classes, in a type-strong language like java, are now gone. we can make a clean transport of the functionality, just by dynamically binding functions to objects.</p><p></p></div></div><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><br><p class=\"lead\">The Controller is the “routes folder” and the app.js file. That is where we control and handle all the requests and responses from the clients.</p><p>The Controller is the “routes folder” and the app.js file. That is where we control and handle all the requests and responses from the clients. Each View have been given its own router, so we have delegated the different task over a wide selection files. This has made the code easier to read and debug. Hence each file contains less code. The most interesting part here is that we have binded the db-object to each request, so all the operations are available to all request no matter where in the routing system they may be. Node Js asynchronous way of doing things makes this way of querying very nice and clean. Alas.. thats atleast what we hope.</p><p></p></div></div><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><br><p class=\"lead\">The View is naturally named “view folder”, here we handle all the information displayed to the user.</p><p>We use Jade as our template engine, which renders all the html combined with the information fetched from the server, before we send it back with a http response. This is operation requires a greater amount of resources from the server, compared to binding the data on the client side. But it’s a good way to create a custom page, with data directly from the server. and limiting the amount of requests without bundling the page. Preferably is this the way of doing things, when doing operations like creating long lists of information, and customized views. The other model is perfect for a more user friendly and responsive design.<br></p><hr><div><h2><br></h2><h2>Website</h2></div><p class=\"lead\">The website for this project is designed to give the user an easy, interface to view detailed information about a given order. The main page shows a list of orders, where you see their id, address, name and date. The shown orders will(when clicked) expand and show the order details. Within the exploded view it is possible to click on buttons that navigate to new pages that display information on the customer or the employee assigned to the order. It also possible to delete the orders by pressing a delete button in the exploded view. The website is rendered in jade and styled using bootstrap. It’s very easy to get a sleek beautiful design in just a few lines of code when styling with bootstrap. Furthermore, Jade also gives us the possibility to extend from other templates, which add to “lesser” code. Note that layout.jade includes both the navigation and footer, thus all that extends from layout.jade, has the same header and footer. We chose to use the expanded orderview instead of navigating to another page, because it gives the user a better overview.<br></p><p class=\"lead\"><br></p><hr><div><h2><br></h2><h2>Database</h2></div><p class=\"lead\">The database contains all the stored information; any queries takes information directly from it, and all information is saved directly to it as well. An order contains references to an order-detail, which in turn contains a reference to a product. Since all orders are shown along with their respective order-details and products, any query calls to the database, also retrieves the referenced documents. Despite the order having the one-to-many reference to orderdetails, we start by retrieving the order-details first, since this object contains references to both order and product, making retrieval less complicated. These queries coded to provide a limited number of results, as to avoid information overload and slowdown. The terminology here is not completely correct: Mongo is not a relational database, so technically there are no references; in mongo it’s called links, but is conceptually the same thing. Where relational databases would reference, mongo would nest data instead. This makes scalability very easy, since all the information is stored in the same collection (table in R-model). So we could spread the data across hundreds of servers. But hold your horses for a second, this does not mean you should storm out and convert your relational database to the almighty mongo deity. The relational model is still smart, since we can avoid duplication of data, which can be a problem in mongo. And performance is not something you should worry about, unless you're handling data sets in google scale.&nbsp;<br><br>Customers and employees, are queried individually by their id. Since all customers and employees contain references to associated orders, and therefore orders also containing a reference back, querying for the correct customer/employee is easy. All queries regarding customers and employees are done only when explicitly needed.&nbsp;<br><br>All updates and removal of data in the database, start by querying for information by an order id, and then simply removes the order or updates it with new information.</p></div></div>",
+    "title": "CA 3 - Documentation",
+    "subtitle": "CA 3 - Documentation",
+    "author": "Robert Elving",
+    "abstract": "The latest awesome stuff from the team who brought you all the other awesome stuff. That's right, the team who brought you the G5 Webserver and Chat, has now released the Node Server, heavily backed by a completely new and radical way to store data, the \"Mongo\" way. The force is strong with this one. Shorter response time, faster querying and a mind blowing new design.",
+    "__v": 0,
+    "pinned": true,
+    "comments": [],
+    "tags": [],
+    "images": [
+      "uploads/image/png/1418289606214_nodejs.png"
+    ],
+    "timestamp": "2014-12-11T08:34:28.679Z"
+  },
+  {
+    "_id": "5489680e55eebc4d71a8d176",
+    "doc_id": 93,
+    "body": "<div class=\"jumbotron\"><h1>General Design<br></h1></div><div class=\"row\"><div class=\"col-md-offset-1 col-md-10\"><p class=\"lead\">The application should be very similar to other MEAN stack applications. We use mongodb as our persistance opposed to a relational database. We use Express to write the webservices. Node is the server foundation, and Angular is our frontend single page application SPA. Where we strafe from the normal mean application, is probably in our folder structure and naming.&nbsp;<br><br>PLEASE NOTE: It is not intentional to go away from normal naming conventions, and it’s not to confuse anyone. But we did not use the seed, and standard setup. We did try to replicate as many names a possible, but we did this to better understand what was going on&nbsp;<br><br>we have 3 folders. Test, server and client. Client contain our spa and the resources like angular bootstrap etc. Server contain everything from mongodb connection to the model og all the routes and services.</p></div></div><hr><div class=\"row\"><div class=\" col-md-offset-1 col-md-10\"><h2>Test - The BDD way</h2></div><div align=\"center\"><img src=\"uploads/image/png/1418290581276_testing.png\" class=\"img-responsive\"></div><br><p class=\"lead\">When testing the backend of our program we did it using behaviour-driven development, abbreviated BDD. BDD was developed as a response to the issues encountered teaching test-driven development which are:</p><br><ul><li>Where to start in the process</li><li>What to test and what not to test</li><li>How much to test in one go</li><li>What to call the tests</li><li>How to understand why a test fails.</li></ul><br><p class=\"lead\">To avoid such issues, the unit test names should be whole sentences, and should be written in order of business value. The testcases is so close to everyday language, and therefore could the tests also be seen as a part of the full documentation. We describe this “everyday language” testing in a real example from our code later. We use Mocha for testing our node backend. It is a featurerich JavaScript test framework running both on node and in a browser. Together with mocha, we also needed to select an assertion framework. A framework that could assist mocha and deliver the functionality used in behavior-driven development. We used the framework “should”.</p><br><div align=\"center\"><img src=\"uploads/image/png/1418290742559_testSnap.png\" class=\"img-responsive\"></div><br><p class=\"lead\">As it is illustrated in figure 1, we have our rootfolder where we created a folder called “test” in it. This folder should contain all the test files, located inside each of their respective folder, which in our case are: “client-test”, “end-to-end”, “server-test”. It is the “servert-test” folder we also know as the backend-test of the system. It is a very essential part of the program and we test up against three different features. We encapsulated the tests of the features inside each of their test-files. In the test-datalayer.js file we focus on testing the essential functionality located in the datalayer, which uses the module ‘server/source/datalayer.js’. To test the datalayer probably, we also want to be sure, we are testing with entities with the same schema as the one we are going to use live. There we are also using the db.js file located in the same folder as the datalayer. When we wanted to create a behavior-driven development test, we kept in mind, that we should make use of “nesting” the tests inside each other. For example in the test-datalayer.js, we encapsulate all the test-cases inside a large case, named “Testing of the interface”. Inside of this major case we have smaller cases, with each of their smaller tests, so we can say, that for each time we navigate further into the nested test-cases, we get more and more specific, like tests named “Should return list of titles, and abstracts - camelCase” and “should return an empty list”. Then we have the test-dbcon.js file, that tests whether the connection can be opened an closed properly. Simple but it’s important, that we can rely on such functionality. We mentioned the usage of “everyday language” earlier, and by meaning of that, we can look into the code of the test-webservice.js file, which surprisingly tests the functionality of our webservice. We nest all tests inside a case named “Webservice test” and then we have a handfull of different tests, that focus on the correct retrieval of data from our webservice, like testing to see if we get anything back with an invalid wiki, which definitely not is our goal, or if we get the lists with the correct category we asked for. The everyday language is just writing a short sentence, defining a test-case, separated with dots.</p><br><div align=\"center\"><img src=\"uploads/image/png/1418290802812_testSnippet.png\" class=\"img-responsive\"></div><br><p class=\"lead\">On figure 2. we see an entire testcase, which is quite easy for non-programmers to understand. This is also a good example of how behaviour-driven development look like in practice. On line 51 we we use the function “describe” to indicate, what exactly is going on in this particular test; “test findWiki webservice”. Thereafter we create some variables, we should use for the test, a specific searchTitle and an invalidSearch variable. So everything nested inside of the “test findWiki webservice” has a very close relation to this specific case. On line 55 we get more specific. the findWiki webservice now “should return a wiki Json page basen on a search”. We use our variables to get it on the /findWiki/:title route, and expect code 200 and a content type of json. The “.expect” part of this test is provided by the module called “super-test” that we chose to test our Http, because it makes a high-level abstraction of http-testing. And again, it is very easy to read and understand. We can see the usage of everyday-language on line 63 we want to check if the title from the response matches our expected result. We know that the title is located at the first index in the json-response, therefore we write list[0]. So how do you want to write such a test in TDD. Create an expected result in a variable, create another, which is the result and the hold the two variables up against each other? This can easily be a lot of code and difficult for non-programmers to read. The case is as simple as checking if it is correct that the title should be equal our searchTitle, that was the expected result. And there we have it! list[0].title.should.equal(searchTitle);</p></div>",
+    "title": "CA - 4 Documentation",
+    "subtitle": "CA - 4 Documentation",
+    "author": "Robert Elving",
+    "abstract": "This CA required us to  build  a new application on the classic MEAN stack. The project is called AngryPedia. Look it up on GitHub and be amazed by the pure awesomeness of the tests and code. But there is more! Believe it or not, our performance this time reach heights, even the dreamt of Japanese space elevator can't reach, and stronger than a programmers coffee.",
+    "__v": 0,
+    "pinned": true,
+    "comments": [],
+    "tags": [
+      "uploads/image/png/1418291196617_mean_small_vertical.png"
+    ],
+    "images": [
+      "uploads/image/png/1418291196617_mean_small_vertical.png"
+    ],
+    "timestamp": "2014-12-11T08:34:28.679Z"
+  },
+  {
+    "_id": "5481ad2c2af00a590e9ee7d5",
+    "title": "Frederiks wild workout",
+    "subtitle": "Frederiks wild workout",
+    "author": "John Smith",
+    "abstract": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur delectus, deserunt enim et excepturi facilis ipsa libero magnam modi molestiae nesciunt nisi nobis, nostrum perferendis porro repellat veritatis voluptatem.",
+    "doc_id": 67,
+    "__v": 0,
+    "pinned": false,
+    "comments": [
+      {
+        "body": "I am comment 1",
+        "_id": "5481ad2c2af00a590e9ee7d6"
+      }
+    ],
+    "tags": [
+      "Article",
+      "Awesomeness",
+      "Greatness"
+    ],
+    "images": [],
+    "timestamp": "2014-12-05T13:03:39.272Z"
+  }
+]
