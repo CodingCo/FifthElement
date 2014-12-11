@@ -289,7 +289,7 @@
             $scope.document.body = document.getElementById('ace-editor').innerHTML;
             docFactory.editDocument($scope.document, function (data) {
                 if (data.err == true) {
-                    toastr.alert("Something went wrong");
+                    toastr.warning("Something went wrong");
                 } else {
                     storageFactory.clearStorage();
                     editFactory.deleteEditObject("document");
@@ -383,8 +383,10 @@
 
         $scope.insertImage = function (imgName, url) {
             var imageUrl = prompt('enter image url');
-            var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive  center-block">';
-            document.execCommand('insertHTML', false, img);
+            if (imageUrl != null) {
+                var img = '<img src="' + imageUrl + '" ' + 'class="img-responsive  center-block">';
+                document.execCommand('insertHTML', false, img);
+            }
         };
 
         $scope.textTypes = function (type) {
