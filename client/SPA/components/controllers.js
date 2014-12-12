@@ -420,6 +420,17 @@
         $scope.user = {};
         $scope.name = "";
 
+        ($scope.refresh = function () {
+            if ($window.sessionStorage.token) {
+                var encodedProfile = $window.sessionStorage.token.split('.')[1];
+                var profile = JSON.parse(url_base64_decode(encodedProfile));
+                $scope.user = profile;
+                $scope.name = profile.username;
+                $scope.isAuthenticated = true;
+            }
+        })();
+
+
         //login
         $scope.submit = function () {
             $scope.submited = true;
