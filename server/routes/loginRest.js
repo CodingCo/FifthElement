@@ -1,48 +1,41 @@
 var express = require('express');
 var jwt = require('jsonwebtoken');
+var request = require('request');
 var http = require('http');
 var router = express.Router();
 
+router.post('/authenticate', function (req, response) {
 
-router.post('/authenticate', function (request, response) {
-    var login = request.body;
+    console.log(req.body);
 
-    var profile = {
-        first_name: 'John',
-        last_name: 'Doe',
-        email: 'john@doe.com',
-        id: 123
-    };
+    var credentials = JSON.stringify(req.body);
 
-
-    var postOptions = {
-        host: 'localhost',
-        port: '3000',
-        path: '/login/validateUser',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': profile.length
-        }
-    };
-
-    http.request(postOptions, function (response) {
-        response.setEncoding('utf8');
-        response.on('end', function (data) {
-            console.log(data);
-
-            // We are sending the profile inside the token
-            var token = jwt.sign(profile, "secret", {expiresInMinutes: 60 * 5});
-            response.statusCode(200);
-            response.json({token: token});
-        }).on('error', function (err) {
-            console.log(err);
-            response.statusCode(401);
+    request.post({
+        headers: {'content-type' : 'application/json'},
+        url:     'http://78195575.ngrok.com/login/validateUser',
+        body:    credentials
+    }, function(err, res, body){
+        if(err) {
+            response.statusCode = 401;
             response.send(err);
-        })
+        }
 
+        body = JSON.parse(body);
+
+        if(body.err){
+            response.statusCode = 401;
+            response.send(body.err);
+        }else {
+            // We are sending the profile inside the token
+            var token = jwt.sign(body, "secret", {expiresInMinutes: 60 * 5});
+            response.statusCode = 200;
+            response.json({token: token});
+        }
     });
 });
+
+
+
 
 router.post('/usercreate', function (request, response) {
     var user = request.body;
