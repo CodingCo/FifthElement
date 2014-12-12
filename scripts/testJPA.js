@@ -1,38 +1,17 @@
-var http = require('http');
-
-//var login = request.body;
+var request = require('request');
 
 var profile = {
-    "username": "JOHN",
-    "password": "123"
+    "username": "test9",
+    "password": "samsø"
 };
 
-
-var postOptions = {
-    host: 'http://78195575.ngrok.com',
-    path: '/login/validateUser',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': profile.length
+request.post({
+    headers: {'content-type' : 'application/json'},
+    url:     'http://78195575.ngrok.com/login/validateUser',
+    body:    "{'username':'test9','password':'samsø'}"
+}, function(err, res, body){
+    if(err) {
+        console.log(err);
     }
-};
-
-var req = http.request(postOptions, function (response) {
-    response.setEncoding('utf8');
-    response.on('data', function (data) {
-        console.log(data);
-        // We are sending the profile inside the token
-        //var token = jwt.sign(profile, "secret", {expiresInMinutes: 60 * 5});
-        response.statusCode = 200;
-        // response.json({token: token});
-    }).on("end", function (data) {
-        console.log("ARGH");
-    });
-
+    console.log(body);
 });
-req.on('error', function () {
-   console.log("fucking shit");
-});
-req.write(JSON.stringify(profile));
-req.end();
