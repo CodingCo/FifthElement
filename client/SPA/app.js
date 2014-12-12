@@ -15,6 +15,27 @@
         $routeProvider.when('/viewDocument/:doc_id', {
             templateUrl: 'viewsVisitor/documentTemplate.html',
             controller: 'SingleDocCtrl'
+        }).when('/list', {
+            templateUrl: 'viewsVisitor/documentList.html',
+            controller: 'ListDocumentCtrl'
+        }).when('/home', {
+            templateUrl: 'viewsVisitor/frontPage.html',
+            controller: 'FrontPageCtrl'
+        }).when('/downloads', {
+            templateUrl: "viewsVisitor/downloadList.html",
+            controller: "DownloadCtrl"
+        }).when('/signIn', {
+            templateUrl: "viewsVisitor/login.html"
+        }).when('/simon', {
+            templateUrl: "profiles/simon.html"
+        }).when('/thomas', {
+            templateUrl: "profiles/thomas.html"
+        }).when('/christopher', {
+            templateUrl: "profiles/christopher.html"
+        }).when('/robert', {
+            templateUrl: "profiles/robert.html"
+        }).when('/kasper', {
+            templateUrl: "profiles/kasper.html"
         }).when('/projectCreator', {
             templateUrl: 'viewsCms/projectCreator.html',
             controller: 'CmsCtrl',
@@ -31,9 +52,6 @@
                     authInspector.auth();
                 }
             }
-        }).when('/list', {
-            templateUrl: 'viewsVisitor/documentList.html',
-            controller: 'ListDocumentCtrl'
         }).when('/cmsList', {
             templateUrl: 'viewsCms/cmsDocumentList.html',
             controller: 'CmsListCtrl',
@@ -42,9 +60,6 @@
                     authInspector.auth();
                 }
             }
-        }).when('/home', {
-            templateUrl: 'viewsVisitor/frontPage.html',
-            controller: 'FrontPageCtrl'
         }).when('/downloadCreator', {
             templateUrl: 'viewsCms/downloadCreator.html',
             controller: 'CmsDownloadCtrl',
@@ -61,9 +76,6 @@
                     authInspector.auth();
                 }
             }
-        }).when('/downloads', {
-            templateUrl: "viewsVisitor/downloadList.html",
-            controller: "DownloadCtrl"
         }).when('/dashboard', {
             templateUrl: "viewsCms/cmsDashboard.html",
             controller: "CmsDashboardCtrl",
@@ -72,8 +84,6 @@
                     authInspector.auth();
                 }
             }
-        }).when('/signIn', {
-            templateUrl: "viewsVisitor/login.html"
         }).otherwise({
             templateUrl: 'viewsVisitor/frontPage.html',
             controller: 'FrontPageCtrl'

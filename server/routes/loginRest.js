@@ -14,9 +14,34 @@ router.post('/authenticate', function (request, response) {
         id: 123
     };
 
-    // We are sending the profile inside the token
-    var token = jwt.sign(profile, "secret", {expiresInMinutes: 60 * 5});
-    response.json({token: token});
+
+    var postOptions = {
+        host: 'localhost',
+        port: '3000',
+        path: '/login/validateUser',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': profile.length
+        }
+    };
+
+    http.request(postOptions, function (response) {
+        response.setEncoding('utf8');
+        response.on('end', function (data) {
+            console.log(data);
+
+            // We are sending the profile inside the token
+            var token = jwt.sign(profile, "secret", {expiresInMinutes: 60 * 5});
+            response.statusCode(200);
+            response.json({token: token});
+        }).on('error', function (err) {
+            console.log(err);
+            response.statusCode(401);
+            response.send(err);
+        })
+
+    });
 });
 
 router.post('/usercreate', function (request, response) {

@@ -418,6 +418,7 @@
         $scope.isAdmin = false;
         $scope.message = '';
         $scope.user = {};
+        $scope.title = "G5";
 
         //login
         $scope.submit = function () {
