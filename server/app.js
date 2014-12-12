@@ -32,6 +32,7 @@ app.use(logger('dev'));
 
 if (auth === true) {
     app.use('/cms', expressJwt({secret: "secret"}));
+    app.use('/filehandler', expressJwt({secret: "secret"}));
 }
 
 app.use(bodyParser.json());
@@ -41,7 +42,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../client/SPA')));
 
 app.use('/', home);
-app.use('/uri',authenticate);
+app.use('/uri', authenticate);
 app.use('/api', documentRest);
 app.use('/api', profileRest);
 app.use('/api', downloadRest);
