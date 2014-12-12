@@ -22,6 +22,7 @@
     "mongoose": "^3.8.19",
     "morgan": "^1.3.2",
     "quickthumb": "0.0.10",
+    "request": "^2.51.0",
     "serve-favicon": "~2.1.3"
   },
   "devDependencies": {

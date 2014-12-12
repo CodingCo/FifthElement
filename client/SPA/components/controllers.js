@@ -335,7 +335,7 @@
             var storedProject = storageFactory.getIfExist(storageKey);
             if (storedProject) {
                 $scope.contentField = $sce.trustAsHtml(storedProject);
-                toastr.info("Previous article loaded: " + storedProject);
+                toastr.info("Previous article loaded");
             }
         };
         $scope.onLoadGetProject();
@@ -395,7 +395,7 @@
         };
     }]);
 
-    app.controller('AppCtrl', function ($scope, $http, $window, $location) {
+    app.controller('AppCtrl', function ($scope, $http, $window, $location, toastr) {
         function url_base64_decode(str) {
             var output = str.replace('-', '+').replace('_', '/');
             switch (output.length % 4) {
@@ -413,32 +413,41 @@
             return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
         }
 
-        $scope.isAuthenticated = false;
-        $scope.name = "";
-        $scope.isAdmin = false;
-        $scope.message = '';
-        $scope.user = {};
         $scope.title = "G5";
+        $scope.isAuthenticated = false;
+        $scope.submited = false;
+        $scope.isAdmin = false;
+        $scope.user = {};
+        $scope.name = "";
 
         //login
         $scope.submit = function () {
+            $scope.submited = true;
+            toastr.info("logging in");
             $http
                 .post('/uri/authenticate', $scope.user)
                 .success(function (data, status, headers, config) {
+                    toastr.clear();
                     $window.sessionStorage.token = data.token;
                     var encodedProfile = data.token.split('.')[1];
                     var profile = JSON.parse(url_base64_decode(encodedProfile));
                     $scope.user = profile;
+                    $scope.name = profile.username;
                     $scope.isAuthenticated = true;
                     $scope.error = null;
+                    toastr.success("Signed in - Welcome");
+                    $scope.submited = false;
                     $location.path("/dashboard");
-                })
-                .error(function (data, status, headers, config) {
-                    // Erase the token if the user fails to log in
+                }).error(function (data, status, headers, config) {
+                    toastr.clear();
                     delete $window.sessionStorage.token;
                     $scope.isAuthenticated = false;
                     $scope.error = 'You failed to login. Invalid User or Password';
+                    $scope.submited = false;
+                    toastr.warning("Invalid credentials");
                 });
+
+
         };
 
         //logout
@@ -447,7 +456,9 @@
             $scope.isAdmin = false;
             $scope.isUser = false;
             $scope.user = {};
+            $scope.name = "";
             delete $window.sessionStorage.token;
+            toastr.success("Logged out");
             $location.path("/home");
         }
     });

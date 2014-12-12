@@ -45,15 +45,16 @@
                 <li><a href="#/home">Home</a></li>
                 <li><a href="#/list">Projects</a></li>
                 <li><a href="#/downloads">Downloads</a></li>
-                <li><a href="#/dashboard" ng-show="isAuthenticated">Dashboard</a></li>
                 <li><a href="" data-toggle="dropdown" class="dropdown-toggle">Profiles<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#/simon">Simon</a></li>
-                    <li><a href="#/thomas">Thomas</a></li>
-                    <li><a href="#/robert">Robert</a></li>
-                    <li><a href="#/christopher">Christopher</a></li>
-                    <li><a href="#/kasper">Hald</a></li>
-                </ul></li>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/simon">Simon</a></li>
+                        <li><a href="#/thomas">Thomas</a></li>
+                        <li><a href="#/robert">Robert</a></li>
+                        <li><a href="#/christopher">Christopher</a></li>
+                        <li><a href="#/kasper">Hald</a></li>
+                    </ul>
+                </li>
+                <li><a href="#/dashboard" ng-show="isAuthenticated">Dashboard</a></li>
             </ul>
 
             <form class="navbar-form navbar-right" role="search">
@@ -61,7 +62,7 @@
                 <a ng-click="logout()" class="btn btn-warning form-control" ng-show="isAuthenticated">Sign out</a>
             </form>
             <ul class="nav navbar-nav pull-right">
-                <li><a href="">{{user.email}}</a></li>
+                <li><a href="">{{name}}</a></li>
             </ul>
         </div>
     </div>

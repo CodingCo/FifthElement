@@ -13,13 +13,14 @@ router.post('/authenticate', function (req, response) {
     request.post({
         headers: {'content-type' : 'application/json'},
         url:     'http://78195575.ngrok.com/login/validateUser',
+        timeout: 10000,
         body:    credentials
     }, function(err, res, body){
         if(err) {
             response.statusCode = 401;
             response.send(err);
         }
-
+        console.log(body);
         body = JSON.parse(body);
 
         if(body.err){
