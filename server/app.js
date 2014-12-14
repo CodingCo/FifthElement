@@ -14,7 +14,6 @@ var qt = require('quickthumb');
 var fileHandler = require('./routes/filehandler');
 var connection = require('./model/connection');
 var authenticate = require('./routes/loginRest');
-var auth = true; // TEMP: only in user under dev
 var app = express();
 
 if (app.get('env') === 'production') {
@@ -24,17 +23,13 @@ if (app.get('env') === 'production') {
     connection.connect();
 }
 
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-
-if (auth === true) {
-    app.use('/cms', expressJwt({secret: "secret"}));
-    app.use('/filehandler', expressJwt({secret: "secret"}));
-}
-
+app.use('/cms', expressJwt({secret: "secret"}));
+app.use('/filehandler', expressJwt({secret: "secret"}));
+app.use(favicon(__dirname + '../../public/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());

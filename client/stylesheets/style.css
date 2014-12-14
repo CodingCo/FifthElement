@@ -26,7 +26,6 @@ body {
 
 .presentation-body {
     padding-top: 100px;
-    background-color: rgb(44, 191, 229);
     position: relative;
     top: -80px;
     z-index: -100;
@@ -37,7 +36,7 @@ body {
     margin-bottom: 25px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: lighter;
-    color: #ffffff;
+
 }
 
 .presentation-text p {
@@ -118,3 +117,84 @@ input[type="checkbox"]:checked + label span {
     border-top-right-radius: 0;
 }
 
+/* bootstrap 3 helpers */
+
+.navbar-form input, .form-inline input {
+    width: auto;
+}
+
+#topper.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.gbackground {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.gbackground img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.presentation-text {
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+}
+
+@media (max-width: 768px) {
+
+    .gbackground img {
+        top: -3px;
+    }
+
+    .gbackground {
+        min-height: 50ex;
+        max-height: 50ex;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .gbackground img {
+        top: -200px;
+
+    }
+
+    .gbackground {
+        min-height: 300px;
+        max-height: 300px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+
+    .gbackground img {
+        top: -270px;
+    }
+
+    .gbackground {
+        min-height: 400px;
+        max-height: 400px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .gbackground img {
+        top: -300px;
+    }
+
+    .gbackground {
+        min-height: 400px;
+        max-height: 400px;
+    }
+}
