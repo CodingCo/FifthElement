@@ -11,7 +11,7 @@ function connect(onConnected, enviroment) {
         }
     });
 }
-
+// testing
 function close(onClose) {
     mongo.connection.close(function () {
         if (onClose) {
