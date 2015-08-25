@@ -12,7 +12,7 @@ function connect(onConnected, enviroment) {
     });
 }
 
-// another testfefefefw this is from master yes
+// This is from master yes
 
 function close(onClose) {
     mongo.connection.close(function () {
