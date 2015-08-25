@@ -12,7 +12,7 @@ function connect(onConnected, enviroment) {
     });
 }
 
-// another testfefe this is from master yes
+// another testfefe this is from mastfeer yes
 
 function close(onClose) {
     mongo.connection.close(function () {
