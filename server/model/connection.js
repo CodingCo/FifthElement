@@ -12,7 +12,6 @@ function connect(onConnected, enviroment) {
     });
 }
 
-// testingfefegrfegres
 
 function close(onClose) {
     mongo.connection.close(function () {
