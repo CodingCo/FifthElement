@@ -12,7 +12,7 @@ function connect(onConnected, enviroment) {
     });
 }
 
-// another test
+// another testfe
 
 function close(onClose) {
     mongo.connection.close(function () {
