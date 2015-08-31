@@ -8,7 +8,7 @@ var documents = "";
 var profiles = "";
 var downloads = "";
 
-// testing from master the second round
+// testing from test6 round 3
 
 var getDocuments = function (callback) {
     model.Document.find({}, function (err, data) {
