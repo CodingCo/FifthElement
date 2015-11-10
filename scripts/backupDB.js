@@ -8,9 +8,7 @@ var documents = "";
 var profiles = "";
 var downloads = "";
 
-// testing from test6 round 3
-// Another
-// This should really be reverted at some point...
+// revert this
 
 var getDocuments = function (callback) {
     model.Document.find({}, function (err, data) {
